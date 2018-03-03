@@ -587,13 +587,19 @@ thead tr th {
                     </select>
                   </datalist>
                 </div>
-                    <div class="col-md-4" id="party">
-                    <span style="font-size:15px;margin-left:-100px;margin-top:10px">Date:</span>
+                    <div class="col-md-3" id="party">
+                    <span style="font-size:15px;margin-left:-50px;margin-top:10px">Date:</span>
                     <input type="date" style="height:25px;width:150px;font-size:15px" ng-model="billDate">
                   </div>
-                  <div class="col-md-4" id="party">
+                  <div class="col-md-4" id="party" ng-hide="dataHide=='yes'">
                     <span style="font-size:15px">Bill No:</span>
                     <input type="text" style="height:25px;width:100px;font-size:15px;" ng-model="billNo">
+                   
+                  </div>
+                    <div class="col-md-4" id="party" ng-show="dataHide=='yes'">
+                    <span style="font-size:15px">Order No:</span>
+                    <input type="text" style="height:25px;width:100px;font-size:15px;" ng-model="orderNO">
+                   
                   </div>
                 </div>
                 <!-- {{name}} -->

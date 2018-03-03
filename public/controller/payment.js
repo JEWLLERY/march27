@@ -37,6 +37,48 @@ function($scope,$http,$window){
           //   $scope.partyname=$scope.customer;
           // }
             //for fecthing the saleinvoice voucherno
+
+var oneReceiptVal =JSON.parse(window.sessionStorage.getItem("oneReceiptVal"))
+console.log(threeReceiptVal)
+if (oneReceiptVal!=null) {
+//alert("jj")
+$scope.partyname=oneReceiptVal;
+}
+       
+window.sessionStorage.setItem("oneReceiptVal","null");
+            var detailch  = window.sessionStorage.getItem("oneReceiptVal");
+var twoReceiptVal =JSON.parse(window.sessionStorage.getItem("twoReceiptVal"))
+console.log(threeReceiptVal)
+if (twoReceiptVal!=null) {
+//alert("kk")
+$scope.orderNO=twoReceiptVal;
+}
+       
+window.sessionStorage.setItem("twoReceiptVal","null");
+            var tailch  = window.sessionStorage.getItem("twoReceiptVal");
+var threeReceiptVal =JSON.parse(window.sessionStorage.getItem("threeReceiptVal"))
+console.log(threeReceiptVal)
+if (threeReceiptVal!=null) {
+//alert("jj")
+$scope.selectedAmount=threeReceiptVal;
+$scope.dataHide="yes"
+}
+       
+window.sessionStorage.setItem("threeReceiptVal","null");
+            var ilch  = window.sessionStorage.getItem("threeReceiptVal");
+
+
+
+
+
+
+
+
+
+
+
+
+
           $http.get('/getRecentVoucherNo'+recentId1).success(function(response){
           console.log(response);
           $scope.vno=response[0].voucherNo;
