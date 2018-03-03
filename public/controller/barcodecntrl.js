@@ -411,7 +411,7 @@ $scope.saveBatchGeneration = function(){
                 // alert(response)
                 // invAccNo1 = response[0];
                  // invAccNo=invAccNo1.AccNo;
-               invAccNo = response[0].AccNo;
+               // invAccNo = response[0].AccNo;
                //invAccNo=invAccNo1.AccNo;
 
               $scope.userit[0].stockInward = "yes"
@@ -1087,6 +1087,33 @@ $scope.edit = function(){
 // alert("updated successfully");
 // $scope.updateButton = false;
 // }
+
+//for printing the barcode
+$scope.print = function(){
+  // alert("r u intrested to print");
+  if(edit1!=null){
+      // alert("r u intrested to print");
+      console.log(edit1.barcode);
+      $http.get('/barcodereprint'+edit1.barcode).success(function(response){
+        console.log(response);
+        if(response.length != 0){
+          $scope.userit = response;
+          console.log($scope.userit);
+          console.log($scope.userit[0]);
+          $http.post('/prn',$scope.userit[0]);
+        }
+        else{
+          alert("barcode not found");
+        }
+      })
+  }
+  else{
+    alert(" Select the barcode ");
+  }
+}
+
+
+
 
 //for delete barcode one
 $scope.close=function(){
