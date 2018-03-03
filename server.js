@@ -50,6 +50,29 @@ app.get('/itemSelect',function(req,res){
         res.json(doc);
     })
 })
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+// app.get('/taxSelectionWithinstate', function(req, res){
+//  // "taxSelection"
+//   var taxSelection=req.query.taxSelection;
+
+//getting items for  group
+app.get('/itemSelectInvGroup',function(req,res){
+     
+   // db.user.find(function(err,doc){ req.body.InvGroupName
+    
+    db.items.find({"InvGroupName" : req.query.InvGroupName },function(err,doc){
+
+       console.log("  itemSelectInvGroup   itemSelectInvGroup    "+doc.length) 
+        res.json(doc);
+    })
+})
+
+=======
+>>>>>>> 2155ba587c63a3a2c630140ef150631e8c238ddf
+>>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
 app.get('/vendorNames',function(req,res){
      // var party_type_id = "4";
    // db.user.find(function(err,doc){
@@ -117,7 +140,46 @@ app.get('/ordNum/:orderNum',function(req,res){
   res.json(doc);
 })
 })
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+app.get('/bringIssueVoucher/:pname',function(req,res)
+{
+ 
+     var str=req.params.pname;
+ // //   // console.log(str);
+ //     var str_array=str.split(",");
+ //    var a =str_array[0];
+ //    //console.log("status is"+status);
+ //    var c=str_array[1]
+   console.log(str+"jjjjjjjjjjjjjjjjjjjoooooooooooooooggggggggggggggggggggg")
+   db.transactionDetail.find({"orderNo":str},function(err,doc){     
+      
+        res.json(doc);
+
+})
+ })
+app.get('/receiptOrderNo/:pname',function(req,res)
+{
+ 
+    var str=req.params.pname;
+ //   // console.log(str);
+     var str_array=str.split(",");
+    var a =str_array[0];
+    //console.log("status is"+status);
+    var c=str_array[1]
+  console.log(a+c+"jjjjjjjjjjjjjjjjjjjoooooooooooooooggggggggggggggggggggg")
+   db.orders.find({"partyNames":a,"orderNO":c},function(err,doc){     
+      
+        res.json(doc);
+
+})
+ })
+>>>>>>> 2155ba587c63a3a2c630140ef150631e8c238ddf
+>>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
 app.get('/jjpurityget:pname',function(req,res)
 {
  
@@ -3111,7 +3173,11 @@ app.get('/getvoucherids:name',function(req,res){
 // }).sort({_id:-1},function(err,doc){
 //      res.json(doc);
 // =======
+<<<<<<< HEAD
    db.saleInvoice.find({"partyname":pname,"AccountStatus":'Inprogress',"voucherNo":{$ne:"null"}
+=======
+   db.saleInvoice.find({"partyname":pname,"Transaction":"Regular Sale","AccountStatus":'Inprogress',"voucherNo":{$ne:"null"}
+>>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
 }).sort({_id:-1},function(err,doc){
 
 
@@ -3158,16 +3224,31 @@ app.get('/getPaymentData:voucher',function(req,res){
     res.json(doc);
   });
 });
-
+app.get('/wentToReceipt/:vouch',function(req,res){
+  //console.log("selected partyname is ");
+  // var voucher = req.params.voucher;
+  // console.log("partyname is "+ voucher);
+  db.transactionDetail.find({"orderNo" : req.params.vouch},function(err,doc){
+    res.json(doc);
+  });
+});
+app.get('/ordersNoFromReceipt/:voucher',function(req,res){
+  console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk ");
+  // var voucher = req.params.voucher;
+  // console.log("partyname is "+ voucher);
+  db.receipts.find({"orderNO" : req.params.voucher},function(err,doc){
+    res.json(doc);
+  });
+});
 
 
 //for inserting into receipt
 app.post('/receiptdata/:datas',function(req,res){
   console.log("inserting into receipts+99999999999999999999");
   var rdata1=req.params.datas;
-
+console.log(rdata1+"uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
   var rdata1_array=rdata1.split(",");
-  console.log(rdata1_array)
+  
   var mode=rdata1_array[0];
   var amount=rdata1_array[1];
   var bank=rdata1_array[2];
@@ -3191,12 +3272,15 @@ app.post('/receiptdata/:datas',function(req,res){
   var voucher=rdata1_array[13];
   var voucherStatus = rdata1_array[14];
   var netBalance = rdata1_array[15];
+  var orderNO = rdata1_array[16];
+  //orderNO= parseFloat(orderNO)
+  console.log(orderNO+"l999909999999999999llllllllllllllllllllllllllllllllllllllllll")
    amount = parseFloat(amount).toFixed(rupeesDecimalPoints);
    totals = parseFloat(totals).toFixed(rupeesDecimalPoints);
    netBalance = parseFloat(netBalance).toFixed(rupeesDecimalPoints);
   //db.receipts.insert({"name":"gvhdfgfehyu"})
   db.receipts.insert({"Mode":mode,"Amount":Decimal128.fromString(amount),"Bank":bank,"ChequeNo":chequeno,"Date":chequeDate,"CardNo":cardnos,"CardType":ctype,"ApprovalNo":appno,"partyname":pname,"BilledDate":new Date(bdate),
-    "BillNo":bill,"Narration":narrate,"PaidAmount":Decimal128.fromString(totals),"voucherNo":voucher,"voucherStatus":voucherStatus,'netBalance':Decimal128.fromString(netBalance)},function(err,doc){
+    "BillNo":bill,"Narration":narrate,"PaidAmount":Decimal128.fromString(totals),"voucherNo":voucher,"voucherStatus":voucherStatus,"orderNO":orderNO,'netBalance':Decimal128.fromString(netBalance)},function(err,doc){
      console.log(" checking data here ");
      console.log(doc);
     res.json(doc);
@@ -4647,7 +4731,11 @@ var dis = str_array[9];
           })
         }else{
           db.saleInvoice.update({_id:mongojs.ObjectId(id)},{$set:{"partyname":partyname,"taxableval":taxableval,"tax":tax,"subtol":subtol,"adj":adj,
+<<<<<<< HEAD
             "labourtax":labourtax,"Transaction":transaction,"labourValue":labourValue,"dis":dis,"char":char,"netamt":netamt,"roundOffValue":decimals,"invoiceValue":invoiceValue,
+=======
+            "labourtax":labourtax,"labourValue":labourValue,"dis":dis,"char":char,"netamt":netamt,"roundOffValue":decimals,"invoiceValue":invoiceValue,
+>>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
             "netAmount":Decimal128.fromString(netValue),"discount":discount,"cardCharges" :cardCharges,"charges":charges}},function(err,doc){
               res.json(doc);
 
@@ -5536,6 +5624,7 @@ app.get('/getReceivableAmount:name',function(req,res){
   console.log("num num num num num num num num num");
   db.saleInvoice.aggregate([{$match:{"partyname":name,"Transaction":"Regular Sale","AccountStatus":'Inprogress',"voucherNo":{$ne:"null"}}},
      { $group:{_id:{partyname:"$partyname"},Balance:{$sum:"$netAmount"} }},
+<<<<<<< HEAD
     
     ],function(err,balance){
           db.receipts.aggregate([{$match:{"partyname":name,"voucherStatus" : "InProgress"}},
@@ -5575,6 +5664,8 @@ app.get('/getAppReceivableAmount:name',function(req,res){
   console.log("num num num num num num num num num");
   db.saleInvoice.aggregate([{$match:{"partyname":name,"Transaction":"Approval Sale","AccountStatus":'Inprogress',"voucherNo":{$ne:"null"}}},
      { $group:{_id:{partyname:"$partyname"},Balance:{$sum:"$netAmount"} }},
+=======
+>>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
     
     ],function(err,balance){
           db.receipts.aggregate([{$match:{"partyname":name,"voucherStatus" : "InProgress"}},
@@ -8863,8 +8954,20 @@ app.use(express.static(__dirname + '/subscriber_images'));
 // routes ==================================================
 require('./app/routes')(app); // pass our application into our routes
 require('./public/inventoryDbs/defaultCollections')(app);
+<<<<<<< HEAD
 app.listen(8085); 
 console.log("server running on port 8085");
+=======
+<<<<<<< HEAD
+require('./apiCalls/printPdf')(app); // pass our application into our routes
+require('./apiCalls/materialAdvancePdf')(app);
+app.listen(9000); 
+console.log("server running on port 9000");
+=======
+app.listen(8080); 
+console.log("server running on port 8080");
+>>>>>>> 2155ba587c63a3a2c630140ef150631e8c238ddf
+>>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
 //var MongoClient = require('mongodb').MongoClient;
 
 

@@ -1502,7 +1502,15 @@ display: inline-block;
   <button  ng-if = " edituseritButton != true && transaction != 'Valuation'&&transaction != 'Issue Voucher' && transaction != 'Receipt Voucher'&& transaction != 'Sale Return'&& transaction != 'Purchase Return'&&transaction!='Approval Return'&&transaction!='RD Purchase'&&transaction!='Urd Purchase'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Save</button>
   <button ng-if="(transaction=='RD Purchase'||transaction=='Urd Purchase')&& (edituseritButton != true)" ng-click="save()"
 ======= -->
+<<<<<<< HEAD
   <button  ng-if = " edituseritButton != true && transaction != 'Valuation'&&transaction != 'Issue Voucher' && transaction != 'Receipt Voucher'&& transaction != 'Sale Return'&& transaction != 'Purchase Return'&&transaction!='Approval Return'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Save</button>
+=======
+<<<<<<< HEAD
+  <button  ng-if = " edituseritButton != true && transaction != 'Valuation'&&transaction != 'Issue Voucher' && transaction != 'Receipt Voucher'&& transaction != 'Sale Return'&& transaction != 'Purchase Return'&&transaction!='Approval Return'&&transaction!='Urd Purchase'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Save</button>
+=======
+  <a ng-href="{{receiptPage}}"><button  ng-if = " edituseritButton != true && transaction != 'Valuation'&&transaction != 'Issue Voucher' && transaction != 'Receipt Voucher'&& transaction != 'Sale Return'&& transaction != 'Purchase Return'&&transaction!='Approval Return'&&transaction!='Urd Purchase'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Save</button></a>
+>>>>>>> 2155ba587c63a3a2c630140ef150631e8c238ddf
+>>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
   <!-- <button ng-if="(transaction=='RD &&transaction!='RD Purchase'&&Purchase'||transaction=='Urd Purchase')&& (edituseritButton != true)" ng-click="save()"
 >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html
   class="btn btn-success" id="buttonwidth" ng-disabled="
@@ -1514,10 +1522,23 @@ display: inline-block;
   <!-- <br>ng-if="refId != null" -->
   <!-- <button  ng-if = " edituseritButton != true && transaction == 'Valuation'|| te!='disp' || test!='display'"  ng-click="save();" class="btn btn-success" id="buttonwidth" >Print</button> -->
   <button class="btn btn-success" id="buttonwidth" ng-show="transaction=='Issue Voucher'||transaction=='Receipt Voucher' && test!='display'" ng-if="te!='disp'" ng-click="save()" >Print</button>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
   <a href="orderMaking.html">
    <button class="btn btn-success" id="buttonwidth" ng-if="te=='disp'"  ng-click="fromOrder();save()" ng-hide="test=='display'">Print</button>
  </a>
    <a href="orderCustomer.html"> 
+<<<<<<< HEAD
+=======
+=======
+  <a ng-href="{{orderMaking}}">
+   <button class="btn btn-success" id="buttonwidth" ng-if="te=='disp'"  ng-click="fromOrder();save()" ng-hide="test=='display'">Print</button>
+ </a>
+   <a ng-href="{{orderCustomer}}"> 
+>>>>>>> 2155ba587c63a3a2c630140ef150631e8c238ddf
+>>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
     <button class="btn btn-success" id="buttonwidth" ng-show="test=='display'" ng-click="fromOrder();save()" ng-if="te!='disp'">Print</button>
   </a>
 

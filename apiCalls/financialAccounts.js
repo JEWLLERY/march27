@@ -6,7 +6,15 @@ module.exports = function (app) {
     var ObjectID = require('mongodb').ObjectID;
     var mongojs=require('mongojs');
     var Decimal128 = require('mongodb').Decimal128;
+<<<<<<< HEAD
     var db=mongojs('inventory200',['user','tags','transaction','saleInvoice','mode','transactionDetail','batch','bank',
+=======
+<<<<<<< HEAD
+    var db=mongojs('inventory',['user','tags','transaction','saleInvoice','mode','transactionDetail','batch','bank',
+=======
+    var db=mongojs('inventory200',['user','tags','transaction','saleInvoice','mode','transactionDetail','batch','bank',
+>>>>>>> 2155ba587c63a3a2c630140ef150631e8c238ddf
+>>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
   'transactionSeriesInvoice','itemrate','item','menu','order','useritem','purity','uom','pct','labcal','useradj',
   'barCodeSummary','stockPointMaster','configurations','inventoryGroupMaster','salesCategoryMaster','itemType','taxrate',
   'items','tax','taxation','inventoryGroupValueNotation','inventoryGroupValueNotationDaily','salesPerson','loginDetails',
