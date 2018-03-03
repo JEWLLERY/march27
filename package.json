@@ -10,6 +10,8 @@
     "mkdirp": "^0.5.1",
     "mongodb": "^2.2.34",
     "mongojs": "^2.4.1",
-    "mongoose": "^4.13.7"
+    "mongoose": "^4.13.7",
+    "node-run-cmd": "^1.0.1",
+    "pdfkit": "^0.8.3"
   }
 }
