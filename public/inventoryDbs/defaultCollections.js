@@ -6,7 +6,7 @@
     var path = require('path');
     var ObjectID = require('mongodb').ObjectID;
     var mongojs=require('mongojs');
-    var db=mongojs('inventory200',['user','tags','transaction','saleInvoice','mode','transactionDetail','batch','bank',
+    var db=mongojs('inventory',['user','tags','transaction','saleInvoice','mode','transactionDetail','batch','bank',
   'transactionSeriesInvoice','itemrate','item','menu','order','useritem','purity','uom','pct','labcal','useradj',
   'barCodeSummary','stockPointMaster','configurations','inventoryGroupMaster','salesCategoryMaster','itemType','taxrate',
   'items','tax','taxation','inventoryGroupValueNotation','inventoryGroupValueNotationDaily','salesPerson','loginDetails',
