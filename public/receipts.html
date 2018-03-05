@@ -592,17 +592,13 @@ thead tr th {
                     <span style="font-size:15px;margin-left:-100px;margin-top:10px">Date:</span>
                     <input type="date" style="height:25px;width:150px;font-size:15px" ng-model="billDate">
                   </div>
-                        <div class="col-md-4" id="party">
-                    <span style="font-size:15px">Order No:</span>
-                    <input type="text" style="height:25px;width:100px;font-size:15px;" ng-model="orderNO">
-                  </div>
-              <!--     <div class="col-md-4" id="party">
+                  <div class="col-md-4" id="party">
                     <span style="font-size:15px">Bill No:</span>
                     <input type="text" style="height:25px;width:100px;font-size:15px;" ng-model="billNo">
-                  </div> -->
+                  </div>
                 </div>
           <br>
-    <div class="col-sm-5" style="background-color: white;border:1px solid black;margin-top:10px;overflow-y:auto;" ng-hide="dataHide=='yes'" ng-cloak  >
+    <div class="col-sm-5" style="background-color: white;border:1px solid black;margin-top:10px;overflow-y:auto;" ng-cloak>
 
     <!-- <div style="overflow-y: auto" > -->
           <table class="table" style="background-color: white">
@@ -625,7 +621,7 @@ thead tr th {
          </table>
          <!-- </div> -->
   </div>
-  <div class="col-sm-6" style="background-color: white;border:1px solid black;margin-top:10px;height:155px;margin-left:10px;overflow-y:auto;width:550px;" ng-hide="dataHide=='yes'">
+  <div class="col-sm-6" style="background-color: white;border:1px solid black;margin-top:10px;height:155px;margin-left:10px;overflow-y:auto;width:550px;" >
     <table  class="table" style="background-color: white">
       <thead >
       <tr>
@@ -647,7 +643,7 @@ thead tr th {
     </tbody>
     </table>
   </div>
-  <div ng-hide="dataHide=='yes'">
+  <div>
   <!-- <span style="font-size:20px;color:black;margin-left:200px;width:20px">Net:</span> -->
     NetReceviable:<input type="Numbers" id="input1" ng-model="selectedAmount" placeholder="amount" style="font-size:20px;">
   <button class="btn btn-primary-info" style="margin-left:620px;margin-top:10px" ng-click="rePrinting();">Reprint Voucher</button>

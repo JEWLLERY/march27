@@ -7,7 +7,6 @@ myApp.controller('billCntrl',['$scope','$http','$window',
  $scope.rpamt=[];
  $scope.paymode='Cash';
  $scope.dates=new Date();
- //var ogetPatyName=null;
   // 2222222222222222222
  // $scope.billNo="RP1";
  $scope.trans="Receipt";
@@ -28,10 +27,6 @@ myApp.controller('billCntrl',['$scope','$http','$window',
         //alert($scope.items);
     });
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
 //charan's 
 var  getPatyName =window.sessionStorage.getItem("receiptPatyName")
 console.log(getPatyName)
@@ -44,32 +39,6 @@ if ( getPatyName!=null) {
             var detailch  = window.sessionStorage.getItem("receiptPatyName");
 
 
-<<<<<<< HEAD
-=======
-=======
-
-//charan's 
-//alert(ogetPatyName)
- var setPatyName =JSON.parse(window.sessionStorage.getItem("receiptPatyName"))
-console.log(setPatyName)
-if (setPatyName!=null) {
-  //alert("not")
-  //$scope.partyname=getPatyName
-$scope.dataHide="yes"
-      $http.get('/receiptOrderNo/'+setPatyName).success(function(response){
-          console.log(response);
-        $scope.orderNO=response[0].orderNO;
-        $scope.partyname=response[0].partyNames
-        //alert($scope.items);
-    });
-
-}
-       
-window.sessionStorage.setItem("receiptPatyName","");
-            var detailch  = window.sessionStorage.getItem("receiptPatyName");
-
->>>>>>> 2155ba587c63a3a2c630140ef150631e8c238ddf
->>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
 //charan
 
          // if($scope.customer==null){
@@ -125,6 +94,10 @@ window.sessionStorage.setItem("receiptPatyName","");
   })
           }
 
+
+
+
+
         $http.get('/bank').success(function(response){
         $scope.banks=response;
         //alert($scope.items);
@@ -150,6 +123,8 @@ $http.get('/getprefixs').success(function(response){
   })
 
 })
+
+
 
   //for adding focus to selected row
   var editrow3 = null;
@@ -436,10 +411,10 @@ console.log($scope.rpamt.paymode+","+$scope.rpamt.amount+","+$scope.rpamt.bank+"
       //$scope.voucherStatus = 'InProgress';
       if(flag==0){
       for(i=0;i<=$scope.rpamt.length-1;i++){
-//alert($scope.orderNO)
+
       $scope.rdata=$scope.rpamt[i].paymode+","+$scope.rpamt[i].amount+","+$scope.rpamt[i].bank+","+$scope.rpamt[i].chequeno+","+$scope.rpamt[i].date+","+$scope.rpamt[i].cardnos+","+$scope.rpamt[i].ctype+","+$scope.rpamt[i].appno+","+$scope.partyname+","+$scope.billDate+","+$scope.billNo+
       
-      ","+$scope.narrate+","+$scope.totals+","+$scope.voucherId+","+$scope.voucherStatus+","+$scope.selectedAmount+","+$scope.orderNO;
+      ","+$scope.narrate+","+$scope.totals+","+$scope.voucherId+","+$scope.voucherStatus+","+$scope.selectedAmount;
       // alert($scope.rdata);
       console.log($scope.rdata)
       $http.post('/receiptdata/'+$scope.rdata).success(function(response){
@@ -600,6 +575,10 @@ $scope.rePrinting=function(){
     }
   })
 }
+
+
+
+
 
 }]);//end of first controller
 
