@@ -826,7 +826,7 @@ display: inline-block;
      Partyname<span id="star"><font size="04">*</font></span>:
              </form> 
     
-                <input list="partyname" ng-model="partyname" ng-change="clearDisplay('partyName');" style="border: 1px solid;background-color: white"  ng-blur="dupli()">
+                <input list="partyname" ng-model="partyname" ng-change="clearDisplay();clearDisplay12(partyname);" style="border: 1px solid;background-color: white"  ng-blur="dupli()">
                 <!-- <input type="name" name="" ng-change="getPartyDetails()"> -->
                   <datalist id="partyname">
                     <select   id="blockWIdt">

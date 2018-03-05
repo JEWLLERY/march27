@@ -29,25 +29,24 @@ myApp.controller('billCntrl',['$scope','$http','$window',
     });
 
 
-//charan's 
-//alert(ogetPatyName)
- var setPatyName =JSON.parse(window.sessionStorage.getItem("receiptPatyName"))
-console.log(setPatyName)
-if (setPatyName!=null) {
-  //alert("not")
-  //$scope.partyname=getPatyName
+  $scope.setPatyName  =  window.sessionStorage.getItem("receiptPatyName");
+ 
+console.log($scope.setPatyName)
+
+if ($scope.setPatyName!="null" ) {
+
 $scope.dataHide="yes"
-      $http.get('/receiptOrderNo/'+setPatyName).success(function(response){
+      $http.get('/receiptOrderNo/'+$scope.setPatyName).success(function(response){
           console.log(response);
         $scope.orderNO=response[0].orderNO;
         $scope.partyname=response[0].partyNames
-        //alert($scope.items);
+       
     });
 
-}
-       
-window.sessionStorage.setItem("receiptPatyName","");
-            var detailch  = window.sessionStorage.getItem("receiptPatyName");
+
+}       
+window.sessionStorage.setItem("receiptPatyName","null");
+            var ilchgg  = window.sessionStorage.getItem("receiptPatyName");
 
 //charan
 
@@ -258,6 +257,27 @@ $scope.billDate=new Date();
    // $scope.dates=new date();
    //for validation before save
    $scope.save=function(){
+
+if (setPatyName!="null") {
+//alert("jj")
+ var go=confirm("Material Advance");
+    if(go==true){
+
+    $scope.transaction="Receipt Voucher"       
+    $scope.materialAdvance = "Transaction.html";
+window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
+    window.sessionStorage.setItem("getPatyName",$scope.partyname)
+    window.sessionStorage.setItem("getOrderNo",$scope.orderNO)
+
+
+
+    }
+    else{
+$scope.materialAdvance="orderCustomer.html"
+}
+
+}
+
     // alert($scope.rpamt);
     console.log($scope.rpamt);
     var flag=0;
@@ -421,7 +441,7 @@ console.log($scope.rpamt.paymode+","+$scope.rpamt.amount+","+$scope.rpamt.bank+"
       //$scope.voucherStatus = 'InProgress';
       if(flag==0){
       for(i=0;i<=$scope.rpamt.length-1;i++){
-//alert($scope.orderNO)
+//alert("test"+$scope.orderNO)
       $scope.rdata=$scope.rpamt[i].paymode+","+$scope.rpamt[i].amount+","+$scope.rpamt[i].bank+","+$scope.rpamt[i].chequeno+","+$scope.rpamt[i].date+","+$scope.rpamt[i].cardnos+","+$scope.rpamt[i].ctype+","+$scope.rpamt[i].appno+","+$scope.partyname+","+$scope.billDate+","+$scope.billNo+
       
       ","+$scope.narrate+","+$scope.totals+","+$scope.voucherId+","+$scope.voucherStatus+","+$scope.selectedAmount+","+$scope.orderNO;

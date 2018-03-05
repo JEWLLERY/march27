@@ -1,7 +1,7 @@
 //for firstpage.html
 var myApp=angular.module('myApp',[]); 
-myApp.controller('orderCntrl',['$scope','$http','$window','$rootScope',"ControllerService",
-function($scope,$http,$window,$rootScope,ControllerService){
+myApp.controller('orderCntrl',['$scope','$http','$window','$rootScope',"ControllerService",'$location',
+function($scope,$http,$window,$rootScope,ControllerService,$location){
   //alert("well come to mainpage.html")
 // $scope.irate=[];
 //var updateData="";
@@ -9,6 +9,26 @@ function($scope,$http,$window,$rootScope,ControllerService){
 //for generating billno
 $scope.date=new Date()
 //$scope.datefrom
+// $http.get('./pdfPrint/MaterialReceipt.pdf')
+//   .then(function (data) {     // data is your url
+//       var file = new Blob([data], {type: 'application/pdf'});
+//       var fileURL = URL.createObjectURL(file);
+//        $window.open(fileURL)
+//   });
+//$window.open('https://www.google.com')
+//$window.open('localhost:C:/Users/user/Desktop/Code/march/Code0203INT/pdfPrint/MaterialReceipt18.15.11.2.3.2018.pdf')
+//$window.open('localhost:C:/Users/user/Desktop/Code/march/Code0203INT/pdfPrint/MaterialReceipt18.15.11.2.3.2018.pdf', '_blank');
+// $http.get('/api/Orderprefixs1234').success(function(response){
+
+
+// console.log(response)
+// //alert(" got replay "+response.receiptFile +response.orderFile)
+
+
+// $window.open('/pdfPrint/'+response.receiptFile)
+// $window.open('/pdfPrint/'+response.orderFile)
+
+// })
 $http.get('/Orderprefixs').success(function(response){
   console.log(response);
   console.log(response[0].TransactionPrefix)
@@ -199,42 +219,47 @@ $scope.itemSelect = function(itemname,in1) {
        })
                 
            
-     if(in1 > 0){
-       $scope.userit[in1].uom = "Carats";
-     }   
+     // if(in1 > 0){
+     //   $scope.userit[in1].uom = "Carats";
+     // }   
 
-      for(let a=0;a<$scope.items.length;a++){
-       
-          if (itemname == $scope.items[a].Name){
-                 // alert("$scope.items[i].Name "+$scope.items[i].Name)
-                    console.log($scope.items[a].InvGroupName)
-                  $http.get('/itemdetails'+$scope.items[a].InvGroupName).success(function(response){
-                            console.log(response);
-                            console.log(response[0].PurchaseAcc);
-                             $scope.userit[in1].InvGroupName = $scope.items[a].InvGroupName;
-                            $scope.userit[in1].SaleCategory = $scope.items[a].SaleCategory;
-                           
-            
-                            console.log(lastdate)
-                            if(response[0].InvGroupName =="Diamond" ){
-                                $scope.userit[in1].uom = "Carats"
-                              }
-                           // alert(lastdate)
-                            var itempuritydata = response[0].InvGroupID +","+lastdate;
-                           $http.get('/itemPurityDetails'+itempuritydata).success(function(response){
-                              console.log(response)
-                             $scope.irate=response; 
-                             $scope.userit[in1].irate = response;
-                            })   
-            
-                    })
-              break;
-          }    
-       
-       }
+     
+              for(let a=0;a<$scope.items.length;a++){
+               
+                  if (itemname == $scope.items[a].Name){
+                         // alert("$scope.items[i].Name "+$scope.items[i].Name)
+                            console.log($scope.items[a].InvGroupName)
+                          $http.get('/itemdetails'+$scope.items[a].InvGroupName).success(function(response){
+                                    console.log(response);
+                                    console.log(response[0].PurchaseAcc);
+                                     $scope.userit[in1].InvGroupName = $scope.items[a].InvGroupName;
+                                    $scope.userit[in1].SaleCategory = $scope.items[a].SaleCategory;
+                                   
+                    
+                                    console.log(lastdate)
+                                    if(response[0].InvGroupName =="Diamond" ){
+                                        $scope.userit[in1].uom = "Carats"
+                                      }
+                                   // alert(lastdate)
+                                    var itempuritydata = response[0].InvGroupID +","+lastdate;
+                                   $http.get('/itemPurityDetails'+itempuritydata).success(function(response){
+                                      console.log(response)
+                                     $scope.irate=response; 
+                                     $scope.userit[in1].irate = response;
+                                    })   
+                    
+                            })
+                      break;
+                  }    
+               
+               }//for loop
+
+
 
   
-}
+}//$scope.itemSelect
+
+
        $scope.valuationPrint = function(){
         if($scope.party==undefined || $scope.party==null || $scope.party==""){
 alert("Please select Party")
@@ -379,35 +404,73 @@ $http.get('/getinventorygroupvaluenotationlast').success(function(response){
 
 //item purity
 $scope.purityCal1=function(val,purity,itemname){
-//function itemRatesCall(itemname,val) {
+  //function itemRatesCall(itemname,val) {
   //alert("purity");
-  for(let a=0;a<$scope.items.length;a++){
-       //alert("len"+$scope.items.length)
-          if (itemname == $scope.items[a].Name){
-                  //alert("$scope.items[i].Name "+$scope.items[a].Name)
-                    console.log($scope.items[a].InvGroupName)
-                  $http.get('/itemdetails'+$scope.items[a].InvGroupName).success(function(response){
-                        
-
-                            console.log(lastdate)
-                            //alert(lastdate)
-                            var itempuritydata = response[0].InvGroupID +","+lastdate;
-                           $http.get('/itemPurityDetails'+itempuritydata).success(function(response){
-                              console.log(response)
-                             $scope.irate=response; 
-                            // alert( $scope.irate.length)
-                             // $scope.userit[in1].irate = response
-                              $scope.userit[val].irate = response
-                              $scope.purityCal(val,purity)
-                            }) 
-                           
+  if (val == 0) { 
+      for(let a=0;a<$scope.items.length;a++){
+           //alert("len"+$scope.items.length)
+              if (itemname == $scope.items[a].Name){
+                      //alert("$scope.items[i].Name "+$scope.items[a].Name)
+                        console.log($scope.items[a].InvGroupName)
+                      $http.get('/itemdetails'+$scope.items[a].InvGroupName).success(function(response){
                             
-            
-                    })
-              break;
-          }    
-       
-       }
+
+                                console.log(lastdate)
+                                //alert(lastdate)
+                                var itempuritydata = response[0].InvGroupID +","+lastdate;
+                               $http.get('/itemPurityDetails'+itempuritydata).success(function(response){
+                                  console.log(response)
+                                 $scope.irate=response; 
+                                // alert( $scope.irate.length)
+                                 // $scope.userit[in1].irate = response
+                                  $scope.userit[val].irate = response
+                                  $scope.purityCal(val,purity)
+                                }) 
+                               
+                                
+                
+                        })
+                  break;
+              }    
+           
+           }//for loop
+
+     }else{ // if (val == 0)
+              if (purity ==  $scope.userit[0].purity) {
+
+                     //alert(" purity call "+ $scope.userit[0].purity);
+                     for(let a=0;a<$scope.items.length;a++){
+           //alert("len"+$scope.items.length)
+              if (itemname == $scope.items[a].Name){
+                      //alert("$scope.items[i].Name "+$scope.items[a].Name)
+                        console.log($scope.items[a].InvGroupName)
+                      $http.get('/itemdetails'+$scope.items[a].InvGroupName).success(function(response){
+                            
+
+                                console.log(lastdate)
+                                //alert(lastdate)
+                                var itempuritydata = response[0].InvGroupID +","+lastdate;
+                               $http.get('/itemPurityDetails'+itempuritydata).success(function(response){
+                                  console.log(response)
+                                 $scope.irate=response; 
+                                // alert( $scope.irate.length)
+                                 // $scope.userit[in1].irate = response
+                                  $scope.userit[val].irate = response
+                                  $scope.purityCal(val,purity)
+                                }) 
+                               
+                                
+                
+                        })
+                  break;
+              }    
+           
+           }//for loop
+              }else{
+                     alert(" Please select purity "+$scope.userit[0].purity);
+                     $scope.userit[val].purity = null;
+                   }
+          }
 //$scope.save(purity)
 }//itemRatesCall(itemname,val)
 $scope.purityCal=function(val,purity){
@@ -575,6 +638,13 @@ return;
           
     
     var csfdata="party";
+    // $http.get('/taxSelectionWithinstate',{params:{"taxSelection":taxSelection}}).success(function(response){
+   
+    $http.get('/itemSelectInvGroup',{params:{"InvGroupName":$scope.userit[0].InvGroupName}}).success(function(response){
+        //alert(" group "+$scope.userit[0].InvGroupName)
+        $scope.items=response;
+        
+   });
     
      $scope.userit.push({ 
 
@@ -591,12 +661,12 @@ return;
 //$scope.item.gwt=0;
 //alert($scope.item.gwt);
   //$scope.stwt[$scope.userit.length-1]=0;
-  $scope.netwtarr[$scope.userit.length-1]=0;
-  $scope.chararr[$scope.userit.length-1]=0;
-  $scope.wasarr[$scope.userit.length-1]=0;
-  $scope.taxablearr[$scope.userit.length-1]=[0];
-  $scope.taxarr[$scope.userit.length-1]=[0];
-  $scope.totvalarr[$scope.userit.length-1]=[0];
+  // $scope.netwtarr[$scope.userit.length-1]=0;
+  // $scope.chararr[$scope.userit.length-1]=0;
+  // $scope.wasarr[$scope.userit.length-1]=0;
+  // $scope.taxablearr[$scope.userit.length-1]=[0];
+  // $scope.taxarr[$scope.userit.length-1]=[0];
+  // $scope.totvalarr[$scope.userit.length-1]=[0];
  
      console.log($scope.userit);
   
@@ -1507,9 +1577,16 @@ else if($scope.updateOrder=="updateData")
   }
 
   //$scope.userit[t]=""; 
+ //  alert("  pdf to call ")
+ //  $http.post('/api/orderDetailsMaterialAdvancePdf',$scope.userit[0]).then(function(savedData) {
+ //    console.log(response)
+ //    alert(" got data from saved "+response);
+ //   // body...
+ // })
            
-      }
- console.log($scope.userit[0])
+      }//for
+ console.log($scope.userit[0]);
+ 
 
  // $scope.staff="";
  // $scope.rateCheck="";
@@ -1594,37 +1671,44 @@ return;
 
                $scope.mylink = "receipts.html";
 //alert()
-dataBoth=$scope.party+","+$scope.orderNO
-alert(dataBoth)
+ twice=$scope.party+","+$scope.orderNO
     //window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
-  window.sessionStorage.setItem("receiptPatyName",JSON.stringify(dataBoth))
-
+  window.sessionStorage.setItem("receiptPatyName",twice)
+ 
 
             }
-       if (r==false) {     
+         if (r==false) {    
             var f = confirm("Material Advance")
             if (f==true) {
 
        $scope.transaction="Receipt Voucher"       
     $scope.mylink = "Transaction.html";
+
+
+
 //alert()
     window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
     window.sessionStorage.setItem("getPatyName",$scope.party)
-     window.sessionStorage.setItem("getOrderNo",$scope.orderNO)
-//window.sessionStorage.setItem("purityName", JSON.stringify($scope.userit))
-//window.sessionStorage.setItem("rate",rate)
+    window.sessionStorage.setItem("getOrderNo",$scope.orderNO)
+    var InvGroupAndPurity = {
+    "InvGroupName":$scope.userit[0].InvGroupName,
+    'purity':$scope.userit[0].purity
+  }       
+ window.sessionStorage.setItem("InvGroupAndPurity", JSON.stringify(InvGroupAndPurity))
+// $scope.InvGroupAndPurity = JSON.parse(window.sessionStorage.getItem("InvGroupAndPurity"));
+
+}
+
 
 
             }
-          }
           
  callSave()              
  }              
   // var   callSave=function(){
   //   //alert("KK")
-  // }              
-
-
+  // }      
+  
 
  
  $scope.indexSelected=[];
