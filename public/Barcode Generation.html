@@ -647,10 +647,10 @@ width: 8%;
        </div>
        </div>
        </div>
-       <button type="button" id="buttonwidth" class="btn" ng-click=print() ng-disabled="disablebutton" ng-cloak>Print</button>
-       <button type="button" id="buttonwidth" class="btn btn-primary" ng-click= edit() ng-cloak>Edit</button>
-       <button type="button" id="buttonwidth" class="btn btn-danger" ng-if = " updateButton != true" ng-click=deletebarcodegeneration() ng-cloak>Delete</button>
-    <!--     <a href='mainpage.html'><button type="button" class="btn btn-danger"   ng-cloak>Close</button></a> -->
+       <button type="button" id="buttonwidth" class="btn btn-info" ng-click="print()"  ng-cloak>Print</button>
+       <button type="button" id="buttonwidth" class="btn btn-primary" ng-click= "edit()" ng-cloak>Edit</button>
+       <button type="button" id="buttonwidth" class="btn btn-danger" ng-if = " updateButton != true" ng-click="deletebarcodegeneration()" ng-cloak>Delete</button>
+    <!-- ng-disabled="disablebutton"    <a href='mainpage.html'><button type="button" class="btn btn-danger"   ng-cloak>Close</button></a> -->
        <button  type="button" id="buttonwidth" class="btn btn-info" ng-click="generateBarcode()"  ng-disabled="all" ng-if = " updateButton != true"  ng-cloak>Allocate</button>
        <button type="button" ng-if = " updateButton != true" id="buttonwidth" class="btn btn-success" ng-click="saveBatchGeneration()"  ng-cloak>Save</button>
 

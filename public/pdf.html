@@ -414,11 +414,17 @@ display: block;
     </p>
   </header>
 </div>
-
-  <!-- <p>Lorem Ipsum dolor set amet....</p> -->
-</article>
+ </article>
 <!-- <h3 align="center">Tax Invoice[{{billType}}]</h3>//25/4 -->
-<h3 align="center" ng-if="trans == 'Regular Sale'" ng-cloak>Tax Invoice[{{Billtype}}]</h3>
+<div class="row">
+<h3 align="center" ng-if="trans == 'Regular Sale'||trans=='Approval Sale'" ng-cloak>Tax Invoice[{{Billtype}}]</h3>
+<h3 align='center' ng-if="trans=='Issue Voucher'" ng-cloak>Issue Voucher</h3>
+<h3 align='center' ng-if="trans=='Receipt Voucher'" ng-cloak>Receipt Voucher</h3>
+<h3 align='center' ng-if="trans=='Approval Out'" ng-cloak
+>Approval Out</h3>
+<h3 align='center' ng-if="trans=='Approval Return'" ng-cloak
+>Approval Return</h3>
+</div>
 <div class="row">
 
 <div class="col-sm-10" ng-hide="trans=='Opening Stock'">
@@ -437,7 +443,7 @@ City:{{city}}</p>
   <!-- <p>Invoice No:B1393<br> -->
   Date:{{FromDate | date }}<br>
  <h5 ng-if="trans=='RD Purchase'&&printReceipt==true">Payment BillNo:{{bill}}</h5>
- <h5 ng-if="trans=='Regular Sale'&&printReceipt==true">Receipt BillNo:{{bill}}</h5>
+ <h5 ng-if="trans=='Regular Sale'||trans=='Approval Sale'&&printReceipt==true">Receipt BillNo:{{bill}}</h5>
 </p>
 </div>
 </div>
@@ -554,7 +560,6 @@ City:{{city}}</p>
   <td ng-if = "urd_adj != 0 ">{{urdDetails1.urdDate | date  : "dd-MM-y"}}</td>
   <td ng-if = "urd_adj != 0 ">{{urdDetails1.urdVoucherNo }}</td>
  
- <!-- <td>{{urdTotalBalance}}</td>  -->
 </tr>
 </tbody>
 </table>
@@ -567,17 +572,11 @@ City:{{city}}</p>
       <th>Particulars</th>
         <th >Value</th>
         <th>Amount</th>
-    <!--     <th>{{charge1 }}</th> -->
-
-        
-
       </tr>
     </thead>
     <tbody>
       <tr ng-if = "v1 != 0">
        <td>V1 1% on</td>
-       <!-- <td>28290</td>
-       <td>282.9</td> 14/5-->
        <td>0</td>
        <td>0</td>
 </tr>
@@ -614,14 +613,7 @@ City:{{city}}</p>
 </tbody>
 </table>
 </div>
-
-
-<!-- <<<<<<< HEAD -->
 <div class="col-md-4" ng-hide="trans =='Issue Voucher'||trans =='Receipt Voucher'||trans =='Sale Return'||trans == 'Purchase Return'||trans == 'Approval Out'||trans=='Approval Return'||trans=='Opening Stock'">
-<!-- ======= -->
-<!-- <div class="col-md-4" ng-hide="trans =='Issue Voucher'|| trans =='Receipt Voucher'||trans =='Sale Return'||trans == 'Purchase Return'">
- --><!-- >>>>>>> 61946425920cfde23eb0ef81e1ccb2a84ae6baa2 -->
-
   <div style="border:1px solid black;">
   <table width="250px">
     <tr>
@@ -643,10 +635,6 @@ City:{{city}}</p>
       <td  id="right2">{{igsttax}}</td>
 
     </tr>
-    <!-- <tr>
-      <th ng-if="trans=='Approval Sale'">Total Tax:</th>
-      <td id="right2">{{$scope.tax}}</td>
-    </tr> -->
      <tr>
       <th ng-if="LabourTaxCheck == 'Yes'">Labour Value:</th>
       <td  id="right2"  ng-if="LabourTaxCheck == 'Yes'">{{labourValue}}</td>
@@ -656,10 +644,6 @@ City:{{city}}</p>
       <td  id="right2">{{labourtax}}</td>
 
     </tr> 
-   <!--  <tr ng-if="trans =='Regular Sale'">
-      <th >Discount:</th>
-      <td  id="right2">{{discount}}</td>
-    </tr>  -->
     <tr>
       <th  >Subtotal:</th>
       <td  id="right2">{{subtotal}}</td>
@@ -679,22 +663,7 @@ City:{{city}}</p>
     <tr>
        <th >Invoice Value:</th>
       <td  id="right2"><b>{{nett}}</b></td>
-    </tr> 
-  <!--   <tr ng-if=" (trans=='Regular Sale') && (Billtype == 'Credit') ">
-       <th >Net Receivable:</th>
-      <td  id="right2"><b>{{netReceivable}}</b></td>
-    </tr> 
-
-    <tr ng-if=" (trans=='RD Purchase') && (Billtype == 'Credit') ">
-       <th >Net Payable:</th>
-      <td  id="right2"><b>{{netReceivable}}</b></td>
-    </tr>  -->
-
-   <!--  <h3 ng-if="trans=='RD Purchase'&&printReceipt==true">Net Payable Amount:{{payable}}</h3>
-<h3 ng-if="trans=='Regular Sale'&&printReceipt==true">Net Receivable Amount:{{payable}}</h3> -->
-
-
-     
+    </tr>   
   </table>
 
 
@@ -707,7 +676,7 @@ City:{{city}}</p>
 <h4 ng-if="trans =='Urd Purchase'" ng-cloak><font color="black">Invoice Value In Words:{{wor}}{{"only"}}</h4>
 
 
-  <h4 ng-if=" (trans=='Regular Sale') && (Billtype == 'Credit') ">
+  <h4 ng-if=" (trans=='Regular Sale'||trans=='Approval Sale') && (Billtype == 'Credit') ">
        <b>Net Receivable:</b>
       <b>{{netReceivable}}</b>
     </h4> 
@@ -717,10 +686,7 @@ City:{{city}}</p>
       <b>{{netReceivable}}</b>
     </h4> 
 
-
-
-<!-- <div class="row" ng-hide="trans =='Urd Purchase'||trans =='Valuation'|| trans =='Issue Voucher' || trans =='Receipt Voucher'||trans =='Sale Return'||trans == 'Purchase Return'||trans == 'Approval Out'||trans=='Approval Return'" ng-cloak> -->
-<div class="row" ng-show="trans == 'Regular Sale' || trans == 'RD Purchase'">
+<div class="row" ng-show="trans == 'Regular Sale' || trans == 'RD Purchase'||trans == 'Approval Sale'">
 
 <div class="row" ng-hide="trans =='Urd Purchase'||trans =='Valuation'|| trans =='Issue Voucher' || trans =='Receipt Voucher'||trans =='Sale Return'||trans == 'Purchase Return'||trans == 'Approval Out'||trans=='Approval Return'" ng-cloak>
 
@@ -730,11 +696,12 @@ City:{{city}}</p>
     <thead>
       <!-- <tr><font   cash color="white"> -->
       <tr>
-      <th ng-if="trans=='Regular Sale'">Receipt Details</th>
+      <th ng-if="trans=='Regular Sale'||trans=='Approval Sale'">Receipt Details</th>
       <th ng-if="trans == 'RD Purchase'">Payment Details</th>
         <th >OB</th>
         <th>Dr/cr</th>
       </tr>
+      asdfghjkl;'waesdfghsdfdsfgdfgb'
     </thead>
     <tbody>  
     <tr>
@@ -752,6 +719,7 @@ City:{{city}}</p>
     <thead>
       <tr>
       <th ng-if="trans=='Regular Sale'">Receipt Details</th>
+      <th ng-if="trans=='Approval Sale'">Receipt Details</th>
       <th ng-if="trans == 'RD Purchase'">Payment Details</th>
       <th>Mode</th>
       <th>Amount</th>
@@ -762,34 +730,24 @@ City:{{city}}</p>
        <td>
        <td>{{item.Mode}}</td>
        <td>{{item.Amount.$numberDecimal}}</td>
-      <!-- <td>{{item.PaidAmount.$numberDecimal}}</td> -->
 </tr>
-<!-- <tr>
-<td>CC/DC</td>
-<td>Tr No,Bank</td>
-</tr>
-<tr>
-  <td>Cq</td>
-  <td>Cq No,Bank</td>
-</tr> -->
 </tbody>
 </table>
 </div>
 </div>
-<!-- <h3 ng-if="trans=='RD Purchase'&&printReceipt==true">Net Payable Amount:{{payable}}</h3>
-<h3 ng-if="trans=='Regular Sale'&&printReceipt==true">Net Receivable Amount:{{payable}}</h3> -->
-<table ng-show="trans=='Issue Voucher'|| trans=='Receipt Voucher'">
+</div>
+<div  ng-hide="trans!='Issue Voucher'&& trans!='Receipt Voucher' && trans != 'Approval Out' && trans !='Approval Return'" >
+  <!-- Vinayak -->
+<table>
+  <th>
  <tr> 
   <td style="padding:0 500px 0 100px;">Party Signature</td>
-  
   <td>For  {{ShopName}}</td>
 </tr>
+</th>
     </table>
 
- <!-- <div ng-show="trans=='Issue Voucher'||trans=='Receipt Voucher'"> 
-  <span>Party Signature &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ShopName}}</span>
-</div> -->
- <br> 
+  </div>
 <br>
 <button onclick="exportPDF();id='ww'; style.display = 'none'" class="btn btn-primary" ng-click="bill()" ng-cloak>Bill</button>
 <!-- <button onclick="exportPDF()" class="btn btn-primary" ng-click="bill()">Bill</button> -->

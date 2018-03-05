@@ -29,6 +29,15 @@ $scope.date=new Date()
 // $window.open('/pdfPrint/'+response.orderFile)
 
 // })
+<<<<<<< HEAD
+=======
+// var orderNo = "OD6"
+//   $http.post('/api/orderDetailsMaterialAdvancePdf',$scope.userit[0]).then(function(savedData) {
+//     console.log(response)
+//     //alert(" got data from saved "+response);
+//    // body...
+//  })
+>>>>>>> 47cc718ca29e36dd2e59b606c6135c3e33d6c2b3
 $http.get('/Orderprefixs').success(function(response){
   console.log(response);
   console.log(response[0].TransactionPrefix)
@@ -1671,6 +1680,7 @@ return;
 
                $scope.mylink = "receipts.html";
 //alert()
+<<<<<<< HEAD
  twice=$scope.party+","+$scope.orderNO
     //window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
   window.sessionStorage.setItem("receiptPatyName",twice)
@@ -1678,6 +1688,14 @@ return;
 
             }
          if (r==false) {    
+=======
+    //window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
+  window.sessionStorage.setItem("receiptPatyName",$scope.party)
+
+
+            }
+            
+>>>>>>> 47cc718ca29e36dd2e59b606c6135c3e33d6c2b3
             var f = confirm("Material Advance")
             if (f==true) {
 
@@ -1693,12 +1711,26 @@ return;
     var InvGroupAndPurity = {
     "InvGroupName":$scope.userit[0].InvGroupName,
     'purity':$scope.userit[0].purity
+<<<<<<< HEAD
   }       
  window.sessionStorage.setItem("InvGroupAndPurity", JSON.stringify(InvGroupAndPurity))
 // $scope.InvGroupAndPurity = JSON.parse(window.sessionStorage.getItem("InvGroupAndPurity"));
 
 }
 
+=======
+  }        
+ window.sessionStorage.setItem("InvGroupAndPurity", JSON.stringify(InvGroupAndPurity))
+// $scope.InvGroupAndPurity = JSON.parse(window.sessionStorage.getItem("InvGroupAndPurity"));
+
+
+//console.log($scope.getOrderNo12.a)
+ //window.sessionStorage.setItem("InvGroupAndPurity", 'null')
+//  $scope.getOrder1 = JSON.parse(window.sessionStorage.getItem("getOrderNo12"));
+// console.log($scope.getOrder1)
+//window.sessionStorage.setItem("purityName", JSON.stringify($scope.userit))
+//window.sessionStorage.setItem("rate",rate)
+>>>>>>> 47cc718ca29e36dd2e59b606c6135c3e33d6c2b3
 
 
             }
