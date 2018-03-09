@@ -2,35 +2,21 @@
 var myApp=angular.module('myApp',[]); 
 myApp.controller('orderCntrl',['$scope','$http','$window','$rootScope',"ControllerService",'$location',
 function($scope,$http,$window,$rootScope,ControllerService,$location){
-  //alert("well come to mainpage.html")
-// $scope.irate=[];
-//var updateData="";
-//$scope.updateOrder=null
-//for generating billno
+
 $scope.date=new Date()
-//$scope.datefrom
-// $http.get('./pdfPrint/MaterialReceipt.pdf')
-//   .then(function (data) {     // data is your url
-//       var file = new Blob([data], {type: 'application/pdf'});
-//       var fileURL = URL.createObjectURL(file);
-//        $window.open(fileURL)
-//   });
-//$window.open('https://www.google.com')
-//$window.open('localhost:C:/Users/user/Desktop/Code/march/Code0203INT/pdfPrint/MaterialReceipt18.15.11.2.3.2018.pdf')
-//$window.open('localhost:C:/Users/user/Desktop/Code/march/Code0203INT/pdfPrint/MaterialReceipt18.15.11.2.3.2018.pdf', '_blank');
-// $http.get('/api/Orderprefixs1234').success(function(response){
 
-
-// console.log(response)
-// //alert(" got replay "+response.receiptFile +response.orderFile)
-
-
+<<<<<<< HEAD
 // $window.open('/pdfPrint/'+response.receiptFile)
 
  
 
 // })
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
+>>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
 $http.get('/Orderprefixs').success(function(response){
   console.log(response);
   console.log(response[0].TransactionPrefix)
@@ -51,7 +37,17 @@ $http.get('/Orderprefixs').success(function(response){
   // $scope.insertReceipt($scope.billNo);
   });
 });
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+$scope.updateSave=function() {
+  alert("kk")
+}
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
+>>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
 
 function printCall(length) {
   //alert($scope.prefix1+length);
@@ -125,14 +121,18 @@ console.log(orderid._id)
   $http.get('/goorders',{params:{"id":orderid._id}}).success(function(response){
              console.log(response)
 
-               $scope.userit=response;
-$scope.orderNO=response[0].orderNO
-$scope.party=response[0].partyNames
-$scope.staff=response[0].saleNames
-$scope.totalVal=response[0].totalVal
-$scope.remarks=response[0].remarks
-$scope.userit[0].usedate = new Date(response[0].usedate )
-  $scope.date = new Date(response[0].date )    
+                $scope.userit=response;
+                if ($scope.userit[0].outofstateigst != undefined) {
+                        $scope.radiobutton("out of state");
+                        //alert(" call here ")
+                }; 
+                $scope.orderNO=response[0].orderNO
+                $scope.party=response[0].partyNames
+                $scope.staff=response[0].saleNames
+                $scope.totalVal=response[0].totalVal
+                $scope.remarks=response[0].remarks
+                $scope.userit[0].usedate = new Date(response[0].usedate )
+                  $scope.date = new Date(response[0].date )    
 
                })
 
@@ -213,7 +213,7 @@ $scope.orderdetail=function(partyname123){
   });
   console.log( $scope.partyNames)
 // }
-$scope.vendorNames=function () {
+// $scope.vendorNames=function () {
 
  
   $http.get('/vendorNames').success(function(response){
@@ -222,7 +222,7 @@ $scope.vendorNames=function () {
         
   });
   console.log( $scope.partyNames)
-}
+// }
 // $scope.itemSelect11=function () {
 //alert("hh")
  
@@ -614,7 +614,13 @@ $scope.purityCal=function(val,purity){
 
        
  
-       
+  $scope.validationDate = function(usedate){
+  var duedate=usedate
+if(duedate<$scope.date){
+
+  alert("Invalid Date Range")
+}
+  }     
 
 
  $scope.addNew = function(){
@@ -724,10 +730,11 @@ return;
      console.log($scope.userit);
   
         };
-$scope.radiobutton=function(){
-        //alert($scope.radio.state)
-        
-        if($scope.radio.state == "with in state"){
+$scope.radiobutton=function(condition){
+        //alert(indexvalue)
+        //alert(condition)
+       // $scope.radio.state = "out of state"
+        if(condition == "with in state"){
            $scope.radiowithinstate = "withinstate";
               //get tax value in index page
 
@@ -783,7 +790,7 @@ $scope.radiobutton=function(){
            // });
 
         }else{
-
+                 $scope.radio.state = "out of state";
                  $scope.radiowithinstate = "outofstate";
                   ControllerService.getTaxOutState().then(function(response){
                         //console.log(response);
@@ -801,7 +808,8 @@ $scope.radiobutton=function(){
                         //console.log(duplicat)
 
                      }//for
-                     function arrUnique(arr) {
+                     //for checking duplicates in object and removes
+          function arrUnique(arr) {
                var cleaned = [];
                duplicat.forEach(function(itm) {
                var unique = true;
@@ -829,8 +837,9 @@ $scope.radiobutton=function(){
              }
      
 
-} 
-$scope.radiobutton();
+}  
+$scope.radiobutton("with in state");
+
 $scope.removeChecked = function(index) {
 
   $scope.userit[index].index = index;
@@ -968,6 +977,8 @@ var taxamtcal = function($index){
                      $scope.userit[$index].taxamt =  parseFloat($scope.userit[$index].outofstateigst);
                      $scope.userit[$index].taxamt = ($scope.userit[$index].taxamt).toFixed($scope.rupeesDecimalPoints);
                       $scope.userit[$index].final = (parseFloat($scope.userit[$index].taxamt) + parseFloat(calcu)).toFixed($scope.rupeesDecimalPoints)
+                   $scope.totalVal+= $scope.userit[$index].final
+
                       saleInvoiceCalculations(true);
                     }
            // }
@@ -1609,12 +1620,16 @@ var callSave =function(){
     $scope.userit[t].remarks=$scope.remarks;
      $scope.userit[t].rateFixed=$scope.rateCheck;
       $scope.userit[t].orderStatus="available";
+      $scope.userit[t].initial="New";
+      //$scope.usedate[t].usedate= new Date($scope.userit[t].usedate )
 if($scope.updateOrder!="updateData")
 {
   //alert("nots")
   console.log($scope.userit[t])
      $http.post('/savingdata',$scope.userit[t]).success(function(response){
              console.log(response)
+             //$scope.date= new Date(response[0].date )
+            //$scope.usedate[0].usedate= new Date(response[0].usedate )
              //partyNameId=response[0]._id
                })
      
@@ -1627,8 +1642,18 @@ console.log(data)
 //var data=$scope.userit[0]._id+","+$scope.orderNO+","+$scope.userit[0].gwt
 else if($scope.updateOrder=="updateData")
 {
+  alert($scope.userit.length)
+   var fromdate  = new Date(((new Date($scope.userit[t].usedate).toISOString().slice(0, 23))+"-05:30")).toISOString();
+       var  todate= new Date(((new Date($scope.userit[t].date).toISOString().slice(0, 23))+"-05:30")).toISOString();
+   
+             fromdate = fromdate.slice(0,10);
+             fromdate = fromdate+"T00:00:00.000Z";
+             todate= todate.slice(0,10);
+             todate = todate+"T23:59:59.999Z";
+             date= fromdate+","+todate;
   //alert("sucee")
-   var data =$scope.userit[t].date+","+$scope.userit[t].usedate+","+$scope.userit[t].saleNames+","+$scope.userit[t].orderNO+","+$scope.userit[t].partyNames+","+$scope.userit[t].desc+","
+  //var t=0;
+   var data =todate+","+fromdate+","+$scope.userit[t].saleNames+","+$scope.userit[t].orderNO+","+$scope.userit[t].partyNames+","+$scope.userit[t].desc+","
                      +$scope.userit[t].size+","+$scope.userit[t].gpcs+","+$scope.userit[t].gwt+","+$scope.userit[t].itemName+","+$scope.userit[t].ntwt+","
                      +$scope.userit[t].purity+","+$scope.userit[t].taxval+","+$scope.userit[t].taxamt+","+$scope.userit[t].stwt+","+$scope.userit[t].wastage+","+$scope.userit[t].stval+","
                      +$scope.userit[t].uom +","+ $scope.userit[t]._id +","
@@ -1638,7 +1663,8 @@ else if($scope.updateOrder=="updateData")
  $http.put('/anydata/'+data).success(function(response){
              console.log(response)
             $scope.userit =response
-            $scope.date=response[0].date
+            $scope.date= response[0].date 
+            //$scope.usedate[0].usedate= new Date(response[0].usedate )
             $scope.orderNo=response[0].orderNo
             $scope.party=response[0].partyNames
                 $scope.staff=response[0].saleNames
@@ -1738,6 +1764,13 @@ return;
   
 
   }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+  if($scope.updateOrder!="updateData"){
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
+>>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
   var r = confirm("Amount Advance")
             if (r==true) {
 
@@ -1771,7 +1804,14 @@ return;
 
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
 
+=======
+}
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
 
             }
   
@@ -1851,39 +1891,7 @@ $scope.removeSelectedRows = function() {
               if (($scope.userit.length-1) == i) {
                       $scope.userit = $scope.userit1
               }
-              // if($scope.transaction!="Issue Voucher"&&$scope.transaction!="Receipt Voucher"&&$scope.transaction!="Approval Out"){
-              //  if($scope.userit.length != 0){
-              //   // alert("in if");
-              //   // alert(r);
-              //             indexvalue=0;
-              //             saleInvoiceCalculations();
-              //   $scope.saleinv[0].status="In Progress"
-              //   $scope.saleinv[0].partyname=$scope.partyname;
-        
-              // var update=$scope.saleinv[0]._id+","+$scope.saleinv[0].partyname+","+$scope.saleinv[0].taxableval+","+$scope.saleinv[0].tax+","+$scope.saleinv[0].subtol
-              //    +","+$scope.saleinv[0].adj+","+$scope.saleinv[0].labourValue+","+$scope.saleinv[0].labourtax+","+ $scope.saleinv[0].status+","+ $scope.saleinv[0].dis
-              //    +","+$scope.saleinv[0].char+","+$scope.saleinv[0].netamt+","+$scope.saleinv[0].invoiceValue+","+$scope.decimals;
-              //    console.log(update);
-              //    $http.put('/saleinvoicedata12/'+update).success(function(response){
-              //     // alert("sale invoice");
-              //     console.log(response);
-              //     // $scope.getDetails(r);
-              //            })
-              //           }
-              //           else{
-              //                   // alert("else");
-              //                   $scope.saleinv[0].taxableval = 0;
-              //                   $scope.saleinv[0].netamt = 0;
-              //                   $scope.saleinv[0].invoiceValue = 0;
-              //                   $scope.saleinv[0].tax=0;
-              //                   $scope.saleinv[0].subtol = 0;
-              //                    if($scope.saleinv[0]._id != null){
-              //                     // alert("after save"+$scope.saleinv[0]._id);
-              //                     $http.delete('/deleteinprogress'+$scope.saleinv[0]._id ).success(function(response){
-              //                       console.log(response);
-              //                     })
-              //                    }
-                                // $scope.getDetails(r);
+             
                            }
                          }
             }//for
@@ -1891,75 +1899,6 @@ $scope.removeSelectedRows = function() {
           
        
 }//trial
-//alert($scope.ordername)
-// $scope.dateSearch=function(){
-//   // alert(prtys)
-//     //$scope.dateSearch(prtys);
-//     // if ($scope.datefrom == null || $scope.datefrom == undefined && $scope.dateto == null || $scope.dateto == undefined  ) {
-//     //   alert("Please Select Date")
-//     // }
-        
-//     //     $http.get('/dateFind',{params:{"Barcode":$scope.datefrom}}).success(function(response){
-//     //  // $scope.ddata=response;
-
-//     //      // alert(response.length);
-//     //       if (response.length == 0) {
-//     //         alert("No Match Is Found")
-//     //       }
-//     //   console.log(response);
-//     //   $scope.batch=response;
-//     // })
-//     // }
-//     // else{
-
-//      //   //for date search
-//      //   console.log($scope.bit1.date2)
-//      // console.log(Date.parse($scope.bit1.date2) )
-//       if (Date.parse($scope.datefrom) > Date.parse($scope.dateto)) {
-//             alert("Invalid Date Range!\nFrom Date cannot be after To Date!")
-
-//         }else{
-    
- 
-
-//        var fromdate  = new Date(((new Date($scope.datefrom).toISOString().slice(0, 23))+"-05:30")).toISOString();
-//        var  todate= new Date(((new Date($scope.dateto).toISOString().slice(0, 23))+"-05:30")).toISOString();
-   
-//              fromdate = fromdate.slice(0,10);
-//              fromdate = fromdate+"T00:00:00.000Z";
-//              todate= todate.slice(0,10);
-//              todate = todate+"T23:59:59.999Z";
-//              date= fromdate+","+todate;
-//           //   alert(fromdate+" "+todate)
-
-
-//       $http.get('/dateFind/'+date).success(function(response){
-//      // $scope.ddata=response;
-//        if (response.length == 0) {
-//             alert("No Match Is Found")
-//           }
-//           else{
-//                console.log(response);
-//       $scope.use=response;
-
-//           }
-   
-//     })
-
- 
-//   }
-// // }//esle if 
-//   }
-  // $scope.ven="un allocated"
-  // $scope.ord="Initial"
-  //console.log($scope.userit)
-  //        $http.get('/detailsManage').success(function(response){
-  //            console.log(response)
-  //            $scope.use=response
-  //          //console.log($scope.use.allocate)
-  //      //$scope.use[0].usedate = new Date(response[0].usedate )
-  // //$scope.use[0].date = new Date(response[0].date )     
-  //              })
 
   $scope.selectrow = function(tag,index){
   console.log(tag)
@@ -1968,7 +1907,7 @@ $scope.removeSelectedRows = function() {
   $scope.selectedrow = index
   //alert(allo)
   $scope.idSelectedVote = tag;
- 
+ $scope.allocatevendor="";
   //alert("tag"+tag.all)
   $http.put('/changesta', tag).success(function(response){
              console.log(response)
@@ -2208,19 +2147,7 @@ $scope.oName=function(partyname123,ven,par,dfrom,dto){
   var part=par;
   var dafrom=dfrom;
   var dato=dto;
-  // var fromdate  = new Date(((new Date($scope.datefrom).toISOString().slice(0, 23))+"-05:30")).toISOString();
-  //      var  todate= new Date(((new Date($scope.dateto).toISOString().slice(0, 23))+"-05:30")).toISOString();
-   
-             // dafrom = dafrom1.slice(0,10);
-             // dafrom  = dafrom1+"T00:00:00.000Z";
-             // // dato=  dato1.slice(0,10);
-             //  dato =  dato1+"T23:59:59.999Z";
-  //            // /date= fromdate+","+todate;
- // alert(pname)
- //  alert(vend)
- //  alert("party"+part)
- //  alert(dafrom)
- //   alert(dato)
+
   
   if(pname==undefined &&vend==undefined &&part==undefined && dafrom==undefined && dato==undefined)
   {  
@@ -2229,13 +2156,15 @@ $scope.oName=function(partyname123,ven,par,dfrom,dto){
   
   }
    else if(pname!=undefined && vend==undefined &&part==undefined && dafrom==undefined && dato==undefined  ){
-    alert("queary for ordername")
+    //alert("queary for ordername")
     $http.get('/oname'+pname).success(function(response){
-      console.log(response);
+      console.log(response.length);
       $scope.use=response;
-   $scope.use[0].usedate = new Date(response[0].usedate )
-  $scope.use[0].date = new Date(response[0].date ) 
-               
+     for(var i=0;i<response.length;i++){
+   $scope.use[i].usedate = new Date(response[i].usedate )
+  $scope.use[i].date = new Date(response[i].date ) 
+               }
+               //pname=""
                   });
     //var prtys=partyname123;
 
@@ -2246,9 +2175,10 @@ else if(vend!=undefined && pname==undefined &&part==undefined && dafrom==undefin
   $http.get('/getvendorname'+vend).success(function(response){
       console.log(response);
       $scope.use=response;
-   $scope.use[0].usedate = new Date(response[0].usedate )
-  $scope.use[0].date = new Date(response[0].date ) 
-               
+  for(var i=0;i<response.length;i++){
+   $scope.use[i].usedate = new Date(response[i].usedate )
+  $scope.use[i].date = new Date(response[i].date ) 
+               }    
                   });
   //var prtys=partyname123+","+dfrom+","+dto;
   
@@ -2260,9 +2190,10 @@ else if(part!=undefined && pname==undefined &&vend==undefined && dafrom==undefin
   $http.get('/ordername'+part).success(function(response){
       console.log(response);
       $scope.use=response;
-   $scope.use[0].usedate = new Date(response[0].usedate )
-$scope.use[0].date = new Date(response[0].date ) 
-               
+ for(var i=0;i<response.length;i++){
+   $scope.use[i].usedate = new Date(response[i].usedate )
+  $scope.use[i].date = new Date(response[i].date ) 
+               }   
                   });
 
 }
@@ -2288,9 +2219,10 @@ else if(dafrom!=undefined && dato!=undefined && pname==undefined &&vend==undefin
    $http.get('/getwww'+date).success(function(response){
       console.log(response);
       $scope.use=response;
-   $scope.use[0].usedate = new Date(response[0].usedate )
-  $scope.use[0].date = new Date(response[0].date ) 
-               
+  //  for(var i=0;i<response.length;i++){
+  //  $scope.use[i].usedate = new Date(response[i].usedate )
+  // $scope.use[i].date = new Date(response[i].date ) 
+  //              }    
                   });
   //var prtys=partyname123+","+dfrom+","+dto;
   
@@ -2311,10 +2243,11 @@ else if(dato!=undefined && dato!=undefined && pname!=undefined &&  vend==undefin
    $http.get('/getordername'+date).success(function(response){
       console.log(response);
       $scope.use=response;
-
-           $scope.use[0].usedate = new Date(response[0].usedate )
-  $scope.use[0].date = new Date(response[0].date )        
-                  });
+ for(var i=0;i<response.length;i++){
+   $scope.use[i].usedate = new Date(response[i].usedate )
+  $scope.use[i].date = new Date(response[i].date ) 
+               }
+        });
   
 
 }
@@ -2333,9 +2266,10 @@ else if(dato!=undefined && dato!=undefined && part!=undefined && pname==undefine
    $http.get('/getpartname'+date).success(function(response){
       console.log(response);
       $scope.use=response;
-   $scope.use[0].usedate = new Date(response[0].usedate )
-  $scope.use[0].date = new Date(response[0].date ) 
-               
+  for(var i=0;i<response.length;i++){
+   $scope.use[i].usedate = new Date(response[i].usedate )
+  $scope.use[i].date = new Date(response[i].date ) 
+               }     
                   });
   //var prtys=partyname123+","+dfrom+","+dto;
   
@@ -2357,9 +2291,10 @@ else if(dato!=undefined && dato!=undefined && vend!=undefined && pname==undefine
    $http.get('/venddate'+date).success(function(response){
       console.log(response);
       $scope.use=response;
-   $scope.use[0].usedate = new Date(response[0].usedate )
-  $scope.use[0].date = new Date(response[0].date ) 
-               
+  for(var i=0;i<response.length;i++){
+   $scope.use[i].usedate = new Date(response[i].usedate )
+  $scope.use[i].date = new Date(response[i].date ) 
+               }   
                   });
   
 
@@ -2370,9 +2305,10 @@ else if(vend!=undefined && part!=undefined && pname==undefined && dafrom==undefi
   $http.get('/getven'+both).success(function(response){
       console.log(response);
       $scope.use=response;
-   $scope.use[0].usedate = new Date(response[0].usedate )
-  $scope.use[0].date = new Date(response[0].date ) 
-               
+ for(var i=0;i<response.length;i++){
+   $scope.use[i].usedate = new Date(response[i].usedate )
+  $scope.use[i].date = new Date(response[i].date ) 
+               }      
                   });
   //alert(both)
   //var prtys=partyname123+","+dfrom+","+dto;
@@ -2385,9 +2321,10 @@ else if(vend!=undefined && pname!=undefined && part==undefined && dafrom==undefi
   $http.get('/getpname'+both).success(function(response){
       console.log(response);
       $scope.use=response;
-   $scope.use[0].usedate = new Date(response[0].usedate )
-  $scope.use[0].date = new Date(response[0].date ) 
-               
+ for(var i=0;i<response.length;i++){
+   $scope.use[i].usedate = new Date(response[i].usedate )
+  $scope.use[i].date = new Date(response[i].date ) 
+               }      
                   });
   
 
@@ -2399,10 +2336,11 @@ else if(part!=undefined && pname!=undefined && vend==undefined && dafrom==undefi
   $http.get('/partpname'+both).success(function(response){
       console.log(response);
       $scope.use=response;
-
-          $scope.use[0].usedate = new Date(response[0].usedate )
-  $scope.use[0].date = new Date(response[0].date )         
-                  });
+ for(var i=0;i<response.length;i++){
+   $scope.use[i].usedate = new Date(response[i].usedate )
+  $scope.use[i].date = new Date(response[i].date ) 
+               }
+          });
   
   
 
@@ -2414,9 +2352,10 @@ both= part+","+pname+","+vend;
 $http.get('/partyvendor'+both).success(function(response){
       console.log(response);
       $scope.use=response;
-   $scope.use[0].usedate = new Date(response[0].usedate )
-  $scope.use[0].date = new Date(response[0].date ) 
-               
+  for(var i=0;i<response.length;i++){
+   $scope.use[i].usedate = new Date(response[i].usedate )
+  $scope.use[i].date = new Date(response[i].date ) 
+               }   
                   });
 
  }
@@ -2434,9 +2373,10 @@ both= fromdate+","+todate+","+ part+","+pname;
 $http.get('/datevendor'+both).success(function(response){
       console.log(response);
       $scope.use=response;
-         $scope.use[0].usedate = new Date(response[0].usedate )
-  $scope.use[0].date = new Date(response[0].date ) 
-
+ for(var i=0;i<response.length;i++){
+   $scope.use[i].usedate = new Date(response[i].usedate )
+  $scope.use[i].date = new Date(response[i].date ) 
+               }
 
  })
 }
@@ -2454,9 +2394,10 @@ both= fromdate+","+todate+","+ vend+","+pname;
 $http.get('/chaopop'+both).success(function(response){
       console.log(response);
       $scope.use=response;
-   $scope.use[0].usedate = new Date(response[0].usedate )
-  $scope.use[0].date = new Date(response[0].date ) 
-
+   for(var i=0;i<response.length;i++){
+   $scope.use[i].usedate = new Date(response[i].usedate )
+  $scope.use[i].date = new Date(response[i].date ) 
+               }
  })
 }
 else{
@@ -2472,9 +2413,10 @@ both= fromdate+","+todate+","+ vend+","+pname+","+part;
 $http.get('/pratop'+both).success(function(response){
       console.log(response);
       $scope.use=response;
-         $scope.use[0].usedate = new Date(response[0].usedate )
-  $scope.use[0].date = new Date(response[0].date ) 
-
+  for(var i=0;i<response.length;i++){
+   $scope.use[i].usedate = new Date(response[i].usedate )
+  $scope.use[i].date = new Date(response[i].date ) 
+               }
 
  })
 }
@@ -2487,10 +2429,14 @@ $http.get('/pratop'+both).success(function(response){
 
 
    $http.get('/getmanage').success(function(response){
+    //alert("ll")
              console.log(response)
+             console.log(response.length)
+             for(var i=0;i<=response.length;i++){
              $scope.use=response;
-       $scope.use[0].usedate = new Date(response[0].usedate )
-  $scope.use[0].date = new Date(response[0].date )     
+       $scope.use[i].usedate = new Date(response[i].usedate )
+  $scope.use[i].date = new Date(response[i].date )
+  }     
                })
   //   $http.get('/detailsManage').success(function(response){
   //            console.log(response)
@@ -2519,31 +2465,7 @@ $http.get('/pratop'+both).success(function(response){
    $scope.itial=$scope.use[index].allocate;
    //console.log($scope.use[index])
     window.sessionStorage.setItem("getOrderNo",$scope.use[index].orderNO)
-    //alert($scope.use[index]._id)
-     //$scope.use[index].initial="Allocated";
   
-   // if($scope.use[index].initial=="Allocated"){
-   //   $http.post('/recieveChange',$scope.use[index] ).success(function(response){
-   //           console.log(response)
-   //            $scope.idData=response._id;
-   //            //alert(response._id)
-   //          //alert($scope.idData)
-   //             })
-
-   //  double=$scope.use[index]._id+","+$scope.use[index].allocate+","+$scope.use[index].initial
-   //   //alert( double)
-   //   $http.put('/vendorSave/'+double ).success(function(response){
-   //           console.log(response)
-   //           //$scope.use=response;
-   //             })
-   
-   // }
-   // else{
-    // $http.put('/changesta',$scope.use[index] ).success(function(response){
-    //          console.log(response)
-    //          //$scope.use=response;
-    //            })
-   // }
 
     var r = confirm("Land to Issue Voucher?")
             if (r==true) {

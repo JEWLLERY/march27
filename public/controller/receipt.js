@@ -27,7 +27,16 @@ myApp.controller('billCntrl',['$scope','$http','$window',
           //alert($scope.items);
     });
 
+<<<<<<< HEAD
 //charan's 
+=======
+<<<<<<< HEAD
+//charan's 
+=======
+//charan's
+
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
+>>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
 var setPatyName  =  window.sessionStorage.getItem("receiptPatyName");
  
 console.log(setPatyName)
@@ -44,8 +53,9 @@ $scope.dataHide="yes"
     });
 
 
-}       
+}   
 window.sessionStorage.setItem("receiptPatyName","null");
+<<<<<<< HEAD
             var ilchgg  = window.sessionStorage.getItem("receiptPatyName");
 //charan
 
@@ -59,6 +69,12 @@ window.sessionStorage.setItem("receiptPatyName","null");
           //   $scope.partyname=$scope.customer;
           // }
             //for fecthing the saleinvoice voucherno
+=======
+
+     var kkk =  window.sessionStorage.getItem("receiptPatyName");
+
+  
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
          $http.get('/getRecentVoucherNo'+recentId1).success(function(response){
           console.log(response);
           $scope.vno=response[0].voucherNo;
@@ -413,9 +429,22 @@ console.log($scope.paymode+","+$scope.amount+","+$scope.bank+","+$scope.chequeno
             }
            //start for save and navigation
            if (setPatyName!="null") {
+<<<<<<< HEAD
                  setTimeout($scope.insertReceiptOrders(flag),2000);
            }else{
                  setTimeout(function(){$scope.insertReceipt(flag)},2000);
+=======
+<<<<<<< HEAD
+                 setTimeout($scope.insertReceiptOrders(flag),2000);
+           }else{
+=======
+            alert("llll")
+                 setTimeout($scope.insertReceiptOrders(flag),2000);
+           }else if(setPatyName=="null")
+           {
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
+                 setTimeout($scope.insertReceipt(flag),2000);
+>>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
                 }
             //end for save and navigation    
           }
@@ -460,11 +489,19 @@ console.log($scope.rpamt.paymode+","+$scope.rpamt.amount+","+$scope.rpamt.bank+"
                   console.log(response);
                         if(response.length!=0){
                           if($scope.printreceipt==0){
+<<<<<<< HEAD
                                  // alert("hi");
                              window.location.href = 'receiptpdf.html';
                             }else{
                          
                                     // alert("through transaction page"+$scope.printreceipt);
+=======
+                                // alert("hi");
+                             window.location.href = 'receiptpdf.html';
+                            }else{
+                         
+                                   // alert("through transaction page"+$scope.printreceipt);
+>>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
                                   // window.sessionStorage.setItem("typebill",$scope.billtype);
                                     window.sessionStorage.setItem("billnumber",$scope.billNo);
                                    window.location.href = 'pdf.html';

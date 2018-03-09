@@ -10,7 +10,15 @@ var db=mongojs('inventory',['user','tags','transaction','saleInvoice','mode','tr
   'trHeaders','gIControlTables','history','ledgerActs','ledgeraccounts','mainclasses','maingroups','mcIds',
   'roundOffConfig','sgIds','subgroups','subscribers','trDetails','transactionInvoice','ugIds','updatelist','user',
 
+<<<<<<< HEAD
   'users','merchantDetails','trail','staff','receipts','cardType','payments','orders','printData']);
+=======
+<<<<<<< HEAD
+  'users','merchantDetails','trail','staff','receipts','cardType','payments','orders','printData','orderType']);
+=======
+  'users','merchantDetails','trail','staff','receipts','cardType','payments','orders','printData']);
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
+>>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
 
 
 var bodyParser=require('body-parser');
@@ -107,7 +115,7 @@ var id=req.params.thh;
 app.get('/partyNames',function(req,res){
     
    // db.user.find(function(err,doc){
-    db.subscribers.find({},function(err,doc){
+    db.subscribers.find({"data.party_type.id":"3"},function(err,doc){
 
         
         res.json(doc);
@@ -221,6 +229,8 @@ app.get('/goorders',function(req,res)
         //console.log(doc);
     }))
     })
+
+
 app.post('/savingdata',function(req,res) {
 //console.log("oooooooooooooooooo")
   db.orders.insert(req.body,function(err,doc){
@@ -233,6 +243,16 @@ console.log("5gggggggggggggggggggggggg")
 //         //res.json(doc);
 //         console.log(res)
 //       })
+})
+
+app.post('/issueVocherPost',function(req,res) {
+//console.log("oooooooooooooooooo")
+  db.transactionDetail.insert(req.body,function(err,doc){
+
+        res.json(doc);
+        console.log(res)
+      })
+
 })
 
 
@@ -873,12 +893,16 @@ app.get('/detailsManage',function(req,res) {
 // })
 app.get('/orderName',function(req,res) {
   
-  db.ordeType.find(function(err,doc){
+  db.orderType.find(function(err,doc){
  
         res.json(doc);
          
       })
 })
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
 // app.get('/dateBatchFind/:date',function(req,res)
 // {
 //   //  console.log("i got the date")
@@ -913,6 +937,9 @@ app.get('/dateFind/:pdata',function(req,res){
             console.log(doc);
       })
   })
+=======
+
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
   app.put('/anydata/:thh',function(req,res){
   console.log("ttttttttttttttttyyyyyyyyyyyyyyyyyyyyy233333333345555555")
 var str=req.params.thh;
@@ -4016,30 +4043,19 @@ app.post('/insertUseritDetails',function(req,res){
    if(req.body.barcode == undefined || req.body.barcode == null||  req.body.split == "yes"){
           console.log(" barcode is null ");
       }else{
-          console.log(" barcode is here look  "+req.body.barcode);
-          //for updated in refid data  "barcode":req.body.barcode,
-           // if(req.body.Transaction!='Approval Out'){
-            console.log("not")
-        db.transactionDetail.update({"refid":req.body.barcode},{$set:{"chgunt":req.body.chgunt,"purity":req.body.purity,"date":req.body.date,"desc":req.body.desc,
-         "gpcs":req.body.gpcs,"gwt":req.body.gwt,"name":req.body.iname,"ntwt":req.body.ntwt,"rate":req.body.rate,"size":req.body.size,"taxval":req.body.taxval,"stwt":req.body.stwt,
-        "wastage":req.body.wastage,"stval":req.body.stval,"mrp":req.body.mrp,"labval":req.body.labval,'labamt':req.body.labamt,"labourTaxValue":req.body.labourTaxValue,'labamt':req.body.labamt,'stchg':req.body.stchg,
-          "stonecal":req.body.stonecal,"pctcal":req.body.pctcal,"labcal":req.body.labcal,"stockPoint":req.body.stockPoint}},function(err,doc)
-        {
-           // res.json(doc);
-        
-        }); 
-      // }
-      // else{
-      //   console.log("approval out");
-      //   db.transactionDetail.update({"refid":req.body.barcode},{$set:{"chgunt":req.body.chgunt,"purity":req.body.purity,"date":req.body.date,"desc":req.body.desc,
-      //    "gpcs":req.body.gpcs,"gwt":req.body.gwt,"name":req.body.iname,"ntwt":req.body.ntwt,"rate":req.body.rate,"size":req.body.size,"taxval":req.body.taxval,"stwt":req.body.stwt,
-      //   "wastage":req.body.wastage,"stval":req.body.stval,"mrp":req.body.mrp,"labval":req.body.labval,'labamt':req.body.labamt,"labourTaxValue":req.body.labourTaxValue,'labamt':req.body.labamt,'stchg':req.body.stchg,
-      //     "stonecal":req.body.stonecal,"pctcal":req.body.pctcal,"labcal":req.body.labcal,"stockPoint":req.body.stockPoint}},function(err,doc)
-      //   {
-      //      // res.json(doc);
-        
-      //   }); 
-      // }
+              // console.log(" barcode is here look  "+req.body.barcode);
+              // //for updated in refid data  "barcode":req.body.barcode,
+              //  // if(req.body.Transaction!='Approval Out'){
+              // console.log("not")
+               if (req.body.Transaction != "Valuation") {
+                    db.transactionDetail.update({"refid":req.body.barcode},{$set:{"chgunt":req.body.chgunt,"purity":req.body.purity,"date":req.body.date,"desc":req.body.desc,
+                     "gpcs":req.body.gpcs,"gwt":req.body.gwt,"name":req.body.iname,"ntwt":req.body.ntwt,"rate":req.body.rate,"size":req.body.size,"taxval":req.body.taxval,"stwt":req.body.stwt,
+                    "wastage":req.body.wastage,"stval":req.body.stval,"mrp":req.body.mrp,"labval":req.body.labval,'labamt':req.body.labamt,"labourTaxValue":req.body.labourTaxValue,'labamt':req.body.labamt,'stchg':req.body.stchg,
+                      "stonecal":req.body.stonecal,"pctcal":req.body.pctcal,"labcal":req.body.labcal,"stockPoint":req.body.stockPoint}})
+                     
+
+               }
+   
       }
         
 
@@ -5346,6 +5362,7 @@ app.put('/updateBarcodeDataGeneration',function(req,res){
             res.json(doc);
         
         });  
+
        db.transactionDetail.update({"refid":req.body.barcode},{$set:{"chgunt":req.body.chgunt,"purity":req.body.purity,"date":req.body.date,"desc":req.body.desc,
          "gpcs":req.body.gpcs,"gwt":req.body.gwt,"name":req.body.iname,"ntwt":req.body.ntwt,"rate":req.body.rate,"size":req.body.size,"taxval":req.body.taxval,"stwt":req.body.stwt,
         "wastage":req.body.wastage,"stval":req.body.stval,"mrp":req.body.mrp,"labval":req.body.labval,'labamt':req.body.labamt,"labourTaxValue":req.body.labourTaxValue,'labamt':req.body.labamt,'stchg':req.body.stchg,
@@ -8989,7 +9006,17 @@ require('./public/inventoryDbs/defaultCollections')(app);
 require('./apiCalls/materialAdvancePdf')(app);
 
 
+<<<<<<< HEAD
 app.listen(8000); 
 console.log("server running on port 8000");
+=======
+<<<<<<< HEAD
+app.listen(9000); 
+console.log("server running on port 9000");
+=======
+app.listen(8000); 
+console.log("server running on port 8000");
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
+>>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
 
 exports = module.exports = app;
