@@ -826,7 +826,7 @@ display: inline-block;
      Partyname<span id="star"><font size="04">*</font></span>:
              </form> 
     
-                <input list="partyname" ng-model="partyname" ng-change="clearDisplay();clearDisplay12(partyname);" style="border: 1px solid;background-color: white"  ng-blur="dupli()">
+                <input list="partyname" ng-model="partyname" ng-change="clearDisplay('partyName');clearDisplay12(partyname);" style="border: 1px solid;background-color: white"  ng-blur="dupli()">
                 <!-- <input type="name" name="" ng-change="getPartyDetails()"> -->
                   <datalist id="partyname">
                     <select   id="blockWIdt">
@@ -1309,7 +1309,7 @@ display: inline-block;
   </div>
    <form class="form-inline" >
    <div class="form-group" ng-cloak>
-   <button class="btn btn-primary addnew pull-left" id="buttonwidth1" ng-if = " edituseritButton != true"   ng-click="addNew()" ng-disabled="reqColor()" ng-hide="transaction=='Sale Return'||transaction=='Purchase Return'||transaction=='Approval Sale'||transaction=='Approval Return'" >Add New</button>
+   <button class="btn btn-primary addnew pull-left" id="buttonwidth1" ng-if = " edituseritButton != true"   ng-click="addNew()" ng-disabled="reqColor() || bringOrd=='num'" ng-hide="transaction=='Sale Return'||transaction=='Purchase Return'||transaction=='Approval Sale'||transaction=='Approval Return'" >Add New</button>
 
    <!-- <input  id="buttonwidth"  class="btn btn-danger pull-left" ng-click="removeSelectedRows()" value="Remove" ng-disabled="reqColor()"> -->
    <button ng-if = " edituseritButton == true"  class="btn btn-danger pull-left" id="buttonwidth1" ng-click="removeSelectedRowsCheck()" ng-disabled="reqColor()" >Remove</button>
@@ -1412,35 +1412,6 @@ display: inline-block;
   </table></div> </div>
   
   
-    <!-- <div class="col-md-3">
-    <table class="table table-bordered" >
-    <thead>
-      <TR  ng-repeat="amt in saleinv">
-      <TH>Taxable val</TH>
-        <TD>{{amt.taxableval}}</TD> </TR>
-
-        <TR><TH>Tax</TH>
-          <TD>{{amt.tax}}</TD></TR>
-
-          <TR><TH>Discount</TH>
-            <TD>{{amt.dis}}</TD></TR>
-
-            <TR><TH>Sub Total</TH>
-              <TD>{{amt.subtol}}</TD></TR>
-              
-              <TR><TR><TH>Charges</TH>
-                <TD>{{amt.char}}</TD></TR>
-              
-              <TR><TH>Adjustments</TH>
-                <TD>{{amt.adj}}</TD></TR>
-    </thead>
-  </table></div></div> -->
-   <!-- <div class="w3-row-padding w3-border"> -->
-   <!--  <div class="col-sm-6"> -->
-
-<!-- <<<<<<< HEAD:public/Transaction.html
-   <div ng-hide ="( transaction == 'Issue Voucher'|| transaction == 'Receipt Voucher'||transaction == 'Approval Out'||transaction=='Approval Return')" > 
-======= -->
    <div  ng-hide ="( transaction == 'Issue Voucher'|| transaction == 'Receipt Voucher'||transaction == 'Approval Out'||transaction=='Approval Return')"> 
 <!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
 <!-- ng-disabled="checkFinal()" ng-model='finalCal' disabled-->
@@ -1450,6 +1421,7 @@ display: inline-block;
         <header class="w3-container w3-light-grey w3-padding-8 w3-center" >
    <h4 >FINAL CALCULATION </h4>
         </header>
+        <!-- aaaaaaasaaaaaaaaaaaaaaaaaaa -->
           <table class="w3-table w3-stripped w3-bordered" >
   <tbody ng-repeat="amt in saleinv" >
       <tr>
@@ -1497,89 +1469,31 @@ display: inline-block;
   <div class="col-md-2" ng-cloak>
 
   <button ng-if = " edituseritButton == true"  ng-click="updateEditTransaction()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Update</button>
-
-<!-- <<<<<<< HEAD:public/Transaction.html
-  <button  ng-if = " edituseritButton != true && transaction != 'Valuation'&&transaction != 'Issue Voucher' && transaction != 'Receipt Voucher'&& transaction != 'Sale Return'&& transaction != 'Purchase Return'&&transaction!='Approval Return'&&transaction!='RD Purchase'&&transaction!='Urd Purchase'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Save</button>
-  <button ng-if="(transaction=='RD Purchase'||transaction=='Urd Purchase')&& (edituseritButton != true)" ng-click="save()"
-======= -->
-
   <button  ng-if = " edituseritButton != true && transaction != 'Valuation'&&transaction != 'Issue Voucher' && transaction != 'Receipt Voucher'&& transaction != 'Sale Return'&& transaction != 'Purchase Return'&&transaction!='Approval Return'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Save</button>
 
-<!--   <button  ng-if = " edituseritButton != true && transaction != 'Valuation'&&transaction != 'Issue Voucher' && transaction != 'Receipt Voucher'&& transaction != 'Sale Return'&& transaction != 'Purchase Return'&&transaction!='Approval Return'&&transaction!='Urd Purchase'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Save</button>
-=======
-  <a ng-href="{{receiptPage}}"><button  ng-if = " edituseritButton != true && transaction != 'Valuation'&&transaction != 'Issue Voucher' && transaction != 'Receipt Voucher'&& transaction != 'Sale Return'&& transaction != 'Purchase Return'&&transaction!='Approval Return'&&transaction!='Urd Purchase'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Save</button></a>
->>>>>>> 2155ba587c63a3a2c630140ef150631e8c238ddf
->>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e -->
-  <!-- <button ng-if="(transaction=='RD &&transaction!='RD Purchase'&&Purchase'||transaction=='Urd Purchase')&& (edituseritButton != true)" ng-click="save()"
->>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html
-  class="btn btn-success" id="buttonwidth" ng-disabled="
-  reqColor()">Pay1</button> -->
   <button  ng-if = "transaction == 'Sale Return'||transaction == 'Purchase Return'||transaction=='Approval Return'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Return</button>
- <!--  <button  ng-if = "transaction == 'Purchase Return'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Return</button> -->
+ 
   <br>
   <br>
   <!-- <br>ng-if="refId != null" -->
   <!-- <button  ng-if = " edituseritButton != true && transaction == 'Valuation'|| te!='disp' || test!='display'"  ng-click="save();" class="btn btn-success" id="buttonwidth" >Print</button> -->
   <button class="btn btn-success" id="buttonwidth" ng-show="transaction=='Issue Voucher'||transaction=='Receipt Voucher' && test!='display'" ng-if="te!='disp'" ng-click="save()" >Print</button>
 
-  <a href="orderMaking.html">
-   <button class="btn btn-success" id="buttonwidth" ng-if="te=='disp'"  ng-click="fromOrder();save()" ng-hide="test=='display'">Print</button>
- </a>
-   <a href="orderCustomer.html"> 
+   <button class="btn btn-success" id="buttonwidth" ng-if="te=='disp'"  ng-click="save()" ng-hide="test=='display'">Print</button>
+ 
+ 
 
-  <a ng-href="{{orderMaking}}">
-   <button class="btn btn-success" id="buttonwidth" ng-if="te=='disp'"  ng-click="fromOrder();save()" ng-hide="test=='display'">Print</button>
- </a>
-   <a ng-href="{{orderCustomer}}"> 
-
-    <button class="btn btn-success" id="buttonwidth" ng-show="test=='display'" ng-click="fromOrder();save()" ng-if="te!='disp'">Print</button>
-  </a>
-
-  <!-- <button ng-if = " all =='Urd Purchase' ||all =='RD PURCHASE'" ng-click="save()" class="btn btn-primary custom" id="save" ng-disabled="all" >Save</button> -->
- <!-- <button ng-click="save()" class="btn btn-primary custom" id="save" >Save</button> -->
- <!--  <button  ng-if = " transaction !='Urd Purchase'" ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Save</button> -->
-
- <!-- <a href="pdf.html"  ng-if = "all == 'VALUATION'"><button   ng-click="save()" class="btn btn-primary custom" id="save" >Print</button></a> -->
- <!-- <button ng-if = "all == 'VALUATION'"  ng-click="save()"class="btn btn-primary custom" id="save" >Print</button> -->
-
+    <button class="btn btn-success" id="buttonwidth" ng-show="test=='display'" ng-click="save()" ng-if="te!='disp'">Print</button>
+ 
   <br>
   <br>
-
-           
-<!-- <<<<<<< HEAD   
- <button type="button" data-toggle="modal" href={{firstName}}>Open Modal</button> 
- data-target="#myModal1"
- -->
-<!-- <button ng-hide ="(desgination != 'Billing Person' || transaction == 'Issue Voucher')" class="btn btn-primary" data-toggle="modal" data-target="#myModal1" id="buttonwidth"  ng-show="transaction != 'Issue Voucher'&& transaction != 'Receipt Voucher'&&transaction!='RD Purchase'&&transaction!='Sale Return'&&transaction!='Purchase Return'&&transaction != 'Approval Out'&&transaction!='Approval Return'"  ng-click="inoviceNumberGeneration()" ng-disabled="reqColorPay()" >Pay</button> 
- ng-click="save();inoviceNumberGeneration()" -->
-<!-- <<<<<<< HEAD -->
-
-<!-- <<<<<<< HEAD:public/Transaction.html -->
-<!-- <button ng-hide ="(desgination != 'Billing Person' || transaction == 'Issue Voucher'||transaction == 'Receipt Voucher' ||transaction == 'RD Purchase' ||transaction == 'Valuation')" class="btn btn-primary" id="buttonwidth" ng-show="transaction != 'Issue Voucher'&& transaction != 'Receipt Voucher' && transaction!='Sale Return'&&transaction!='Purchase Return'&&transaction != 'Approval Out'&&transaction!='Approval Return'"  ng-click="save(true);inoviceNumberGeneration()" ng-disabled="reqColorPay()" data-toggle="modal"  ng-href={{dataTargetCall}} >Pay</button>
- -->
-
 <button ng-hide ="(desgination != 'Billing Person' || transaction == 'Issue Voucher'||transaction == 'Receipt Voucher' ||transaction == 'Valuation')" class="btn btn-primary" id="buttonwidth" ng-show="transaction != 'Issue Voucher'&& transaction != 'Receipt Voucher' && transaction!='Sale Return'&&transaction!='Purchase Return'&&transaction != 'Approval Out'&&transaction!='Approval Return'"  ng-click="save(true);inoviceNumberGeneration()" ng-disabled="reqColorPay()" >Confirm</button>
 
-<!--||transaction == 'RD Purchase'  =======data-toggle="modal"  ng-href={{dataTargetCall}}
->>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html
-<button ng-hide ="(desgination != 'Billing Person' || transaction == 'Issue Voucher')" class="btn btn-primary" id="buttonwidth" ng-show="transaction != 'Issue Voucher'&& transaction != 'Receipt Voucher'&&transaction!='RD Purchase'&&transaction!='Sale Return'&&transaction!='Purchase Return'&&transaction != 'Approval Out'&&transaction!='Approval Return'"  ng-click="save(true);inoviceNumberGeneration()" ng-disabled="reqColorPay()" data-toggle="modal"  ng-href={{dataTargetCall}} >Pay</button>
->>>>>>> 57bef8a482557fa32c9777e301321c950fbc21b7
 
-  <br>
-   <br>
-
- <!--            <a href='mainpage.html' id="buttonwidth" style="background-color: #f44336;" class="btn btn-danger">Close</a><br>
-  <br>
-   <br> -->
 
             <a>
-              <button id="buttonwidth"  class="btn btn-default" ng-hide ="(desgination != 'Billing Person1' )" ng-if = " (edituseritButton == true && payButtonDIsplay == 'true' )" ng-click="inoviceNumberGeneration()" >Print</button></a><br><br>
-
-           
- <br>
-
-
-            
+              <button id="buttonwidth"  class="btn btn-default" ng-hide ="(desgination != 'Billing Person1' )" ng-if = " (edituseritButton == true && payButtonDIsplay == 'true' )" ng-click="inoviceNumberGeneration()" >Print</button></a><br><br>         
+ <br>            
 </div>
 </div>
 <!-- <div class="modal fade" id="myModal1"> -->
@@ -1655,23 +1569,6 @@ display: inline-block;
 </div>
 </div><br>
 
-<!-- <button  class="btn btn-primary" id="buttonwidth"  ng-click = "confirmOrder()">Confirm1</button> -->
-<!-- <button type="button" class="btn btn-primary" <a href="pdf.html"></a>id="button" ng-click = "confirm()">Confirm</button> -->
-
-             
-             <!-- <img src="https://www.webdesign.123coimbatore.com/images/payment-option-banner.jpg" height="200px" width="300px">
-             <h1>Choose the payment method</h1>
-             <div class="row">
-             <div class="col-md-2">
-            <a href=""> <img src="http://www.car-rental-bintulu.com/m/payment/Visa.jpg" height="100px" width="100px">
-             </div>
-             <div class="col-md-2">
-              <a href=""> <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQHpDl-cvx0A9JhpIoTV4omYvpZk9MpCg151-oh_k8YBBqnNJTV" height="100px" width="100px">
-             </div>
-             </div>
-                 <input type="text" >CASH</div>
-                
-             </div> -->
              <div class="modal-footer">
                  <a href="#" class="btn" data-dismiss="modal">Close</a>
              </div>
@@ -1688,36 +1585,10 @@ display: inline-block;
              <div style="border:1px solid black;">
              <!-- <h4 align="center" ng-model="partyname">PartyName: {{partyname}}</h4> -->
               <div class="row">
-  <!-- <div class="col-sm-4"> -->
-<!--   <div class="col-sm-4">
-  <form>           
-  Partyname:
-  
-             <select ng-model="partyname" class="selectpicker" ng-change="history()">
-  <option ng-repeat="party in res" value="{{party.name}}">{{party.name}}</option>
-</select>
-</form>
-</div> -->
-<!-- <div class="col-sm-2">
-<label> From <input type="date" ng-model="search.fdate"></label>
-</div>
-<div class="col-sm-2">
-       
-      <form>
-  Birthday:
-  <input type="date" name="bday">
  
-</form>
-
-
-
-       </div> -->
        <div class="col-sm-4">
        
        <label>PDF</label>
-
-
-
        </div>
 </div>
              <table class="table table-striped">
@@ -1757,27 +1628,6 @@ display: inline-block;
 
 
 </body>
-
-<!-- <script type="text/javascript"> 
-
-$('.selectpicker').selectpicker();
-$(".dropdown-menu li a").click(function(){
-  var selText = $(this).text();
-  $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
-});
-$("button").on("click", function () {
-    var state = $(this).data('state');
-    state = !state;
-    if (state) {
-        $("span").addClass("show");
-    } else {
-        $("span").removeClass("show");
-    }
-    $(this).data('state', state);
-});
-
-  </script> -->
-
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

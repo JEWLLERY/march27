@@ -23,56 +23,34 @@ myApp.controller('billCntrl',['$scope','$http','$window',
  console.log("selected party"+$scope.customer);
          $http.get('/cash').success(function(response){
           console.log(response);
-        $scope.modes=response;
-        //alert($scope.items);
+          $scope.modes=response;
+          //alert($scope.items);
     });
 
-<<<<<<< HEAD
+//charan's
 
-  $scope.setPatyName  =  window.sessionStorage.getItem("receiptPatyName");
+var setPatyName  =  window.sessionStorage.getItem("receiptPatyName");
  
-console.log($scope.setPatyName)
-
-if ($scope.setPatyName!="null" ) {
-
+console.log(setPatyName)
+//setPatyName = 'viin';
+if (setPatyName!="null" ) {
+//alert("KK")
 $scope.dataHide="yes"
-      $http.get('/receiptOrderNo/'+$scope.setPatyName).success(function(response){
+      $http.get('/receiptOrderNo/'+setPatyName).success(function(response){
           console.log(response);
+        $scope.orderNO=response[0].orderNO;
         $scope.orderNO=response[0].orderNO;
         $scope.partyname=response[0].partyNames
        
     });
 
 
-}       
+}   
 window.sessionStorage.setItem("receiptPatyName","null");
-            var ilchgg  = window.sessionStorage.getItem("receiptPatyName");
-=======
-//charan's 
-var  getPatyName =window.sessionStorage.getItem("receiptPatyName")
-console.log(getPatyName)
-if ( getPatyName!=null) {
-  //alert("same")
-  $scope.partyname=getPatyName
 
-}
-       window.sessionStorage.setItem("receiptPatyName","");
-            var detailch  = window.sessionStorage.getItem("receiptPatyName");
->>>>>>> 47cc718ca29e36dd2e59b606c6135c3e33d6c2b3
+     var kkk =  window.sessionStorage.getItem("receiptPatyName");
 
-
-//charan
-
-         // if($scope.customer==null){
-         //  alert("hi");
-         // $http.get('/partynames').success(function(response){
-         //  $scope.partynames=response;
-         // });
-          // }
-          // else{
-          //   $scope.partyname=$scope.customer;
-          // }
-            //for fecthing the saleinvoice voucherno
+  
          $http.get('/getRecentVoucherNo'+recentId1).success(function(response){
           console.log(response);
           $scope.vno=response[0].voucherNo;
@@ -269,29 +247,27 @@ $scope.billDate=new Date();
    // $scope.receipt=[];
    // $scope.dates=new date();
    //for validation before save
-   $scope.save=function(){
-
-if (setPatyName!="null") {
-//alert("jj")
- var go=confirm("Material Advance");
-    if(go==true){
-
-    $scope.transaction="Receipt Voucher"       
-    $scope.materialAdvance = "Transaction.html";
-window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
-    window.sessionStorage.setItem("getPatyName",$scope.partyname)
-    window.sessionStorage.setItem("getOrderNo",$scope.orderNO)
-
-
-
-    }
-    else{
-$scope.materialAdvance="orderCustomer.html"
-}
-
-}
-
+  $scope.save=function(){
     // alert($scope.rpamt);
+    // if (setPatyName!="null") {
+
+    //     var go=confirm("Material Advance");
+    //     if(go==true){
+
+    //           $scope.transaction="Receipt Voucher"       
+    //           window.location = "Transaction.html";
+    //           window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
+    //           window.sessionStorage.setItem("getPatyName",$scope.partyname)
+    //           window.sessionStorage.setItem("getOrderNo",$scope.orderNO)
+
+
+  
+    //     }else{
+    
+    //              window.location="orderCustomer.html"
+    //          }
+
+    // }//if (setPatyName!="null")
     console.log($scope.rpamt);
     var flag=0;
 console.log($scope.paymode+","+$scope.amount+","+$scope.bank+","+$scope.chequeno+","+
@@ -427,7 +403,15 @@ console.log($scope.paymode+","+$scope.amount+","+$scope.bank+","+$scope.chequeno
                alert(($scope.selectedAmount - $scope.totals)+"  amount is paid less then the invoiceamount");
                 $scope.voucherStatus = 'InProgress';
             }
-           setTimeout($scope.insertReceipt(flag),2000);
+           //start for save and navigation
+           if (setPatyName!="null") {
+            alert("llll")
+                 setTimeout($scope.insertReceiptOrders(flag),2000);
+           }else if(setPatyName=="null")
+           {
+                 setTimeout($scope.insertReceipt(flag),2000);
+                }
+            //end for save and navigation    
           }
           
         }//for loop
@@ -454,14 +438,10 @@ console.log($scope.rpamt.paymode+","+$scope.rpamt.amount+","+$scope.rpamt.bank+"
       //$scope.voucherStatus = 'InProgress';
       if(flag==0){
       for(i=0;i<=$scope.rpamt.length-1;i++){
-<<<<<<< HEAD
-//alert("test"+$scope.orderNO)
-=======
 
->>>>>>> 47cc718ca29e36dd2e59b606c6135c3e33d6c2b3
       $scope.rdata=$scope.rpamt[i].paymode+","+$scope.rpamt[i].amount+","+$scope.rpamt[i].bank+","+$scope.rpamt[i].chequeno+","+$scope.rpamt[i].date+","+$scope.rpamt[i].cardnos+","+$scope.rpamt[i].ctype+","+$scope.rpamt[i].appno+","+$scope.partyname+","+$scope.billDate+","+$scope.billNo+
       
-      ","+$scope.narrate+","+$scope.totals+","+$scope.voucherId+","+$scope.voucherStatus+","+$scope.selectedAmount;
+      ","+$scope.narrate+","+$scope.totals+","+$scope.voucherId+","+$scope.voucherStatus+","+$scope.selectedAmount+","+$scope.orderNO;
       // alert($scope.rdata);
       console.log($scope.rdata)
       $http.post('/receiptdata/'+$scope.rdata).success(function(response){
@@ -470,26 +450,74 @@ console.log($scope.rpamt.paymode+","+$scope.rpamt.amount+","+$scope.rpamt.bank+"
         if(response.lenght!=0){
           // location.reload();
           //alert($scope.BillNos+"dddddddddddddddddd");
-          $http.put('/insertbill'+$scope.BillNos).success(function(response){
-            console.log(response);
-            if(response.length!=0){
-              if($scope.printreceipt==0){
-                // alert("hi");
-             window.location.href = 'receiptpdf.html';
-                }
-             else{
-               // alert("through transaction page"+$scope.printreceipt);
-              // window.sessionStorage.setItem("typebill",$scope.billtype);
-              window.sessionStorage.setItem("billnumber",$scope.billNo);
-             window.location.href = 'pdf.html';
-                }//else
-              }//if
-           })//httpput
+                $http.put('/insertbill'+$scope.BillNos).success(function(response){
+                  console.log(response);
+                        if(response.length!=0){
+                          if($scope.printreceipt==0){
+                                // alert("hi");
+                             window.location.href = 'receiptpdf.html';
+                            }else{
+                         
+                                   // alert("through transaction page"+$scope.printreceipt);
+                                  // window.sessionStorage.setItem("typebill",$scope.billtype);
+                                    window.sessionStorage.setItem("billnumber",$scope.billNo);
+                                   window.location.href = 'pdf.html';
+                                  }//else
+                        }//if
+                })//httpput
          }//if
         })//post
      }//for
    }//if
- }//main
+ }//  $scope.insertReceipt
+   $scope.insertReceiptOrders=function(flag){
+     // alert("clicked on save"+$scope.printreceipt);
+      //$scope.voucherStatus = 'InProgress';
+      if(flag==0){
+      for(i=0;i<=$scope.rpamt.length-1;i++){
+
+      $scope.rdata=$scope.rpamt[i].paymode+","+$scope.rpamt[i].amount+","+$scope.rpamt[i].bank+","+$scope.rpamt[i].chequeno+","+$scope.rpamt[i].date+","+$scope.rpamt[i].cardnos+","+$scope.rpamt[i].ctype+","+$scope.rpamt[i].appno+","+$scope.partyname+","+$scope.billDate+","+$scope.billNo+
+      
+      ","+$scope.narrate+","+$scope.totals+","+$scope.voucherId+","+$scope.voucherStatus+","+$scope.selectedAmount+","+$scope.orderNO;
+      // alert($scope.rdata);
+      console.log($scope.rdata)
+        // 
+        $http.post('/receiptdata/'+$scope.rdata).success(function(response){
+                // alert("called server");
+                console.log(response);
+                if(response.lenght!=0){
+                     
+                       
+
+
+                            if (setPatyName!="null") {
+
+                                    var go=confirm("Material Advance");
+                                    if(go==true){
+
+                                          $scope.transaction="Receipt Voucher"       
+                                          window.location = "Transaction.html";
+                                          window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
+                                          window.sessionStorage.setItem("getPatyName",$scope.partyname)
+                                          window.sessionStorage.setItem("getOrderNo",$scope.orderNO)
+
+
+                              
+                                    }else{
+                                
+                                             window.location="orderCustomer.html"
+                                         }
+
+                                }//if (setPatyName!="null")
+                        
+                 }//if
+        })//post
+     }//for
+      $scope.dataDetails = $scope.partyname+","+$scope.orderNO
+      $http.post('/api/orderDetailsAmontAdvancePdf/'+$scope.dataDetails)
+      
+   }//if
+ }//  $scope.insertReceipt
 window.sessionStorage.setItem("rprint",0);
 window.sessionStorage.setItem("Billtype",null);
 window.sessionStorage.setItem("partyname",null);

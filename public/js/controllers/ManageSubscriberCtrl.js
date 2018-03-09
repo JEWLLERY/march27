@@ -156,8 +156,8 @@
                 onClickKYC();
             } else if(identifier == "Back"){
                 onClickBack();
-            }else {
-
+            }else if(identifier == "orders"){
+                onClickOrders();
             }
         }
 
@@ -300,6 +300,13 @@
             }
 
             onCloseClicked();
+        }
+
+          var onClickOrders = function(){
+         
+            
+             window.location = "orderCustomer.html";
+             window.sessionStorage.setItem("orderName",nameDetails);
         }
 
         var onClickKYC = function(){

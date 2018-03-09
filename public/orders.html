@@ -198,7 +198,7 @@ display: block;
   width: 10%;
 }
 li#name1 {
-    right: -400px;
+    right: -100px;
     font-size: 27px;
     font-style: italic;
 } 
@@ -226,10 +226,13 @@ li#name1 {
 
 
 <body style="background-color:FFE4B5;" ng-controller="orderStatus">
-  <div class='menujohanes'>
-        <ul class='dark_menu'>
+
+  <div class='menujohanes'  style="position:sticky;top:0;z-index:1;" >
+        
+       <ul class='dark_menu' >
+<!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
           
-<li >
+<li  >
             <a>
               Transaction &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                
@@ -240,13 +243,18 @@ li#name1 {
                   New
                 </a>
               </li>
-                  <li>
+
+                <li>
                 <a href="orders.html">
-                  Orders
+                  Order Management
                 </a>
               </li>
-               <li>
+  <!--              <li>
                 <a href="list.html">
+======= -->
+               <li>
+                <a href="List.html">
+
                   List
                 </a>
               </li>
@@ -286,7 +294,11 @@ li#name1 {
                 </li>
 
                <li>
+<!-- <<<<<<< HEAD:public/Transaction.html
                 <a href="item.html">
+======= -->
+                <a href="Item.html">
+<!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
                   Item
                 </a>
               </li>
@@ -325,16 +337,71 @@ li#name1 {
             </ul>
           </li>
           <li >
+
             <a href="Tax Configuration.html">
-              Tax configuration
+
+              Tax Configuration
             </a>
-           
+            <!-- <ul>
+                
+
+               <li>
+                <a href="indextaxation.html">
+                  Tax Structure
+                </a>
+              </li> -->
+              <!-- <li>
+                <a href="taxation.html">
+                  Tax Name
+                </a>
+              </li> -->
+             
+              
+            <!-- </ul> -->
           </li>
             
         
           </li>
+<!-- <<<<<< HEAD:public/Transaction.html
           <li  id="name1">
             <a>
+======= -->
+          <li >
+              <a href="dailyRates.html">
+              Daily Rates 
+            </a>
+            </li>
+           <li >
+            <a href='#'>
+              Accounts &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </a>
+            <ul>
+               <li>
+                <a href="receipts.html">
+                
+                  Receipt
+                </a>
+              </li>
+                
+
+               <li>
+                <a href="payments.html">
+                  
+                  Payment
+                </a>
+              </li>
+              <!-- <li>
+                <a href="GroupWise.html">
+                  Group Wise
+                </a>
+              </li> -->
+             
+              
+            </ul>
+          </li>
+          <li  id="name1" >
+            <a >
+
              {{usernamedetails}}
                
             </a>
@@ -350,7 +417,7 @@ li#name1 {
           
         </ul>
 
-     
+
         
       </div>
 
@@ -410,7 +477,7 @@ To  <input type="date" ng-model="dateto" id="dates" />
       </tr>
     </thead>
     <tbody>
-     <tr ng-repeat="data in results" ng-click="rowSelect(data,$index)" id="selectrow1" ng-class="{selected : data === idSelected}" ng-model="getdata">
+     <tr ng-repeat="data in results" ng-click="rowSelect(data,$index)" id="selectrow1" ng-class="{selected : data === idSelected}" ng-model="getdata" >
       
      <!--  <td style="padding-right:80px">{{}}</td> -->
        <td id="spac" >{{data.orderNO}}</td>
@@ -431,7 +498,7 @@ To  <input type="date" ng-model="dateto" id="dates" />
        <div class="col-sm-3" > 
     </div>
         <div class="col-sm-1" >
-        <a ng-href="{{orderpage}}"> <button id="spac" id="spac"  class="btn btn-warning" ng-click="gotoorders()">Edit</button></a></div>
+        <a ng-href="{{orderpage}}"> <button id="spac" id="spac"  class="btn btn-warning" ng-click="gotoorders()" ng-disabled="typeorder=='Delivered' || makeDisabled=='Delivered'">Edit</button></a></div>
       <!--   <div class="col-sm-3" >  <button id="spac" ng-click="valuationPrint()"  class="btn btn-success">Print</button></div> -->
         <!--   <div  > <button id="spac">Close</button>
            </div> -->

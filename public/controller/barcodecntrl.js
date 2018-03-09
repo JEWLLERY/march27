@@ -424,11 +424,7 @@ $scope.saveBatchGeneration = function(){
               //$scope.userit[0].invGroupName = invGroupName;
               $scope.userit[0].invGroupName = $scope.userit[0].InvGroupName;
           
-<<<<<<< HEAD
-              //$scope.userit[0].invGroupAccNo = invAccNo;
-=======
-             // $scope.userit[0].invGroupAccNo = invAccNo;
->>>>>>> 47cc718ca29e36dd2e59b606c6135c3e33d6c2b3
+
               $scope.userit[0].voucherDate = "";
               $scope.userit[0].voucherTime = "";
 

@@ -9,7 +9,8 @@ var db=mongojs('inventory',['user','tags','transaction','saleInvoice','mode','tr
   'items','tax','taxation','inventoryGroupValueNotationDaily','salesPerson','loginDetails',
   'trHeaders','gIControlTables','history','ledgerActs','ledgeraccounts','mainclasses','maingroups','mcIds',
   'roundOffConfig','sgIds','subgroups','subscribers','trDetails','transactionInvoice','ugIds','updatelist','user',
-  'users','merchantDetails','trail','staff','receipts','cardType','payments','orders']);
+
+  'users','merchantDetails','trail','staff','receipts','cardType','payments','orders','printData']);
 
 
 var bodyParser=require('body-parser');
@@ -106,7 +107,7 @@ var id=req.params.thh;
 app.get('/partyNames',function(req,res){
     
    // db.user.find(function(err,doc){
-    db.subscribers.find({},function(err,doc){
+    db.subscribers.find({"data.party_type.id":"3"},function(err,doc){
 
         
         res.json(doc);
@@ -840,7 +841,7 @@ console.log("iiiiiiiiiiiiiiiiiiiiiiiii")
 
 app.get('/ordertype',function(req,res) {
   
-  db.ordeType.find(function(err,doc){
+  db.orderType.find(function(err,doc){
  
         res.json(doc);
          
@@ -878,40 +879,7 @@ app.get('/orderName',function(req,res) {
          
       })
 })
-app.get('/dateBatchFind/:date',function(req,res)
-{
-  //  console.log("i got the date")
-    var str=req.params.date;
-    //console.log(str);
-    var str_array=str.split(",");
-    var fdate=str_array[0];
-  //  var frdate=new Date(fdate)
-    //console.log(frdate)
-    var tdate=str_array[1];
-    //var todate=new Date(tdate)
-    //console.log(todate);
-   
-    db.orders.find({date: { $gt:(fdate), $lt: (tdate) }}).sort({_id:-1},function(err,doc){
-     console.log(doc +"jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-      res.json(doc);
 
-    })
-})
-app.get('/dateFind/:pdata',function(req,res){
-    console.log("vvvvvvvvvvvvvvvvvvvvvv");
-    var pstr=req.params.pdata;
-    var pstr_array=pstr.split(",");
-    // var partyname=pstr_array[0];
-    var date1=pstr_array[0];
-    var date2=pstr_array[1];
-      console.log(date1+" "+date2);
-      // db.transactiondetail.find({"partyname":partyname,"created_on": {"$gt": date1, "$lt": date2}},function(err,doc){
-        db.orders.find({date:{$gt:date1, $lt:date2}},function(err,doc){
-          console.log("dddddddddddddd");
-            res.json(doc);
-            console.log(doc);
-      })
-  })
   app.put('/anydata/:thh',function(req,res){
   console.log("ttttttttttttttttyyyyyyyyyyyyyyyyyyyyy233333333345555555")
 var str=req.params.thh;
@@ -3066,6 +3034,22 @@ app.get('/Ordertotalcount',function(req,res){
   });
 });
 
+//for pdf call 
+app.get('/printCallPdf',function(req,res){
+
+  db.printData.find({"orderNo":req.query.orderNo,"printStatus" : "no"},function(err,doc){
+    console.log(doc);
+    res.json(doc);
+  });
+});
+app.put('/pdfUpdate',function(req,res){
+  // console.log('/pdfUpdate'+ '/pdfUpdate'+req.query.id +req.query.id+ req.query.id);
+  // console.log(req.body)
+ db.printData.update({_id:mongojs.ObjectId(req.body._id)},{$set:{"printStatus" : "yes"}},function(err,doc){
+    //console.log(req.query.id +req.query.id+ req.query.id);
+    res.json(doc);
+  });
+});
 
 
 
@@ -3183,12 +3167,9 @@ app.get('/getvoucherids:name',function(req,res){
 //      db.saleInvoice.find({"partyname":pname,"Transaction":"Regular Sale","AccountStatus":'Inprogress',"voucherNo":{$ne:"null"}
 // }).sort({_id:-1},function(err,doc){
 //      res.json(doc);
-// =======
-// <<<<<<< HEAD
-//    db.saleInvoice.find({"partyname":pname,"AccountStatus":'Inprogress',"voucherNo":{$ne:"null"}
-// =======
-   db.saleInvoice.find({"partyname":pname,"AccountStatus":'Inprogress',"voucherNo":{$ne:"null"}
-//>>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
+    db.saleInvoice.find({"partyname":pname,"AccountStatus":'Inprogress',"voucherNo":{$ne:"null"}
+
+
 }).sort({_id:-1},function(err,doc){
 
 
@@ -3293,7 +3274,7 @@ console.log(rdata1+"uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
   db.receipts.insert({"Mode":mode,"Amount":Decimal128.fromString(amount),"Bank":bank,"ChequeNo":chequeno,"Date":chequeDate,"CardNo":cardnos,"CardType":ctype,"ApprovalNo":appno,"partyname":pname,"BilledDate":new Date(bdate),
     "BillNo":bill,"Narration":narrate,"PaidAmount":Decimal128.fromString(totals),"voucherNo":voucher,"voucherStatus":voucherStatus,"orderNO":orderNO,'netBalance':Decimal128.fromString(netBalance)},function(err,doc){
      console.log(" checking data here ");
-     console.log(doc);
+     //console.log(doc);
     res.json(doc);
   })
 })
@@ -4742,11 +4723,9 @@ var dis = str_array[9];
           })
         }else{
           db.saleInvoice.update({_id:mongojs.ObjectId(id)},{$set:{"partyname":partyname,"taxableval":taxableval,"tax":tax,"subtol":subtol,"adj":adj,
-// <<<<<<< HEAD
-//             "labourtax":labourtax,"Transaction":transaction,"labourValue":labourValue,"dis":dis,"char":char,"netamt":netamt,"roundOffValue":decimals,"invoiceValue":invoiceValue,
-// =======
+
             "labourtax":labourtax,"Transaction":transaction,"labourValue":labourValue,"dis":dis,"char":char,"netamt":netamt,"roundOffValue":decimals,"invoiceValue":invoiceValue,
-//>>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
+
             "netAmount":Decimal128.fromString(netValue),"discount":discount,"cardCharges" :cardCharges,"charges":charges}},function(err,doc){
               res.json(doc);
 
@@ -8976,7 +8955,8 @@ require('./public/inventoryDbs/defaultCollections')(app);
 // require('./apiCalls/printPdf')(app); // pass our application into our routes
 require('./apiCalls/materialAdvancePdf')(app);
 
-app.listen(8280); 
-console.log("server running on port 8280");
+
+app.listen(8000); 
+console.log("server running on port 8000");
 
 exports = module.exports = app;

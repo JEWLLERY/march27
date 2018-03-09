@@ -199,7 +199,7 @@ display: block;
   width: 10%;
 }
 li#name1 {
-    right: -400px;
+    right: -100px;
     font-size: 27px;
     font-style: italic;
 } 
@@ -244,10 +244,15 @@ li#name1 {
 
 
 <body style="background-color:FFE4B5;" ng-controller="orderCntrl">
-  <div class='menujohanes'>
-        <ul class='dark_menu'>
+ 
+
+
+  <div class='menujohanes'  style="position:sticky;top:0;z-index:1;" >
+        
+       <ul class='dark_menu' >
+<!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
           
-<li >
+<li  >
             <a>
               Transaction &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                
@@ -258,13 +263,18 @@ li#name1 {
                   New
                 </a>
               </li>
-                  <li>
+
+                <li>
                 <a href="orders.html">
-                  Orders
+                  Order Management
                 </a>
               </li>
-               <li>
+  <!--              <li>
                 <a href="list.html">
+======= -->
+               <li>
+                <a href="List.html">
+
                   List
                 </a>
               </li>
@@ -304,7 +314,11 @@ li#name1 {
                 </li>
 
                <li>
+<!-- <<<<<<< HEAD:public/Transaction.html
                 <a href="item.html">
+======= -->
+                <a href="Item.html">
+<!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
                   Item
                 </a>
               </li>
@@ -343,16 +357,71 @@ li#name1 {
             </ul>
           </li>
           <li >
+
             <a href="Tax Configuration.html">
-              Tax configuration
+
+              Tax Configuration
             </a>
-           
+            <!-- <ul>
+                
+
+               <li>
+                <a href="indextaxation.html">
+                  Tax Structure
+                </a>
+              </li> -->
+              <!-- <li>
+                <a href="taxation.html">
+                  Tax Name
+                </a>
+              </li> -->
+             
+              
+            <!-- </ul> -->
           </li>
             
         
           </li>
+<!-- <<<<<< HEAD:public/Transaction.html
           <li  id="name1">
             <a>
+======= -->
+          <li >
+              <a href="dailyRates.html">
+              Daily Rates 
+            </a>
+            </li>
+           <li >
+            <a href='#'>
+              Accounts &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </a>
+            <ul>
+               <li>
+                <a href="receipts.html">
+                
+                  Receipt
+                </a>
+              </li>
+                
+
+               <li>
+                <a href="payments.html">
+                  
+                  Payment
+                </a>
+              </li>
+              <!-- <li>
+                <a href="GroupWise.html">
+                  Group Wise
+                </a>
+              </li> -->
+             
+              
+            </ul>
+          </li>
+          <li  id="name1" >
+            <a >
+
              {{usernamedetails}}
                
             </a>
@@ -368,10 +437,9 @@ li#name1 {
           
         </ul>
 
-     
+
         
       </div>
-
  <div  class="center" ng-cloak>
   <h3 >Order Detail</h3>
 
@@ -406,7 +474,7 @@ li#name1 {
                          <button class="btn-primary">Create Party</button></a>
  </div>
 <div class="col-sm-6">
-  Order No<span id="star"><font size="02">*</font></span><input type="text" name="" ng-model="orderNO"> 
+  Order No<span id="star"><font size="02">*</font></span><input type="text" name="" ng-model="orderNO" disabled> 
 
           <input type="radio"  ng-model="radio.state"   ng-change="radiobutton()"  value="with in state"> With in State
         
@@ -423,7 +491,7 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
                     </select>  
 </div>
 <div class="col-sm-6">
-  Order Dt<span id="star"><font size="02">*</font></span> <input type="date" ng-model="date" id="enlarge" ng-change="change(date)" />
+  Order Dt<span id="star"><font size="02">*</font></span> <input type="date" ng-model="date" id="enlarge" ng-change="change(date)" disabled/>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" ng-click="rateFixed(rateCheck)" ng-model="rateCheck" ng-true-value="1" ng-false-value="0">Rate Fixed
 </div>
@@ -435,43 +503,42 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
 
       <tr >
          <th >Checkbox</th>
-      <th >Item<span id="star"><font size="02">*</font></span></th>
+      <th style="padding-left: 20px">Item<span id="star"><font size="02">*</font></span></th>
    
         <th >Description</th>
         <th style="padding-left: 40px">Size</th>
-          <th >Purity<span id="star"><font size="02">*</font></span></th>
+          <th style="padding-left: 20px">Purity<span id="star"><font size="02">*</font></span></th>
         <th style="padding-left: 15px">GrossWt<span id="star"><font size="02">*</font></span></th>
         <th style="padding-left: 20px">GrossPcs<span id="star"><font size="02">*</font></span></th>
       
-        <th style="padding-left: 40px">StoneWt</th>
+        <th style="padding-left: 30px">StoneWt</th>
         <th style="padding-left: 35px">Uom</th>
         <th style="padding-left: 30px">NetWt</th>
   <th style="padding-left: 40px">Pct</th>
     <th >Wastage</th>
-      <th >AdjustedQty</th>
+   
         <th style="padding-left: 28px">Chg.Units</th>
-          <th style="padding-left: 40px">MRP</th>
+       
             <th style="padding-left: 40px">Rate</th>
-              <th style="padding-left: 40px">LabCalc</th>
+              <th style="padding-left: 20px">LabCalc</th>
                 <th >LabourAmt</th>
-                  <th style="padding-left: 30px">LabourVal</th>
-                  <!-- <th></th> -->
-                  <!--  <th ng-if = " LabourTax =='Yes'" >LabourTax</th> -->
+                  <th style="padding-left: 25px">LabourVal</th>
+               
                     <th >StoneCalc</th>
                     <th >StoneChg</th>
                      <th>StoneVal</th>
-        <th  >TaxableValue</th>
+        <th  style="padding-left: 15px">TaxableValue</th>
 
 
 
 
                     <th style="padding-left: 40px">Tax<span id="star"><font size="02">*</font></span></th>
-                    <th  ng-if = " radiowithinstate =='withinstate'" style="padding-left: 30px">CGST</th>
-                    <th  ng-if = " radiowithinstate =='withinstate'" style="padding-left: 40px">SGST</th>
-                    <th ng-if = "radiowithinstate =='outofstate'" style="padding-left: 40px" >IGST</th >
-                    <th style="padding-left: 50px">Taxamt</th>
-                    <th style="padding-left: 50px"> FinalVal</th>
-                    <th style="padding-left: 50px">DueDate<span id="star"><font size="02">*</font></span></th>
+                    <th  ng-if = " radiowithinstate =='withinstate'" style="padding-left: 20px">CGST</th>
+                    <th  ng-if = " radiowithinstate =='withinstate'" style="padding-left: 30px">SGST</th>
+                    <th ng-if = "radiowithinstate =='outofstate'" style="padding-left: 30px" >IGST</th >
+                    <th style="padding-left: 40px">Taxamt</th>
+                    <th style="padding-left: 40px"> FinalVal</th>
+                    <th style="padding-left: 40px">DueDate<span id="star"><font size="02">*</font></span></th>
                   
 
       </tr>
@@ -485,12 +552,10 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
       <td style="padding-right: 20px">
        <select   ng-model="item.itemName" id="www" ng-change="itemSelect(item.itemName,$index)" >
 
- <!-- <select   ng-model="item.itemName" ng-change="itemSelect(item.itemName,$index)" ng-disabled="$index == 0"> -->
+
         <option ng-repeat="itemname in items" >{{itemname.Name}}</option>
         </select></td>
-   <!--    
-       <td style="padding-right: 40px"><select id="www"><option></option></select>
-       </td> -->
+ 
        <td style="padding-right : 10px"><input type="text" id="box" ng-model="item.desc"  maxlength="40" ></td>
        <td  style="padding-right: 10px"><input type="text" id="box" size="40" ng-model="item.size" ng-value="{{item.size}}" ></td>
        <td  style="padding-right : 40px"> <select ng-model="item.purity"  ng-change="purityCal1($index,item.purity,item.itemName)" >
@@ -521,9 +586,9 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
        </select></td>
        <td ><input type="text" id="box"  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ng-model="item.wastage" ng-value="{{item.wastage}}" ng-change=newwas($index,item.pctcal)></td>
 
-       <td><input type="text" id="box" oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');"  ng-model="item.matadj" ng-value="{{item.matadj}}" ></td>
+     
        <td><input type="text" id="box" ng-model="item.chgunt" ng-value="{{item.chgunt}}"></td>
-       <td><input type="text" id="box" oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');"  ng-model="item.mrp"  ng-change="mrpCal($index)" ></td>
+ 
  <td style="padding-left:0px"><input type="text" id="box" ng-model="item.rate" ng-change="rateChange($index)" ng-disabled="all"></td>
  
          
@@ -563,7 +628,7 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
 
                  <td><input type="text" id="box"  ng-model="item.final" ng-value="{{item.final}}"></td>
 
-   <td ><input type="date"  ng-model="item.usedate" name="date" id="dat" ></td>
+   <td ><input type="date"  ng-model="item.usedate" name="date" id="dat"  ng-change="validationDate(item.usedate)"></td>
     
        
    
@@ -587,9 +652,14 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
         <!-- <button ng-click="removeSelectedRows()" class="btn btn-danger">Delete</button> -->
        <button ng-click="removeSelectedRows()" class="btn btn-danger">Delete</button>
       </div>
-       <div class="col-sm-6"> 
+       <div class="col-sm-6" ng-hide="updateOrder=='updateData'"> 
          <a ng-href="{{mylink}}">
          <button ng-click="save(rateCheck)" class="btn btn-success">Save</button>
+          <!-- <button class="btn btn-warning">Cancel</button> --></a>
+        </div>
+          <div class="col-sm-6"> 
+         <a >
+         <button ng-click="save(rateCheck)" class="btn btn-success">Update</button>
           <!-- <button class="btn btn-warning">Cancel</button> --></a>
         </div>
          </div>
