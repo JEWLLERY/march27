@@ -385,30 +385,26 @@ display: block;
 </div>
 </article>
 <hr>
-<h3 align="center" ng-cloak>Receipt</h3>
-<div class="row">
-
-<!-- <div class="col-sm-10" >
+<!-- <h3 align="center" ng-cloak>Receipt</h3> -->
+<h3 style="margin-left:530px;" ng-cloak>Receipt</h3>
+<div class="row" >
+<div style="margin-left:180px;"   ng-cloak>
 <p ng-cloak>Party Name:{{partyname}} <br>
-Party License:{{partyLicense}}<br>
+<!-- Party License:{{partyLicense}}<br>
 Party PAN:{{partyPAN}}<br>
 Party Address:{{city}}<br>
-City:{{city}}</p>
- 
-</div> -->
-<div ng-cloak style="margin-left:1000px;margin-right:100px;color:black">Bill No:{{billnum}}
+City:{{city}}</p> -->
+ </p>
+</div>
+<div  ng-cloak style="margin-left:900px;margin-right:100px;margin-top:-30px;color:black">Bill No:{{billnum}}
   <br>
   <p>Invoice No:{{voucherNo}}<br>
   Date:{{dates | date:"dd-MM-yyyy" }}</p>
 </div>
 <hr>
 </div>
-
 <div class="col-sm-8" style="margin-left:135px;background-color: white;" ng-cloak  >
-
-
   <table class="table" style="background-color: white;" id="maintable" ng-cloak >
-      
                   <thead>
                     <tr>
                       <th id="d1">Mode</th>
@@ -460,7 +456,6 @@ City:{{city}}</p>
 
 </div>
 </div>
-<br>
 <h4 style="margin-left:135px;"ng-cloak><font color="black"><b>Receipt Amount In Words:{{wor}}{{"only"}}</b></h4>
 
 

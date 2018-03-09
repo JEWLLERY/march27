@@ -23,6 +23,8 @@ $http.get('/getStoredPayment'+$scope.billnum).success(function(response){
   if(response.length != 0){
   $scope.rpamt=response;
  // $scope.voucherId=response[0].vocherNo;
+    $scope.partyname = response[0].partyname;
+    console.log($scope.partname);
    $scope.voucherId = response[0].voucherNo
   //alert(response.vocherNo)
   receivableAmount(response[0].partyname)

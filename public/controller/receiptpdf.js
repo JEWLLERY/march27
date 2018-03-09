@@ -18,6 +18,7 @@ $http.get('/getStoredReceipt'+$scope.billnum).success(function(response){
   console.log(response);
   if(response.length != 0){
   $scope.rpamt = response;
+  $scope.partyname=response[0].partyname;
   $scope.voucherNo = response[0].voucherNo;
   receipetCreationCall()
 

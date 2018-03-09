@@ -424,6 +424,13 @@ display: block;
 >Approval Out</h3>
 <h3 align='center' ng-if="trans=='Approval Return'" ng-cloak
 >Approval Return</h3>
+<h3 align='center' ng-if="trans=='RD Purchase'" ng-cloak
+>RD Purchase</h3>
+<h3 align='center' ng-if="trans=='Valuation'" ng-cloak
+>Valuation</h3>
+<h3 align='center' ng-if="trans=='Sale Return'" ng-cloak
+>Sale Return</h3>
+<h3 align='center' ng-if="trans=='Purchase Return'" ng-cloak>Purchase Return</h3>
 </div>
 <div class="row">
 
@@ -648,7 +655,7 @@ City:{{city}}</p>
       <th  >Subtotal:</th>
       <td  id="right2">{{subtotal}}</td>
     </tr> 
-    <tr ng-if="trans =='Regular Sale'">
+    <tr ng-if="trans=='Regular Sale'||trans=='RD Purchase'||trans=='Approval Sale'" >
       <th >Charge Total:</th>
       <td  id="right2">{{ charge}}</td>
     </tr> 

@@ -666,6 +666,8 @@ myApp.controller('billreprintCntrl',['$scope','$http','$window',
     // var xdate1=xdate.split("T");
     // $scope.xdate12=xdate1[0];
     // console.log($scope.xdate12);
+    $scope.partyname = $scope.resdata[0].partyname;
+    console.log($scope.partyname);
     $scope.reprintBillNo = $scope.resdata[0].BillNo;
     console.log($scope.reprintBillNo);
     
