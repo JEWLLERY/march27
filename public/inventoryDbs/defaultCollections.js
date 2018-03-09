@@ -12,7 +12,7 @@
   'items','tax','taxation','inventoryGroupValueNotation','inventoryGroupValueNotationDaily','salesPerson','loginDetails',
   'trHeaders','gIControlTables','history','ledgerActs','ledgeraccounts','mainclasses','maingroups','mcIds',
   'roundOffConfig','sgIds','subgroups','subscribers','trDetails','transactionInvoice','ugIds','updatelist','user',
-  'users','merchantDetails','trail','staff','cardType']);
+  'users','merchantDetails','trail','staff','cardType','orderType']);
 
     /* -------------------------------------------------------------------------
                             Initialization - Start
@@ -136,6 +136,16 @@
                     for (var cardTypeIndex = 0; cardTypeIndex < cardTypeInsert.maingroup.length; cardTypeIndex++) {
                             var cardTypeObj = { "name": cardTypeInsert.maingroup[cardTypeIndex].name }
                             db.cardType.insert(cardTypeObj, function (err, mc) { });
+                    }           
+                }
+          })
+          db.orderType.find(function (err, orderTypeValues) {
+                if (orderTypeValues.length == 0) {
+                    var orderTypeInsert = defaultDropDown.dropDown[16];
+                    //console.log(itemTypeInsert.maingroup.length);
+                    for (var orderTypeIndex = 0; orderTypeIndex < orderTypeInsert.maingroup.length; orderTypeIndex++) {
+                            var orderTypeObj = { "ordertype": orderTypeInsert.maingroup[orderTypeIndex].ordertype }
+                            db.orderType.insert(orderTypeObj, function (err, mc) { });
                     }           
                 }
           })

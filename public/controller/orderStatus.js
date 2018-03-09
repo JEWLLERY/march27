@@ -3,15 +3,15 @@ myApp.controller('orderStatus',['$scope','$http','$window','$rootScope',"Control
 function($scope,$http,$window,$rootScope,ControllerService){
 	//alert("lllllllll")
 	 $scope.results=[];
-	 $http.get("/ordertype").success(function(response){
-  console.log(response);
-  $scope.ordertype=response;
-  console.log($scope.ordertype)
+// 	 $http.get("/ordertype").success(function(response){
+//   console.log(response);
+//   $scope.ordertype=response;
+//   console.log($scope.ordertype)
 
-})
+// })
 	 $http.get("/orderName").success(function(response){
   console.log(response);
-  $scope.orderName=response;
+  $scope.ordertype=response;
   console.log($scope.ordertype)
 
 })

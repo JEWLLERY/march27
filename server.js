@@ -9,7 +9,8 @@ var db=mongojs('inventory',['user','tags','transaction','saleInvoice','mode','tr
   'items','tax','taxation','inventoryGroupValueNotationDaily','salesPerson','loginDetails',
   'trHeaders','gIControlTables','history','ledgerActs','ledgeraccounts','mainclasses','maingroups','mcIds',
   'roundOffConfig','sgIds','subgroups','subscribers','trDetails','transactionInvoice','ugIds','updatelist','user',
-  'users','merchantDetails','trail','staff','receipts','cardType','payments','orders']);
+
+  'users','merchantDetails','trail','staff','receipts','cardType','payments','orders','printData','orderType']);
 
 
 var bodyParser=require('body-parser');
@@ -220,6 +221,8 @@ app.get('/goorders',function(req,res)
         //console.log(doc);
     }))
     })
+
+
 app.post('/savingdata',function(req,res) {
 //console.log("oooooooooooooooooo")
   db.orders.insert(req.body,function(err,doc){
@@ -232,6 +235,16 @@ console.log("5gggggggggggggggggggggggg")
 //         //res.json(doc);
 //         console.log(res)
 //       })
+})
+
+app.post('/issueVocherPost',function(req,res) {
+//console.log("oooooooooooooooooo")
+  db.transactionDetail.insert(req.body,function(err,doc){
+
+        res.json(doc);
+        console.log(res)
+      })
+
 })
 
 
@@ -840,7 +853,7 @@ console.log("iiiiiiiiiiiiiiiiiiiiiiiii")
 
 app.get('/ordertype',function(req,res) {
   
-  db.ordeType.find(function(err,doc){
+  db.orderType.find(function(err,doc){
  
         res.json(doc);
          
@@ -872,31 +885,31 @@ app.get('/detailsManage',function(req,res) {
 // })
 app.get('/orderName',function(req,res) {
   
-  db.ordeType.find(function(err,doc){
+  db.orderType.find(function(err,doc){
  
         res.json(doc);
          
       })
 })
-app.get('/dateBatchFind/:date',function(req,res)
-{
-  //  console.log("i got the date")
-    var str=req.params.date;
-    //console.log(str);
-    var str_array=str.split(",");
-    var fdate=str_array[0];
-  //  var frdate=new Date(fdate)
-    //console.log(frdate)
-    var tdate=str_array[1];
-    //var todate=new Date(tdate)
-    //console.log(todate);
+// app.get('/dateBatchFind/:date',function(req,res)
+// {
+//   //  console.log("i got the date")
+//     var str=req.params.date;
+//     //console.log(str);
+//     var str_array=str.split(",");
+//     var fdate=str_array[0];
+//   //  var frdate=new Date(fdate)
+//     //console.log(frdate)
+//     var tdate=str_array[1];
+//     //var todate=new Date(tdate)
+//     //console.log(todate);
    
-    db.orders.find({date: { $gt:(fdate), $lt: (tdate) }}).sort({_id:-1},function(err,doc){
-     console.log(doc +"jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-      res.json(doc);
+//     db.orders.find({date: { $gt:(fdate), $lt: (tdate) }}).sort({_id:-1},function(err,doc){
+//      console.log(doc +"jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+//       res.json(doc);
 
-    })
-})
+//     })
+// })
 app.get('/dateFind/:pdata',function(req,res){
     console.log("vvvvvvvvvvvvvvvvvvvvvv");
     var pstr=req.params.pdata;
@@ -3066,6 +3079,22 @@ app.get('/Ordertotalcount',function(req,res){
   });
 });
 
+//for pdf call 
+app.get('/printCallPdf',function(req,res){
+
+  db.printData.find({"orderNo":req.query.orderNo,"printStatus" : "no"},function(err,doc){
+    console.log(doc);
+    res.json(doc);
+  });
+});
+app.put('/pdfUpdate',function(req,res){
+  // console.log('/pdfUpdate'+ '/pdfUpdate'+req.query.id +req.query.id+ req.query.id);
+  // console.log(req.body)
+ db.printData.update({_id:mongojs.ObjectId(req.body._id)},{$set:{"printStatus" : "yes"}},function(err,doc){
+    //console.log(req.query.id +req.query.id+ req.query.id);
+    res.json(doc);
+  });
+});
 
 
 
@@ -3183,12 +3212,9 @@ app.get('/getvoucherids:name',function(req,res){
 //      db.saleInvoice.find({"partyname":pname,"Transaction":"Regular Sale","AccountStatus":'Inprogress',"voucherNo":{$ne:"null"}
 // }).sort({_id:-1},function(err,doc){
 //      res.json(doc);
-// =======
-// <<<<<<< HEAD
-//    db.saleInvoice.find({"partyname":pname,"AccountStatus":'Inprogress',"voucherNo":{$ne:"null"}
-// =======
-   db.saleInvoice.find({"partyname":pname,"AccountStatus":'Inprogress',"voucherNo":{$ne:"null"}
-//>>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
+    db.saleInvoice.find({"partyname":pname,"AccountStatus":'Inprogress',"voucherNo":{$ne:"null"}
+
+
 }).sort({_id:-1},function(err,doc){
 
 
@@ -3293,7 +3319,7 @@ console.log(rdata1+"uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
   db.receipts.insert({"Mode":mode,"Amount":Decimal128.fromString(amount),"Bank":bank,"ChequeNo":chequeno,"Date":chequeDate,"CardNo":cardnos,"CardType":ctype,"ApprovalNo":appno,"partyname":pname,"BilledDate":new Date(bdate),
     "BillNo":bill,"Narration":narrate,"PaidAmount":Decimal128.fromString(totals),"voucherNo":voucher,"voucherStatus":voucherStatus,"orderNO":orderNO,'netBalance':Decimal128.fromString(netBalance)},function(err,doc){
      console.log(" checking data here ");
-     console.log(doc);
+     //console.log(doc);
     res.json(doc);
   })
 })
@@ -4002,30 +4028,19 @@ app.post('/insertUseritDetails',function(req,res){
    if(req.body.barcode == undefined || req.body.barcode == null||  req.body.split == "yes"){
           console.log(" barcode is null ");
       }else{
-          console.log(" barcode is here look  "+req.body.barcode);
-          //for updated in refid data  "barcode":req.body.barcode,
-           // if(req.body.Transaction!='Approval Out'){
-            console.log("not")
-        db.transactionDetail.update({"refid":req.body.barcode},{$set:{"chgunt":req.body.chgunt,"purity":req.body.purity,"date":req.body.date,"desc":req.body.desc,
-         "gpcs":req.body.gpcs,"gwt":req.body.gwt,"name":req.body.iname,"ntwt":req.body.ntwt,"rate":req.body.rate,"size":req.body.size,"taxval":req.body.taxval,"stwt":req.body.stwt,
-        "wastage":req.body.wastage,"stval":req.body.stval,"mrp":req.body.mrp,"labval":req.body.labval,'labamt':req.body.labamt,"labourTaxValue":req.body.labourTaxValue,'labamt':req.body.labamt,'stchg':req.body.stchg,
-          "stonecal":req.body.stonecal,"pctcal":req.body.pctcal,"labcal":req.body.labcal,"stockPoint":req.body.stockPoint}},function(err,doc)
-        {
-           // res.json(doc);
-        
-        }); 
-      // }
-      // else{
-      //   console.log("approval out");
-      //   db.transactionDetail.update({"refid":req.body.barcode},{$set:{"chgunt":req.body.chgunt,"purity":req.body.purity,"date":req.body.date,"desc":req.body.desc,
-      //    "gpcs":req.body.gpcs,"gwt":req.body.gwt,"name":req.body.iname,"ntwt":req.body.ntwt,"rate":req.body.rate,"size":req.body.size,"taxval":req.body.taxval,"stwt":req.body.stwt,
-      //   "wastage":req.body.wastage,"stval":req.body.stval,"mrp":req.body.mrp,"labval":req.body.labval,'labamt':req.body.labamt,"labourTaxValue":req.body.labourTaxValue,'labamt':req.body.labamt,'stchg':req.body.stchg,
-      //     "stonecal":req.body.stonecal,"pctcal":req.body.pctcal,"labcal":req.body.labcal,"stockPoint":req.body.stockPoint}},function(err,doc)
-      //   {
-      //      // res.json(doc);
-        
-      //   }); 
-      // }
+              // console.log(" barcode is here look  "+req.body.barcode);
+              // //for updated in refid data  "barcode":req.body.barcode,
+              //  // if(req.body.Transaction!='Approval Out'){
+              // console.log("not")
+               if (req.body.Transaction != "Valuation") {
+                    db.transactionDetail.update({"refid":req.body.barcode},{$set:{"chgunt":req.body.chgunt,"purity":req.body.purity,"date":req.body.date,"desc":req.body.desc,
+                     "gpcs":req.body.gpcs,"gwt":req.body.gwt,"name":req.body.iname,"ntwt":req.body.ntwt,"rate":req.body.rate,"size":req.body.size,"taxval":req.body.taxval,"stwt":req.body.stwt,
+                    "wastage":req.body.wastage,"stval":req.body.stval,"mrp":req.body.mrp,"labval":req.body.labval,'labamt':req.body.labamt,"labourTaxValue":req.body.labourTaxValue,'labamt':req.body.labamt,'stchg':req.body.stchg,
+                      "stonecal":req.body.stonecal,"pctcal":req.body.pctcal,"labcal":req.body.labcal,"stockPoint":req.body.stockPoint}})
+                     
+
+               }
+   
       }
         
 
@@ -4742,11 +4757,9 @@ var dis = str_array[9];
           })
         }else{
           db.saleInvoice.update({_id:mongojs.ObjectId(id)},{$set:{"partyname":partyname,"taxableval":taxableval,"tax":tax,"subtol":subtol,"adj":adj,
-// <<<<<<< HEAD
-//             "labourtax":labourtax,"Transaction":transaction,"labourValue":labourValue,"dis":dis,"char":char,"netamt":netamt,"roundOffValue":decimals,"invoiceValue":invoiceValue,
-// =======
+
             "labourtax":labourtax,"Transaction":transaction,"labourValue":labourValue,"dis":dis,"char":char,"netamt":netamt,"roundOffValue":decimals,"invoiceValue":invoiceValue,
-//>>>>>>> 7a8f5baafd1db8333d296c8333f507e52e0c2c4e
+
             "netAmount":Decimal128.fromString(netValue),"discount":discount,"cardCharges" :cardCharges,"charges":charges}},function(err,doc){
               res.json(doc);
 
@@ -5334,6 +5347,7 @@ app.put('/updateBarcodeDataGeneration',function(req,res){
             res.json(doc);
         
         });  
+
        db.transactionDetail.update({"refid":req.body.barcode},{$set:{"chgunt":req.body.chgunt,"purity":req.body.purity,"date":req.body.date,"desc":req.body.desc,
          "gpcs":req.body.gpcs,"gwt":req.body.gwt,"name":req.body.iname,"ntwt":req.body.ntwt,"rate":req.body.rate,"size":req.body.size,"taxval":req.body.taxval,"stwt":req.body.stwt,
         "wastage":req.body.wastage,"stval":req.body.stval,"mrp":req.body.mrp,"labval":req.body.labval,'labamt':req.body.labamt,"labourTaxValue":req.body.labourTaxValue,'labamt':req.body.labamt,'stchg':req.body.stchg,
@@ -8976,7 +8990,8 @@ require('./public/inventoryDbs/defaultCollections')(app);
 // require('./apiCalls/printPdf')(app); // pass our application into our routes
 require('./apiCalls/materialAdvancePdf')(app);
 
-app.listen(8280); 
-console.log("server running on port 8280");
+
+app.listen(9000); 
+console.log("server running on port 9000");
 
 exports = module.exports = app;

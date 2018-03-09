@@ -31,13 +31,12 @@ myApp.controller('billCntrl',['$scope','$http','$window',
 var setPatyName  =  window.sessionStorage.getItem("receiptPatyName");
  
 console.log(setPatyName)
-//setPatyName = 'viin';
+
 if (setPatyName!="null" ) {
 //alert("KK")
 $scope.dataHide="yes"
       $http.get('/receiptOrderNo/'+setPatyName).success(function(response){
           console.log(response);
-        $scope.orderNO=response[0].orderNO;
         $scope.orderNO=response[0].orderNO;
         $scope.partyname=response[0].partyNames
        
@@ -257,25 +256,25 @@ $scope.billDate=new Date();
    //for validation before save
   $scope.save=function(){
     // alert($scope.rpamt);
-    // if (setPatyName!="null") {
+    if (setPatyName!="null") {
 
-    //     var go=confirm("Material Advance");
-    //     if(go==true){
+        var go=confirm("Material Advance");
+        if(go==true){
 
-    //           $scope.transaction="Receipt Voucher"       
-    //           window.location = "Transaction.html";
-    //           window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
-    //           window.sessionStorage.setItem("getPatyName",$scope.partyname)
-    //           window.sessionStorage.setItem("getOrderNo",$scope.orderNO)
+              $scope.transaction="Receipt Voucher"       
+              window.location = "Transaction.html";
+              window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
+              window.sessionStorage.setItem("getPatyName",$scope.partyname)
+              window.sessionStorage.setItem("getOrderNo",$scope.orderNO)
 
 
   
-    //     }else{
+        }else{
     
-    //              window.location="orderCustomer.html"
-    //          }
+                 window.location="orderCustomer.html"
+             }
 
-    // }//if (setPatyName!="null")
+    }//if (setPatyName!="null")
     console.log($scope.rpamt);
     var flag=0;
 console.log($scope.paymode+","+$scope.amount+","+$scope.bank+","+$scope.chequeno+","+
@@ -411,13 +410,7 @@ console.log($scope.paymode+","+$scope.amount+","+$scope.bank+","+$scope.chequeno
                alert(($scope.selectedAmount - $scope.totals)+"  amount is paid less then the invoiceamount");
                 $scope.voucherStatus = 'InProgress';
             }
-           //start for save and navigation
-           if (setPatyName!="null") {
-                 setTimeout($scope.insertReceiptOrders(flag),2000);
-           }else{
-                 setTimeout($scope.insertReceipt(flag),2000);
-                }
-            //end for save and navigation    
+           setTimeout($scope.insertReceipt(flag),2000);
           }
           
         }//for loop
@@ -474,54 +467,6 @@ console.log($scope.rpamt.paymode+","+$scope.rpamt.amount+","+$scope.rpamt.bank+"
          }//if
         })//post
      }//for
-   }//if
- }//  $scope.insertReceipt
-   $scope.insertReceiptOrders=function(flag){
-     // alert("clicked on save"+$scope.printreceipt);
-      //$scope.voucherStatus = 'InProgress';
-      if(flag==0){
-      for(i=0;i<=$scope.rpamt.length-1;i++){
-
-      $scope.rdata=$scope.rpamt[i].paymode+","+$scope.rpamt[i].amount+","+$scope.rpamt[i].bank+","+$scope.rpamt[i].chequeno+","+$scope.rpamt[i].date+","+$scope.rpamt[i].cardnos+","+$scope.rpamt[i].ctype+","+$scope.rpamt[i].appno+","+$scope.partyname+","+$scope.billDate+","+$scope.billNo+
-      
-      ","+$scope.narrate+","+$scope.totals+","+$scope.voucherId+","+$scope.voucherStatus+","+$scope.selectedAmount+","+$scope.orderNO;
-      // alert($scope.rdata);
-      console.log($scope.rdata)
-        // 
-        $http.post('/receiptdata/'+$scope.rdata).success(function(response){
-                // alert("called server");
-                console.log(response);
-                if(response.lenght!=0){
-                     
-                       
-
-
-                            if (setPatyName!="null") {
-
-                                    var go=confirm("Material Advance");
-                                    if(go==true){
-
-                                          $scope.transaction="Receipt Voucher"       
-                                          window.location = "Transaction.html";
-                                          window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
-                                          window.sessionStorage.setItem("getPatyName",$scope.partyname)
-                                          window.sessionStorage.setItem("getOrderNo",$scope.orderNO)
-
-
-                              
-                                    }else{
-                                
-                                             window.location="orderCustomer.html"
-                                         }
-
-                                }//if (setPatyName!="null")
-                        
-                 }//if
-        })//post
-     }//for
-      $scope.dataDetails = $scope.partyname+","+$scope.orderNO
-      $http.post('/api/orderDetailsAmontAdvancePdf/'+$scope.dataDetails)
-      
    }//if
  }//  $scope.insertReceipt
 window.sessionStorage.setItem("rprint",0);
