@@ -10,7 +10,11 @@ var db=mongojs('inventory',['user','tags','transaction','saleInvoice','mode','tr
   'trHeaders','gIControlTables','history','ledgerActs','ledgeraccounts','mainclasses','maingroups','mcIds',
   'roundOffConfig','sgIds','subgroups','subscribers','trDetails','transactionInvoice','ugIds','updatelist','user',
 
+<<<<<<< HEAD
   'users','merchantDetails','trail','staff','receipts','cardType','payments','orders','printData','orderType']);
+=======
+  'users','merchantDetails','trail','staff','receipts','cardType','payments','orders','printData']);
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
 
 
 var bodyParser=require('body-parser');
@@ -107,7 +111,7 @@ var id=req.params.thh;
 app.get('/partyNames',function(req,res){
     
    // db.user.find(function(err,doc){
-    db.subscribers.find({},function(err,doc){
+    db.subscribers.find({"data.party_type.id":"3"},function(err,doc){
 
         
         res.json(doc);
@@ -891,6 +895,7 @@ app.get('/orderName',function(req,res) {
          
       })
 })
+<<<<<<< HEAD
 // app.get('/dateBatchFind/:date',function(req,res)
 // {
 //   //  console.log("i got the date")
@@ -925,6 +930,9 @@ app.get('/dateFind/:pdata',function(req,res){
             console.log(doc);
       })
   })
+=======
+
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
   app.put('/anydata/:thh',function(req,res){
   console.log("ttttttttttttttttyyyyyyyyyyyyyyyyyyyyy233333333345555555")
 var str=req.params.thh;
@@ -8991,7 +8999,12 @@ require('./public/inventoryDbs/defaultCollections')(app);
 require('./apiCalls/materialAdvancePdf')(app);
 
 
+<<<<<<< HEAD
 app.listen(9000); 
 console.log("server running on port 9000");
+=======
+app.listen(8000); 
+console.log("server running on port 8000");
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
 
 exports = module.exports = app;

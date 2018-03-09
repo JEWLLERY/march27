@@ -27,7 +27,12 @@ myApp.controller('billCntrl',['$scope','$http','$window',
           //alert($scope.items);
     });
 
+<<<<<<< HEAD
 //charan's 
+=======
+//charan's
+
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
 var setPatyName  =  window.sessionStorage.getItem("receiptPatyName");
  
 console.log(setPatyName)
@@ -44,8 +49,9 @@ $scope.dataHide="yes"
     });
 
 
-}       
+}   
 window.sessionStorage.setItem("receiptPatyName","null");
+<<<<<<< HEAD
             var ilchgg  = window.sessionStorage.getItem("receiptPatyName");
 //charan
 
@@ -59,6 +65,12 @@ window.sessionStorage.setItem("receiptPatyName","null");
           //   $scope.partyname=$scope.customer;
           // }
             //for fecthing the saleinvoice voucherno
+=======
+
+     var kkk =  window.sessionStorage.getItem("receiptPatyName");
+
+  
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
          $http.get('/getRecentVoucherNo'+recentId1).success(function(response){
           console.log(response);
           $scope.vno=response[0].voucherNo;
@@ -413,8 +425,15 @@ console.log($scope.paymode+","+$scope.amount+","+$scope.bank+","+$scope.chequeno
             }
            //start for save and navigation
            if (setPatyName!="null") {
+<<<<<<< HEAD
                  setTimeout($scope.insertReceiptOrders(flag),2000);
            }else{
+=======
+            alert("llll")
+                 setTimeout($scope.insertReceiptOrders(flag),2000);
+           }else if(setPatyName=="null")
+           {
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
                  setTimeout($scope.insertReceipt(flag),2000);
                 }
             //end for save and navigation    

@@ -3,12 +3,16 @@ myApp.controller('orderStatus',['$scope','$http','$window','$rootScope',"Control
 function($scope,$http,$window,$rootScope,ControllerService){
 	//alert("lllllllll")
 	 $scope.results=[];
+<<<<<<< HEAD
 // 	 $http.get("/ordertype").success(function(response){
 //   console.log(response);
 //   $scope.ordertype=response;
 //   console.log($scope.ordertype)
 
 // })
+=======
+$scope.usernamedetails = window.sessionStorage.getItem("username")
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
 	 $http.get("/orderName").success(function(response){
   console.log(response);
   $scope.ordertype=response;
@@ -30,8 +34,11 @@ function($scope,$http,$window,$rootScope,ControllerService){
    $http.get('/getord'+prtys).success(function(response){
              console.log(response)
              $scope.results=response;
-             $scope.results[0].usedate = new Date(response[0].usedate )
-  $scope.results[0].date = new Date(response[0].date )
+              for(var i=0;i<response.length;i++){
+             $scope.results[i].usedate = new Date(response[i].usedate )
+  $scope.results[i].date = new Date(response[i].date )
+               }
+  
              console.log($scope.results)
                })
  }
@@ -53,8 +60,10 @@ function($scope,$http,$window,$rootScope,ControllerService){
    $http.get('/getBothDates'+both).success(function(response){
              //console.log(response)
              $scope.results=response;
-                      $scope.results[0].usedate = new Date(response[0].usedate )
-  $scope.results[0].date = new Date(response[0].date )
+                       for(var i=0;i<response.length;i++){
+             $scope.results[i].usedate = new Date(response[i].usedate )
+  $scope.results[i].date = new Date(response[i].date )
+               }
              console.log($scope.results)
                })
  }
@@ -75,9 +84,10 @@ function($scope,$http,$window,$rootScope,ControllerService){
    $http.get('/DatesOrders'+both).success(function(response){
              //console.log(response)
              $scope.results=response;
-                      $scope.results[0].usedate = new Date(response[0].usedate )
-  $scope.results[0].date = new Date(response[0].date )
-             console.log($scope.results)
+     for(var i=0;i<response.length;i++){
+             $scope.results[i].usedate = new Date(response[i].usedate )
+  $scope.results[i].date = new Date(response[i].date )
+               }
                })
  }
  else if(manage==undefined && datefrom==undefined && dateto==undefined){
@@ -87,8 +97,8 @@ function($scope,$http,$window,$rootScope,ControllerService){
 
  }
   $scope.rowSelect = function(tag,index){
-  console.log(tag)
- 
+  console.log(tag.initial)
+ $scope.makeDisabled=tag.initial
   $scope.rowSelected = index
   //alert(selectedrow)
   $scope.idSelected = tag;

@@ -205,7 +205,7 @@ display: block;
   width: 10%;
 }
 li#name1 {
-    right: -400px;
+    right: -100px;
     font-size: 27px;
     font-style: italic;
 } 
@@ -226,10 +226,14 @@ li#name1 {
 
 
 <body style="background-color:FFE4B5;" ng-controller="orderCntrl">
-  <div class='menujohanes'>
-        <ul class='dark_menu'>
+
+
+  <div class='menujohanes'  style="position:sticky;top:0;z-index:1;" >
+        
+       <ul class='dark_menu' >
+
           
-<li >
+<li  >
             <a>
               Transaction &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                
@@ -240,13 +244,18 @@ li#name1 {
                   New
                 </a>
               </li>
-                  <li>
+
+                <li>
                 <a href="orders.html">
-                  Orders
+                  Order Management
                 </a>
               </li>
-               <li>
+  <!--              <li>
                 <a href="list.html">
+======= -->
+               <li>
+                <a href="List.html">
+
                   List
                 </a>
               </li>
@@ -286,7 +295,11 @@ li#name1 {
                 </li>
 
                <li>
+<!-- <<<<<<< HEAD:public/Transaction.html
                 <a href="item.html">
+======= -->
+                <a href="Item.html">
+<!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
                   Item
                 </a>
               </li>
@@ -325,16 +338,71 @@ li#name1 {
             </ul>
           </li>
           <li >
+
             <a href="Tax Configuration.html">
-              Tax configuration
+
+              Tax Configuration
             </a>
-           
+            <!-- <ul>
+                
+
+               <li>
+                <a href="indextaxation.html">
+                  Tax Structure
+                </a>
+              </li> -->
+              <!-- <li>
+                <a href="taxation.html">
+                  Tax Name
+                </a>
+              </li> -->
+             
+              
+            <!-- </ul> -->
           </li>
             
         
           </li>
+<!-- <<<<<< HEAD:public/Transaction.html
           <li  id="name1">
             <a>
+======= -->
+          <li >
+              <a href="dailyRates.html">
+              Daily Rates 
+            </a>
+            </li>
+           <li >
+            <a href='#'>
+              Accounts &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </a>
+            <ul>
+               <li>
+                <a href="receipts.html">
+                
+                  Receipt
+                </a>
+              </li>
+                
+
+               <li>
+                <a href="payments.html">
+                  
+                  Payment
+                </a>
+              </li>
+              <!-- <li>
+                <a href="GroupWise.html">
+                  Group Wise
+                </a>
+              </li> -->
+             
+              
+            </ul>
+          </li>
+          <li  id="name1" >
+            <a >
+
              {{usernamedetails}}
                
             </a>
@@ -350,7 +418,7 @@ li#name1 {
           
         </ul>
 
-     
+
         
       </div>
 
@@ -382,7 +450,7 @@ li#name1 {
                     <select id="party" ng-model="ordername" ng-change="vend()" >
                       
 <!--  ng-init=" transaction = 'Regular Sale'"  -->
-                        <option ng-repeat="making in orderName" ng-cloak >{{making.orderName}}</option></select>
+                        <option ng-repeat="making in orderName" ng-cloak >{{making.ordertype}}</option></select>
                       
 </div>
 <div class="col-sm-6">
@@ -451,7 +519,8 @@ To  <input type="date" ng-model="dateto" id="dates" ng-change="vend()" />
  
       <option >{{ord}}</option></select> -->
        <!--  <input type="text" id="box" ng-model="item.initial"  > -->
-       <select ng-model="item.initial" id="party" ng-change="allocateAlert(item.initial,selectedrow)" ng-disabled="item.initial=='Delivered' || item.initial==undefined">
+       <select ng-model="item.initial" id="party" ng-change="allocateAlert(item.initial,selectedrow)" ng-disabled="item.initial=='Delivered' || item.initial=='New'">
+         <option ng-if="item.initial=='New'">New</option>
         <option ng-if="item.initial=='Allocated' || item.initial=='Received'">Allocated</option>
         <option ng-if="item.initial=='Allocated' || item.initial=='Received'">Received</option>
        

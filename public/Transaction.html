@@ -1309,7 +1309,7 @@ display: inline-block;
   </div>
    <form class="form-inline" >
    <div class="form-group" ng-cloak>
-   <button class="btn btn-primary addnew pull-left" id="buttonwidth1" ng-if = " edituseritButton != true"   ng-click="addNew()" ng-disabled="reqColor()" ng-hide="transaction=='Sale Return'||transaction=='Purchase Return'||transaction=='Approval Sale'||transaction=='Approval Return'" >Add New</button>
+   <button class="btn btn-primary addnew pull-left" id="buttonwidth1" ng-if = " edituseritButton != true"   ng-click="addNew()" ng-disabled="reqColor() || bringOrd=='num'" ng-hide="transaction=='Sale Return'||transaction=='Purchase Return'||transaction=='Approval Sale'||transaction=='Approval Return'" >Add New</button>
 
    <!-- <input  id="buttonwidth"  class="btn btn-danger pull-left" ng-click="removeSelectedRows()" value="Remove" ng-disabled="reqColor()"> -->
    <button ng-if = " edituseritButton == true"  class="btn btn-danger pull-left" id="buttonwidth1" ng-click="removeSelectedRowsCheck()" ng-disabled="reqColor()" >Remove</button>
@@ -1477,6 +1477,7 @@ display: inline-block;
   <br>
   <!-- <br>ng-if="refId != null" -->
   <!-- <button  ng-if = " edituseritButton != true && transaction == 'Valuation'|| te!='disp' || test!='display'"  ng-click="save();" class="btn btn-success" id="buttonwidth" >Print</button> -->
+<<<<<<< HEAD
   <button class="btn btn-success" id="buttonwidth" ng-show="transaction=='Issue Voucher'||transaction=='Receipt Voucher' ||transaction == 'Valuation' && test!='display'" ng-if="te!='disp'" ng-click="save()" >Print</button>
 <!-- 
   <a href="orderMaking.html">
@@ -1491,6 +1492,16 @@ display: inline-block;
 
     <button class="btn btn-success" id="buttonwidth" ng-show="test=='display'" ng-click="save()" ng-if="te!='disp'">Print</button>
   </a>
+=======
+  <button class="btn btn-success" id="buttonwidth" ng-show="transaction=='Issue Voucher'||transaction=='Receipt Voucher' && test!='display'" ng-if="te!='disp'" ng-click="save()" >Print</button>
+
+   <button class="btn btn-success" id="buttonwidth" ng-if="te=='disp'"  ng-click="save()" ng-hide="test=='display'">Print</button>
+ 
+ 
+
+    <button class="btn btn-success" id="buttonwidth" ng-show="test=='display'" ng-click="save()" ng-if="te!='disp'">Print</button>
+ 
+>>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
   <br>
   <br>
 <button ng-hide ="(desgination != 'Billing Person' || transaction == 'Issue Voucher'||transaction == 'Receipt Voucher' ||transaction == 'Valuation')" class="btn btn-primary" id="buttonwidth" ng-show="transaction != 'Issue Voucher'&& transaction != 'Receipt Voucher' && transaction!='Sale Return'&&transaction!='Purchase Return'&&transaction != 'Approval Out'&&transaction!='Approval Return'"  ng-click="save(true);inoviceNumberGeneration()" ng-disabled="reqColorPay()" >Confirm</button>
