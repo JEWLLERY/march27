@@ -476,12 +476,12 @@ li#name1 {
 <div class="col-sm-6">
   Order No<span id="star"><font size="02">*</font></span><input type="text" name="" ng-model="orderNO" disabled> 
 
-          <input type="radio"  ng-model="radio.state"   ng-change="radiobutton(radio.state)"  value="with in state"> With in State
+          <input type="radio"  ng-model="radio.state"   ng-change="radiobutton()"  value="with in state"> With in State
         
          
           
 
-          <input type="radio"  ng-model="radio.state"  ng-change="radiobutton(radio.state)" value="out of state">Out of State
+          <input type="radio"  ng-model="radio.state"  ng-change="radiobutton()" value="out of state">Out of State
 </div>
 <div class="col-sm-6">
 Staff<span id="star"><font size="02">*</font></span>&nbsp;
@@ -506,35 +506,6 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
       <th style="padding-left: 20px">Item<span id="star"><font size="02">*</font></span></th>
    
         <th >Description</th>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
-        <th >Size</th>
-          <th >Purity<span id="star"><font size="02">*</font></span></th>
-        <th >GrossWt<span id="star"><font size="02">*</font></span></th>
-        <th >GrossPcs<span id="star"><font size="02">*</font></span></th>
-<<<<<<< HEAD
-      
-        <th >StoneWt</th>
-        <th style="padding-left: 40px">Uom</th>
-        <th style="padding-left: 60px">NetWt</th>
-  <th style="padding-left: 40px">Pct</th>
-    <th >Wastage</th>
-      <th >AdjustedQty</th>
-        <th >Chg.Units</th>
-          <th style="padding-left: 40px">MRP</th>
-=======
-      
-        <th >StoneWt</th>
-        <th style="padding-left: 40px">Uom</th>
-        <th style="padding-left: 60px">NetWt</th>
-  <th style="padding-left: 40px">Pct</th>
-    <th >Wastage</th>
-      <th >AdjustedQty</th>
-        <th >Chg.Units</th>
-          <th style="padding-left: 40px">MRP</th>
-=======
         <th style="padding-left: 40px">Size</th>
           <th style="padding-left: 20px">Purity<span id="star"><font size="02">*</font></span></th>
         <th style="padding-left: 15px">GrossWt<span id="star"><font size="02">*</font></span></th>
@@ -548,22 +519,11 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
    
         <th style="padding-left: 28px">Chg.Units</th>
        
->>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
->>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
             <th style="padding-left: 40px">Rate</th>
               <th style="padding-left: 20px">LabCalc</th>
                 <th >LabourAmt</th>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
-                  <th style="padding-left: 40px">LabourVal</th>
-                  <!-- <th></th> -->
-                  <!--  <th ng-if = " LabourTax =='Yes'" >LabourTax</th> -->
-=======
                   <th style="padding-left: 25px">LabourVal</th>
                
->>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
                     <th >StoneCalc</th>
                     <th >StoneChg</th>
                      <th>StoneVal</th>
@@ -572,18 +532,6 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
 
 
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
-                    <th style="padding-left: 50px">Tax<span id="star"><font size="02">*</font></span></th>
-                    <th  ng-if = " radiowithinstate =='withinstate'" style="padding-left: 50px">CGST</th>
-                    <th  ng-if = " radiowithinstate =='withinstate'" style="padding-left: 50px">SGST</th>
-                    <th ng-if = "radiowithinstate =='outofstate'" style="padding-left: 50px" >IGST</th >
-                    <th style="padding-left: 50px">Taxamt</th>
-                    <th style="padding-left: 50px"> FinalVal</th>
-                    <th style="padding-left: 50px">DueDate<span id="star"><font size="02">*</font></span></th>
-=======
                     <th style="padding-left: 40px">Tax<span id="star"><font size="02">*</font></span></th>
                     <th  ng-if = " radiowithinstate =='withinstate'" style="padding-left: 20px">CGST</th>
                     <th  ng-if = " radiowithinstate =='withinstate'" style="padding-left: 30px">SGST</th>
@@ -591,7 +539,6 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
                     <th style="padding-left: 40px">Taxamt</th>
                     <th style="padding-left: 40px"> FinalVal</th>
                     <th style="padding-left: 40px">DueDate<span id="star"><font size="02">*</font></span></th>
->>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
                   
 
       </tr>
@@ -617,10 +564,10 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
 
        <option ng-repeat="pure in item.irate" >{{pure.ValueNotation}}</option>
        </select></td>
-<td><input type="text" id="box" ng-model="item.gwt"  ng-change="newgwt($index)" oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ></td>
-<td ><input type="text" id="box"  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ng-model="item.gpcs"  ng-change="gpcsDecimals($index)"></td>
+<td><input type="number" id="box" ng-model="item.gwt"  ng-change="newgwt($index)" oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ></td>
+<td ><input type="number" id="box"  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ng-model="item.gpcs"  ng-change="gpcsDecimals($index)"></td>
 
-     <td style="padding-right: 5px"><input type="text" id="box"  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ng-model="item.stwt" ng-change="newstwt($index)"   ></td>
+     <td style="padding-right: 5px"><input type="number" id="box"  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ng-model="item.stwt" ng-change="newstwt($index)"   ></td>
        
        
       
@@ -631,16 +578,16 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
        
        <option ng-repeat="uom in uom" >{{uom.name}}</option>
        </select></td>
-       <td style="padding-left: 20px"><input type="text" id="box" ng-model="item.ntwt"></td>
+       <td style="padding-left: 20px"><input type="text" id="box" ng-model="item.ntwt" readonly></td>
        <td ><select   ng-model="item.pctcal" id="www" ng-change="newwas($index,item.pctcal)">
 
        
        <option ng-repeat="pct in pct" >{{pct.name}}</option>
        </select></td>
-       <td ><input type="text" id="box"  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ng-model="item.wastage" ng-value="{{item.wastage}}" ng-change=newwas($index,item.pctcal)></td>
+       <td ><input type="number" id="box"  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ng-model="item.wastage" ng-value="{{item.wastage}}"  ng-change="newwas($index,item.pctcal)"></td>
 
      
-       <td><input type="text" id="box" ng-model="item.chgunt" ng-value="{{item.chgunt}}"></td>
+       <td><input type="text" id="box" ng-model="item.chgunt" ng-value="{{item.chgunt}}" readonly></td>
  
  <td style="padding-left:0px"><input type="text" id="box" ng-model="item.rate" ng-change="rateChange($index)" ng-disabled="all"></td>
  
@@ -648,9 +595,9 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
           <td style="padding-left:0px"><select ng-model="item.labcal" ng-click="labCal()" ng-change="newlab($index,item.labcal)" id="www">
   <option ng-repeat="lab in lab" >{{lab.name}}</option>
 </select></td> 
-          <td><input type="text" id="box" oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');"  ng-model="item.labamt" ng-value="{{item.labamt}}" placeholder="0" ng-change="newlab($index,item.labcal)"></td>
+          <td><input type="number" id="box" oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');"  ng-model="item.labamt" ng-value="{{item.labamt}}" placeholder="0" ng-change="newlab($index,item.labcal)"></td>
 
-          <td  ><input type="text" id="box" ng-model="item.labval" ng-value="{{item.labval}}"></td>
+          <td  ><input type="text" id="box" ng-model="item.labval" ng-value="{{item.labval}}" readonly></td>
             <!--   <td  ng-if = " LabourTax =='Yes'"><input type="text"  ng-model="item.labourTaxValue" id="box"></td> -->
             <!-- <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> -->
               <td > <select ng-model="item.stonecal" ng-click="stonecalc()" ng-change="newstchg($index,item.stonecal)" id="www" >
@@ -679,7 +626,7 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
        <td ><input type="text"   ng-model="item.taxamt" ng-value="{{item.taxamt}}" id="box" readonly></td>
 
 
-                 <td><input type="text" id="box"  ng-model="item.final" ng-value="{{item.final}}"></td>
+                 <td><input type="text" id="box"  ng-model="item.final" ng-value="{{item.final}}" readonly ></td>
 
    <td ><input type="date"  ng-model="item.usedate" name="date" id="dat"  ng-change="validationDate(item.usedate)"></td>
     
@@ -712,7 +659,7 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
         </div>
           <div class="col-sm-6"> 
          <a >
-         <button ng-click="save(rateCheck)" class="btn btn-success">Update</button>
+         <button ng-click="save(rateCheck)" class="btn btn-success" ng-hide="updateOrder!='updateData'">Update</button>
           <!-- <button class="btn btn-warning">Cancel</button> --></a>
         </div>
          </div>

@@ -354,9 +354,10 @@ table {
 </style>
 </head>
 <body ng-controller='myctrl1' style="background-color: FFE4B5;">
-	<div class='menujohanes'  style="position:sticky;top:0;z-index:1;">
+	<div class='menujohanes'  style="position:sticky;top:0;z-index:1;" >
         
        <ul class='dark_menu' >
+<!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
           
 <li  >
             <a>
@@ -369,8 +370,18 @@ table {
                   New
                 </a>
               </li>
+
+                <li>
+                <a href="orders.html">
+                  Order Management
+                </a>
+              </li>
+  <!--              <li>
+                <a href="list.html">
+======= -->
                <li>
                 <a href="List.html">
+
                   List
                 </a>
               </li>
@@ -410,7 +421,11 @@ table {
                 </li>
 
                <li>
+<!-- <<<<<<< HEAD:public/Transaction.html
+                <a href="item.html">
+======= -->
                 <a href="Item.html">
+<!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
                   Item
                 </a>
               </li>
@@ -449,7 +464,9 @@ table {
             </ul>
           </li>
           <li >
+
             <a href="Tax Configuration.html">
+
               Tax Configuration
             </a>
             <!-- <ul>
@@ -472,6 +489,10 @@ table {
             
         
           </li>
+<!-- <<<<<< HEAD:public/Transaction.html
+          <li  id="name1">
+            <a>
+======= -->
           <li >
               <a href="dailyRates.html">
               Daily Rates 
@@ -505,8 +526,9 @@ table {
               
             </ul>
           </li>
-          <li  id="name1">
-            <a>
+          <li  id="name1" >
+            <a >
+
              {{usernamedetails}}
                
             </a>
@@ -522,16 +544,9 @@ table {
           
         </ul>
 
+
         
-        
-      </div>    <!--  <div ng-cloak>
-        
-      </div> -->
-   <!-- <div class="btn-group btn-group-justified">
-   <a href="index.html" ><button type="button" class="btn btn-primary">Main</button></a>
-  <a href="list.html" > <button type="button" class="btn btn-primary">List</button></a>
-  
-</div> --> 
+      </div>
 
 	<div id='main'>
 		<div  id='title'><h2>Party Transaction History</h2></div>

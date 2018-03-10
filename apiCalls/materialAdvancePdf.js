@@ -223,15 +223,7 @@ function textInRowFirst(doc1, text, heigth,width) {
      heightOfPage += 20;
     doc1.y = heightOfPage;
       //doc1.text('Material Advance :',{align: 'left'})
-<<<<<<< HEAD
-    if (transactionData.length != 0) {
-=======
-<<<<<<< HEAD
     if (transactionData != null) {
-=======
-    if (transactionData.length != 0) {
->>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
->>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
       doc1.text('Material Advance :',{align: 'left'})
       for (var i = transactionData.length - 1; i >= 0; i--) {
        doc1.x = 120;
@@ -638,9 +630,6 @@ function textInRowFirst(doc2, text, heigth,width) {
    
 
 }// pdfPrintCall
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 var issueVoucherData = null;
 var fileNameIssueVoucher = null;  //pdfPrintCallIssueVoucher(partyNames,address,data)
 function pdfPrintCallIssueVoucher(partyNames){
@@ -807,9 +796,6 @@ function textInRowFirst(doc4, text, heigth,width) {
 
 }// 
 
-=======
->>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
->>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
  
  function dataPrintInCollection (fileName,order,amount) {
   console.log("dataPrintInCollection dataPrintInCollectiondataPrintInCollection dataPrintInCollection dataPrintInCollection "+fileName)
@@ -910,15 +896,7 @@ function detailsDisplayCall(orderNO,partyNames,staff,condition){
                              console.log(" c "+"transactionData  transactionData  transactionData  transactionData  "+transaction.length)
                     
                                 if (transaction.length == 0) {
-<<<<<<< HEAD
-                                   transactionData = '' ;
-=======
-<<<<<<< HEAD
                                    transactionData = null;
-=======
-                                   transactionData = '' ;
->>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
->>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
                                 }else{
                                     transactionData = transaction;
 //transactionData
@@ -942,6 +920,29 @@ function detailsDisplayCall(orderNO,partyNames,staff,condition){
 
           
                       })
+
+  }else if(condition == 'onlyOrders'){
+                    
+                                   cashAdvance = '' ;
+
+                     db.orders.find({ "orderNO" :orderNO },function(err,detailsDisplayData){
+                            console.log("length to call in details  "+detailsDisplayData.length);
+                            detailsDisplay = detailsDisplayData;
+                            //console.log(detailsDisplayData)
+                            for (var i = detailsDisplay.length - 1; i >= 0; i--) {
+                              //Things[i]
+                                 orderValue  = orderValue + parseFloat(detailsDisplay[i].final)
+                                
+                                 taxAmount = taxAmount + parseFloat(detailsDisplay[i].taxamt)
+                             
+                            };
+
+                            pdfPrintCall(orderNO,partyNames,staff,pdfPartyData[0].data.address1,transactionData)
+
+          
+                      })
+
+  
 
   }else if (condition == 'amount') {
 
@@ -1012,9 +1013,34 @@ var data_array=data.split(",");
          // merchantDetailsCall(data_array[1],data_array[0],'staff','order');
           res.json({'orderFile':fileNameOrder})
         },2000);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+})
+//pdf trial end
+app.post('/api/orderDetailsOnlyOrdersPdf/:orderNo',function(req,res){ 
+  var data =req.params.orderNo;
+console.log(data)
+var data_array=data.split(",");
+    var orderNo = data_array[0];
+  
+ setTimeout(function(){
+   db.orders.find({"orderNO" : orderNo},function (err,orderData) {
+         console.log("orderData   console.log(orderData) ")
+        console.log(orderData)
+        console.log(orderData.partyNames)
+        merchantDetailsCall(orderNo,orderData[0].partyNames,orderData[0].saleNames,'onlyOrders');
+   })
+
+ },500)
+
+
+        setTimeout(function(){
+           console.log(fileNameOrder+" result fdyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy ")
+  
+           // merchantDetailsCall(data_array[1],data_array[0],'staff','order');
+           res.json({'orderFile':fileNameOrder})
+        },1000)
+
+
+     
 })
 
 //pdf trial end
@@ -1047,140 +1073,15 @@ app.post('/api/issueVoucherPdf',function(req,res){
   console.log(req.body)
   //merchantDetailsCall(orderNO,partyNames,staff,condition,data)
    merchantDetailsCall('OD1',req.body.partyname,'staff','issueVoucher');
-      //   var data =req.params.orderNo;
-      //  // res.json({})
-      // console.log(data)
-      // var data_array=data.split(",");
-      //     var orderNo = data_array[0];
-        // setTimeout(function(){    
-        //   //var amount = data_array[1];
-        //   console.log(" Receipt order details pdf /api/orderDetailsAmontAdvancePdf /api/orderDetailsAmontAdvancePdf /api/orderDetailsAmontAdvancePdf /api/orderDetailsAmontAdvancePdf "+data_array[0]);
-        //   //console.log("  orderNo  orderNo  orderNo  orderNo "+ mode+amount);
-        //   console.log("  Receipt end here  here /api/orderDetailsAmontAdvancePdf /api/orderDetailsAmontAdvancePdf /api/orderDetailsAmontAdvancePdf /api/orderDetailsAmontAdvancePdf ");
-        //  // db.orders.find({},)
-        //    db.transactionDetail.find({    "orderNo" : orderNo},function (err,orderData) {
-        //       console.log(orderData)
-        //       // console.log(" Receipt orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames"+orderData[0].saleNames)
-        //         //console.log(orderData[0].partyNames)
-        //         merchantDetailsCall(orderNo,orderData[0].partyname,'staff','receipt');
-        //    })
-        // }, 1000);
-
-   
-})
+    setTimeout(function(){
+           // console.log(fileNameOrder+" result fdyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy ")
   
-=======
->>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
-})
-
-//pdf trial end
-app.post('/api/orderDetailsReceiptPdf/:orderNo',function(req,res){ 
-  var data =req.params.orderNo;
- // res.json({})
-console.log(data)
-var data_array=data.split(",");
-    var orderNo = data_array[0];
-setTimeout(function(){    
-  //var amount = data_array[1];
-  console.log(" Receipt order details pdf /api/orderDetailsAmontAdvancePdf /api/orderDetailsAmontAdvancePdf /api/orderDetailsAmontAdvancePdf /api/orderDetailsAmontAdvancePdf "+data_array[0]);
-  //console.log("  orderNo  orderNo  orderNo  orderNo "+ mode+amount);
-  console.log("  Receipt end here  here /api/orderDetailsAmontAdvancePdf /api/orderDetailsAmontAdvancePdf /api/orderDetailsAmontAdvancePdf /api/orderDetailsAmontAdvancePdf ");
- // db.orders.find({},)
-   db.transactionDetail.find({    "orderNo" : orderNo},function (err,orderData) {
-      console.log(orderData)
-      // console.log(" Receipt orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames"+orderData[0].saleNames)
-        //console.log(orderData[0].partyNames)
-        merchantDetailsCall(orderNo,orderData[0].partyname,'staff','receipt');
-   })
-}, 1000);
+         // merchantDetailsCall(data_array[1],data_array[0],'staff','order');
+          res.json(fileNameIssueVoucher)
+        },1500); 
 
    
 })
 
-// app.post('/api/orderDetailsMaterialAdvancePdf',function(req,res){ 
-//   console.log(" order details pdf");
-//   console.log(req.body);
-//   console.log("   end here  here  ");
-//     //merchantDetailsCall("OD6",'Vinay','staff','order');
-//   merchantDetailsCall(req.body.orderNO,req.body.partyNames,'staff','order');
-//    setTimeout(function(){
-//    console.log(fileNameMaterialReceipt+" "+ fileNameOrder+" result fdyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy ")
-//     res.json({
-//       'receiptFile':fileNameMaterialReceipt,
-//       'orderFile':fileNameOrder
-//     });
-//     //db.printData.insert({"orderNo" :req.body.orderNO,  "fileName" : fileNameOrder,"printStatus" : "no"})
-
-//  }, 2000);
-//   //merchantDetailsCall(req.body.orderNO,req.body.partyNames,'staff',condition);
-// })
-
- //console.log(fileNameMaterialReceipt+" "+ fileNameOrder+" result fdyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy ")
- // merchantDetailsCall("OD6",'Vinay','staff','receipt');
- // merchantDetailsCall("OD6",'Vinay','staff','order');
-  // merchantDetailsCall("OD6",'Vinay','staff','amount');
-//  const { spawn } = require('child_process');
-// const bat = spawn('cmd.exe', ['./pdfPrint', 'MaterialReceipt18.15.11.2.3.2018.pdf']);
-//  end of order print //
-// app.get('/api/Orderprefixs1234',function(req,res){
-// //iooppp
-//   console.log("   start here       here     ")
-//    merchantDetailsCall("OD6",'Vinay','staff','receipt');
-//   merchantDetailsCall("OD6",'Vinay','staff','order');
-//   merchantDetailsCall("OD6",'Vinay','staff','amount');
-// //console.log(" fdyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy ") 
-// //   var data =fs.readFileSync('./pdfPrint/MaterialReceipt18.15.11.2.3.2018.pdf');
-//  setTimeout(function(){
-//    console.log(fileNameMaterialReceipt+" "+ fileNameOrder+" result fdyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy ")
-//     res.json({
-//       'receiptFile':fileNameMaterialReceipt,
-//       'orderFile':fileNameOrder
-//     });
-//      db.printData.insert({"orderNo" :req.body.orderNO,  "fileName" : fileNameMaterialReceipt,"printStatus" : "no"})
-
-//  }, 2000);
-// // setTimeout(
-// //    console.log(fileNameMaterialReceipt+" "+ fileNameOrder+" result fdyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy ")
-
-// //  , 3000);
-//   //merchantDetailsCall(req.body.orderNO,req.body.partyNames,'staff',condition);
-// })
- // require('child_process').exec(__dirname + "/batchfileCopy.bat", function (err, stdout, stderr) {
-                    
- //                   if (err) {
- //                     return console.log(err);
- //                    }
- //                    console.log(" print calls here ")
- //                    //setTimeout(deleteFileCall, 2000);
- //                    // function deleteFileCall(){
- //                    //   fs.unlink('Data/PrnFiles/prnfile.prn');
-                 
- //                    // }
- //                  //  console.log(stdout);
- //             });//require
-
-// const { app } = require('electron')
-// const PDFWindow = require('electron-pdf-window')
-
-// app.on('ready', () => {
-//   const win = new PDFWindow({
-//     width: 800,
-//     height: 600
-//   })
-// // C:/Users/user/Desktop/Code/march/Code0203INT/pdfPrint
-//   win.loadURL('file://///C://username/desktop/myfile.pdf')
-// })
-// var data =fs.readFileSync('./pdfPrint/MaterialReceipt18.15.11.2.3.2018.pdf');
-// res.contentType("application/pdf");
-// res.send(data);
-// var nrc = require('node-run-cmd');
-// console.log(" errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr ");
-// nrc.run('C:/Users/user/Desktop/Code/march/Code0203INT/pdfPrint/MaterialReceipt18.15.11.2.3.2018.pdf').then(function(){ console.log(" cmd cmd cmd ") });
-
-
- // receipts pdf print call //    
-
- // end material receipt voucher print //  
->>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
      
 }//module.exports

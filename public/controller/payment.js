@@ -12,6 +12,7 @@ function($scope,$http,$window){
  // $scope.billNo="RP1";
  $scope.trans="Payments";
  // $scope.totals=50000;
+ $scope.usernamedetails = window.sessionStorage.getItem("username")
  $scope.customer=JSON.parse(window.sessionStorage.getItem("partyname"));
  $scope.billtype=window.sessionStorage.getItem("Billtype");
  $scope.printreceipt = window.sessionStorage.getItem("rprint");

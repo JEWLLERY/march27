@@ -22,9 +22,9 @@ function($scope,$http,$window,$q){
  // $scope.item = [];
 //for group and category
 $scope.groupAndCategory = function (barcode) {
-  
+ // alert(barcode);
   $http.get('/groupAndCategoryBarcode', {params:{"barcode":barcode}}).success(function(response){
-     // alert(barcode);
+     // alert(" response.length "+response.length )
       if (response.length != 0) {
       console.log(response[0].InvGroupName);
       console.log(response[0].SaleCategory);
@@ -40,7 +40,7 @@ $scope.groupAndCategory = function (barcode) {
       //
     }
     if ((barcode != undefined ) && response.length == 0 ) {
-      alert(" Barcode is Invalid "+barcode);
+      //alert(" Barcode is Invalid "+barcode);
       //$scope.item.barcode ="";
     }
   })
@@ -54,12 +54,12 @@ $scope.displayBarcodedItems = function () {
 	$http.get('/stockDetaildisplayBarcodedItems', {params:{"InvGroupName":$scope.item.InvGroupName,"SaleCategory":$scope.item.SaleCategory,}}).success(function(response){
        
       //  console.log(response);
-        
+        //alert(response.length);
         $http.get('/stockResetTrue', {params:{"InvGroupName":$scope.item.InvGroupName,"SaleCategory":$scope.item.SaleCategory,}}).success(function(result){
         	  $scope.sortedBarcodeDataItems = result;
         	 	$scope.itemsFound = result.length;
             if (result.length == 0 && response.length == 0) {
-              alert(" No matches are found ");
+              alert(" No matches are found  ");
            }
 
         	 	$scope.foundScaleWt = null;

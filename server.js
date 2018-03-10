@@ -9,20 +9,9 @@ var db=mongojs('inventory',['user','tags','transaction','saleInvoice','mode','tr
   'items','tax','taxation','inventoryGroupValueNotationDaily','salesPerson','loginDetails',
   'trHeaders','gIControlTables','history','ledgerActs','ledgeraccounts','mainclasses','maingroups','mcIds',
   'roundOffConfig','sgIds','subgroups','subscribers','trDetails','transactionInvoice','ugIds','updatelist','user',
-
-<<<<<<< HEAD
-  'users','merchantDetails','trail','staff','receipts','cardType','payments','orders','printData']);
-=======
-<<<<<<< HEAD
-  'users','merchantDetails','trail','staff','receipts','cardType','payments','orders','printData','orderType']);
-=======
-  'users','merchantDetails','trail','staff','receipts','cardType','payments','orders','printData']);
->>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
->>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
-
+  'users','merchantDetails','trail','staff','receipts','cardType','payments','orders','printData','orderType','orders']);
 
 var bodyParser=require('body-parser');
-
 
 //var app            = express();
 //var mongoose       = require('mongoose');
@@ -37,9 +26,7 @@ app.use(bodyParser.json());
 app.get('/valpct',function(req,res){
      
    // db.user.find(function(err,doc){
-    db.pct.find({},function(err,doc){
-
-        
+    db.pct.find({},function(err,doc){        
         res.json(doc);
     })
 })
@@ -236,7 +223,7 @@ app.post('/savingdata',function(req,res) {
   db.orders.insert(req.body,function(err,doc){
 console.log("5gggggggggggggggggggggggg")
         res.json(doc);
-        console.log(res)
+        console.log(doc);
       })
 //    db.orderManage.insert(req.body,function(err,doc){
 // console.log("5gggggggggggggggggggggggg")
@@ -899,47 +886,6 @@ app.get('/orderName',function(req,res) {
          
       })
 })
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
-// app.get('/dateBatchFind/:date',function(req,res)
-// {
-//   //  console.log("i got the date")
-//     var str=req.params.date;
-//     //console.log(str);
-//     var str_array=str.split(",");
-//     var fdate=str_array[0];
-//   //  var frdate=new Date(fdate)
-//     //console.log(frdate)
-//     var tdate=str_array[1];
-//     //var todate=new Date(tdate)
-//     //console.log(todate);
-   
-//     db.orders.find({date: { $gt:(fdate), $lt: (tdate) }}).sort({_id:-1},function(err,doc){
-//      console.log(doc +"jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-//       res.json(doc);
-
-//     })
-// })
-app.get('/dateFind/:pdata',function(req,res){
-    console.log("vvvvvvvvvvvvvvvvvvvvvv");
-    var pstr=req.params.pdata;
-    var pstr_array=pstr.split(",");
-    // var partyname=pstr_array[0];
-    var date1=pstr_array[0];
-    var date2=pstr_array[1];
-      console.log(date1+" "+date2);
-      // db.transactiondetail.find({"partyname":partyname,"created_on": {"$gt": date1, "$lt": date2}},function(err,doc){
-        db.orders.find({date:{$gt:date1, $lt:date2}},function(err,doc){
-          console.log("dddddddddddddd");
-            res.json(doc);
-            console.log(doc);
-      })
-  })
-=======
-
->>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
   app.put('/anydata/:thh',function(req,res){
   console.log("ttttttttttttttttyyyyyyyyyyyyyyyyyyyyy233333333345555555")
 var str=req.params.thh;
@@ -1300,14 +1246,14 @@ app.post('/prn',function(req,res){
     var result9 =result8.replace(/StockBookDetail.uom/g, req.body.uom);
     var result10 =result9.replace(/StockBookDetail.ntwt/g, req.body.ntwt);
     var result11 =result10.replace(/StockBookDetail.pctcal/g, req.body.pctcal);
-    var result12 =result11.replace(/StockBookDetail.wastage/g, req.body.wastage);
+    var result12 =result11.replace(/StockBookDetail.wastage/g, req.body.wastagePrint);
     var result13 =result12.replace(/StockBookDetail.matadj/g, req.body.matadj);
     var result14 =result13.replace(/StockBookDetail.chgunt/g, req.body.chgunt);
     var result15 =result14.replace(/StockBookDetail.mrp/g, req.body.mrp);
     var result16 =result15.replace(/StockBookDetail.rate/g, req.body.rate);
     var result17 =result16.replace(/StockBookDetail.labcal/g, req.body.labcal);
     var result18 =result17.replace(/StockBookDetail.labamt/g, req.body.labamt);
-    var result19 =result18.replace(/StockBookDetail.labval/g, req.body.labval);
+    var result19 =result18.replace(/StockBookDetail.labval/g, req.body.wastagePrint12);
     var result20 =result19.replace(/StockBookDetail.stonecal/g, req.body.stonecal);
     var result21 =result20.replace(/StockBookDetail.stchg/g, req.body.stchg);
     var result22 =result21.replace(/StockBookDetail.stval/g, req.body.stval);
@@ -2444,7 +2390,7 @@ app.post('/transactionstock',function(req,res){
 app.post('/transactionstockInward',function(req,res){
      // delete(req.body.Transaction)
      delete(req.body.Batch)
-    delete(req.body.stats)
+   // delete(req.body.stats)
     delete(req.body.tags)
     delete(req.body.wt)
     delete(req.body.color)
@@ -6091,7 +6037,7 @@ app.get('/getfilter/:update',function(req,res)
       }
       else{
         sale1 =" "+sale1;
-     db.items.find({itemType: sale1}).sort({_id:-1},function(err,doc)
+     db.items.find({ItemType: sale1}).sort({_id:-1},function(err,doc)
     {
         res.json(doc);
     })
@@ -6733,7 +6679,7 @@ app.get('/groupAndCategoryBarcode',function(req,res){
           
       //      // body...
       //    })
-      db.transactionDetail.find({"refid" :  Number(req.query.barcode) , comboBarcode: { $exists: false }},function (err,doc) {
+      db.transactionDetail.find({"refid" :  32499001, comboBarcode: { $exists: false }},function (err,doc) {
           //console.log(doc.length);
           console.log(" barcoded "+doc.length);
           res.json(doc);
@@ -9004,19 +8950,6 @@ require('./public/inventoryDbs/defaultCollections')(app);
 
 // require('./apiCalls/printPdf')(app); // pass our application into our routes
 require('./apiCalls/materialAdvancePdf')(app);
-
-
-<<<<<<< HEAD
-app.listen(8000); 
-console.log("server running on port 8000");
-=======
-<<<<<<< HEAD
 app.listen(9000); 
 console.log("server running on port 9000");
-=======
-app.listen(8000); 
-console.log("server running on port 8000");
->>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
->>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
-
 exports = module.exports = app;
