@@ -36,8 +36,7 @@ $scope.groupAndCategory = function (barcode) {
     }else{
       $scope.displayBarcodedItems();
       $scope.codedBarcodedItems();
-     //}
-      //
+     
     }
     if ((barcode != undefined ) && response.length == 0 ) {
       //alert(" Barcode is Invalid "+barcode);

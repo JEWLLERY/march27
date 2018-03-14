@@ -389,7 +389,10 @@ return;
   window.sessionStorage.setItem("goToReceipt",$scope.transaction)
   console.log($scope.party)
     window.sessionStorage.setItem("getPatyName",$scope.use[tag].partyNames)
+<<<<<<< HEAD
    
+=======
+>>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
      var receiptPartyId =$scope.use[tag]._id+","+$scope.use[tag].allocate
   
     console.log(receiptPartyId)
@@ -1784,6 +1787,24 @@ return;
                reloadCall = "notNull";
                window.location.href="orderMaking.html" 
 
+<<<<<<< HEAD
+=======
+
+                window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
+                window.sessionStorage.setItem("getPatyName",$scope.party)
+                window.sessionStorage.setItem("getOrderNo",$scope.orderNO)
+                var InvGroupAndPurity = {
+                    "InvGroupName":$scope.userit[0].InvGroupName,
+                    'purity':$scope.userit[0].purity
+                }       
+               window.sessionStorage.setItem("InvGroupAndPurity", JSON.stringify(InvGroupAndPurity))
+              // $scope.InvGroupAndPurity = JSON.parse(window.sessionStorage.getItem("InvGroupAndPurity"));
+
+            }else if (f == false) {
+               //alert(" f is false ");
+               reloadCall = "notNull"; 
+
+>>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
             }//f == false
 
 

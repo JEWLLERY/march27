@@ -1140,16 +1140,12 @@ app.post('/prn',function(req,res){
         res.json(doc);
         console.log("doc.PrnFileName "+doc[0].PrnFileName)
         console.log("doc.PrnTemplate "+doc[0].PrnTemplateName)
-    //})
-   // var a = 'BC_BangalesTemplate.txt';
-   // var b = 'BC_Bangales.prn';
-   //var a = doc[0].PrnTemplateName;
-   //var b = doc[0].PrnFileName;
-   var a = doc[0].PrnFileName;
-   //var b = doc[0].PrnFileName;
+  
+         var a = doc[0].PrnFileName;
+         //var b = doc[0].PrnFileName;
 
-   var path = 'Data/PrnFiles/Templates/'+a;
-    //var path = 'Data/PrnFiles/BC_BangalesTemplate.txt';
+     var path = 'Data/PrnFiles/Templates/'+a;
+     //var path = 'Data/PrnFiles/BC_BangalesTemplate.txt';
    //var path1 = 'Data/PrnFiles/Files/'+b;
     var path1 = 'Data/PrnFiles/prnfile.prn';
   // if(ItemName == "Big Chain"){
@@ -2383,7 +2379,11 @@ app.post('/transactionstock',function(req,res){
 app.post('/transactionstockInward',function(req,res){
      // delete(req.body.Transaction)
      delete(req.body.Batch)
+<<<<<<< HEAD
    // delete(req.body.stats)
+=======
+   
+>>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
     delete(req.body.tags)
     delete(req.body.wt)
     delete(req.body.color)
@@ -3990,7 +3990,7 @@ app.post('/insertUseritDetails',function(req,res){
                     db.transactionDetail.update({"refid":req.body.barcode},{$set:{"chgunt":req.body.chgunt,"purity":req.body.purity,"date":req.body.date,"desc":req.body.desc,
                      "gpcs":req.body.gpcs,"gwt":req.body.gwt,"name":req.body.iname,"ntwt":req.body.ntwt,"rate":req.body.rate,"size":req.body.size,"taxval":req.body.taxval,"stwt":req.body.stwt,
                     "wastage":req.body.wastage,"stval":req.body.stval,"mrp":req.body.mrp,"labval":req.body.labval,'labamt':req.body.labamt,"labourTaxValue":req.body.labourTaxValue,'labamt':req.body.labamt,'stchg':req.body.stchg,
-                      "stonecal":req.body.stonecal,"pctcal":req.body.pctcal,"labcal":req.body.labcal,"stockPoint":req.body.stockPoint}})
+                      "stonecal":req.body.stonecal,"pctcal":req.body.pctcal,"labcal":req.body.labcal}})
                      
 
                }
@@ -6672,7 +6672,12 @@ app.get('/groupAndCategoryBarcode',function(req,res){
           
       //      // body...
       //    })
+<<<<<<< HEAD
       db.transactionDetail.find({"refid" :  32499001, comboBarcode: { $exists: false }},function (err,doc) {
+=======
+console.log(" req.query.barcode "+req.query.barcode+" "+typeof(req.query.barcode))
+      db.transactionDetail.find({"refid" : Number(req.query.barcode), comboBarcode: { $exists: false }},function (err,doc) {
+>>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
           //console.log(doc.length);
           console.log(" barcoded "+doc.length);
           res.json(doc);
@@ -8249,10 +8254,10 @@ app.get('/reportResult/:data',  function (req, res) {
                      console.log(result1)
                      remainingItems1 =result1;
                      result1 = result1;
-                  if (result1.length == 0 && remainingItems.length == 0) {
-                      // console.log(m+""+z+" 00000  final send");
-                       res.json(result1);
-                  }
+                  // if (result1.length == 0 && remainingItems.length == 0) {
+                  //     // console.log(m+""+z+" 00000  final send");
+                  //      res.json(result1);
+                  // }
                   // console.log(result1.length);//issPcs
                   //  console.log(result.length);
                  // console.log(result1[0]._id.purity);
@@ -8514,8 +8519,15 @@ app.get('/reportResult/:data',  function (req, res) {
                                                               
                                                            { $sort : {  "_id.sort1":1,"_id.sort2":1,"_id.sort3":1,"_id.sort4":1,}}
                                                         ],function(err,doc){
-                                                            res.json(doc);
-                                                             db.trail.remove({});
+                                                               if (result1.length == 0 && remainingItems.length == 0) {
+                                                                    // console.log(m+""+z+" 00000  final send");
+                                                                     res.json(result1);
+                                                                }else{
+
+                                                                    res.json(doc);
+                                                                    db.trail.remove({});
+                                                                }
+                                                            
                                                           })//find
                                                             })
 
@@ -8943,6 +8955,11 @@ require('./public/inventoryDbs/defaultCollections')(app);
 
 // require('./apiCalls/printPdf')(app); // pass our application into our routes
 require('./apiCalls/materialAdvancePdf')(app);
+<<<<<<< HEAD
 app.listen(3200); 
 console.log("server running on port 3200");
+=======
+app.listen(9190); 
+console.log("server running on port 9190");
+>>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
 exports = module.exports = app;
