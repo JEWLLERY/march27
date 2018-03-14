@@ -521,7 +521,7 @@ To  <input type="date" ng-model="dateto" id="dates" ng-change="vend()" />
        <!--  <input type="text" id="box" ng-model="item.initial"  > -->
        <select ng-model="item.initial" id="party" ng-change="allocateAlert(item.initial,selectedrow)" ng-disabled="item.initial=='Delivered' || item.initial=='New'">
          <option ng-if="item.initial=='New'">New</option>
-        <option ng-if="item.initial=='Allocated' || item.initial=='Received'">Allocated</option>
+        <option ng-if="item.initial=='Allocated'">Allocated</option>
         <option ng-if="item.initial=='Allocated' || item.initial=='Received'">Received</option>
        
        <option ng-if="item.initial=='Received' || item.initial=='Completed' ">Completed</option>

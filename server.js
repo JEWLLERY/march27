@@ -135,6 +135,11 @@ app.get('/ordNum/:orderNum',function(req,res){
 ],function(err,doc){
   res.json(doc);
 })
+  // db.orders.aggregate([{$match:{"orderNO":ordeenum,"initial":"Completed"}},
+  //     {$group:{_id:{orderNO:"$orderNO"}}}],function(err,doc){
+  //     console.log(doc+"ppppppppppppppppppppppppppppppppppppppp")  
+  //         res.json(doc);
+  //     });
 })
 // <<<<<<< HEAD
 
@@ -794,41 +799,29 @@ var str=req.params.thh;
 
 app.get('/ordername:name1',function(req,res) {
    var names=req.params.name1;
-   // var names_array=names.split(",");
-   // var pname=names_array[0];
-   // var d1=names_array[1];
-   // var d2=names_array[2];
+  
    console.log(names+"kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
-  //  if(names!=undefined)
-  // {   
+   
 
 db.orders.find({"partyNames":names},function(err,doc){
 console.log("iiiiiiiiiiiiiiiiiiiiiiiii")
         res.json(doc);
         console.log(res)
       })
-  // }
-//   else if(dfrom !=undefined && dto!=undefined){
-    
-//    db.ordermanage.find({"usedate":d1,"date":d2},function(err,doc){
-// console.log("iiiiiiiiiiiiiiiiiiiiiiiii")
-//         res.json(doc);
-//         console.log(res)
-//       })
-//   }
-// else{
+
+})
+app.get('/showOrderNo:name1',function(req,res) {
+   var names=req.params.name1;
   
-// db.ordermanage.find({"initial":name12,"usedate":d1,"date":d2},function(err,doc){
-// console.log("iiiiiiiiiiiiiiiiiiiiiiiii")
-//         res.json(doc);
-//         console.log(res)
-//       })
-// }
-//   db.ordermanage.find({"initial":name12},function(err,doc){
-// console.log("iiiiiiiiiiiiiiiiiiiiiiiii")
-//         res.json(doc);
-//         console.log(res)
-//       })
+   console.log(names+"kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
+   
+
+db.orders.find({"orderNO":names},function(err,doc){
+console.log("iiiiiiiiiiiiiiiiiiiiiiiii")
+        res.json(doc);
+        console.log(res)
+      })
+
 })
 app.get('/ordername:name1',function(req,res) {
    var names=req.params.name1;
@@ -856,7 +849,7 @@ app.get('/ordertype',function(req,res) {
 })
 app.get('/getmanage',function(req,res) {
   
-  db.orders.find(function(err,doc){
+  db.orders.find({}).sort({_id:-1},function(err,doc){
  
         res.json(doc);
          
@@ -8950,6 +8943,6 @@ require('./public/inventoryDbs/defaultCollections')(app);
 
 // require('./apiCalls/printPdf')(app); // pass our application into our routes
 require('./apiCalls/materialAdvancePdf')(app);
-app.listen(9000); 
-console.log("server running on port 9000");
+app.listen(3200); 
+console.log("server running on port 3200");
 exports = module.exports = app;

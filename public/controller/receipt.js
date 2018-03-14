@@ -509,8 +509,9 @@ console.log($scope.rpamt.paymode+","+$scope.rpamt.amount+","+$scope.rpamt.bank+"
 
                               
                                     }else{
-                                
-                                             window.location="orderCustomer.html"
+                   
+                                             window.location="orderMaking.html"
+                                             
                                          }
 
                                 }//if (setPatyName!="null")

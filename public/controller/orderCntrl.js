@@ -376,24 +376,10 @@ return;
 
        }
        $scope.allocateAlert = function(ff,tag){
-        // if $scope.userit[0].initial="Received"
-        //alert(ff)
+       
        console.log($scope.use[tag].partyNames)
        console.log($scope.party)
-         // $http.post('/recieveChange',$scope.use ).success(function(response){
-         //     console.log(response)
-         //     //$scope.use=response;
-         //       })
-         // $http.put('/manageChange/',$scope.use[tag] ).success(function(response){
-         //     console.log(response)
-         //     //$scope.use=response;
-         //       })
-          
-//$scope.use[index].allocate=status;
-   //alert("kkk"+$scope.use[index].allocate)
-   
-   //window.sessionStorage.setItem("carrigor",$scope.use[index].allocate)
-    if (ff=="Received"){
+      if (ff=="Received"){
 //console.log($scope.use)
     var r = confirm("Land To Receipt Voucher?")
             if (r==true) {
@@ -403,28 +389,15 @@ return;
   window.sessionStorage.setItem("goToReceipt",$scope.transaction)
   console.log($scope.party)
     window.sessionStorage.setItem("getPatyName",$scope.use[tag].partyNames)
-   //alert("kkk"+$scope.use[index].allocate)
-    //window.sessionStorage.setItem("getIssue",$scope.transaction)
-    // $http.post('/recieveChange',$scope.use ).success(function(response){
-    //          console.log(response)
-    //          //$scope.use=response;
-    //            })
+   
      var receiptPartyId =$scope.use[tag]._id+","+$scope.use[tag].allocate
-    //var vocherPartyId= $scope.use[index] 
+  
     console.log(receiptPartyId)
   window.sessionStorage.setItem("receiptVocherPartyId",receiptPartyId) 
   
   }
 
-  else{
-    //$scope.use[index].initial="Received";
-    // $http.post('/recieveChange',$scope.use ).success(function(response){
-    //          console.log(response)
-    //          //$scope.use=response;
-    //            })
-   
 
-  }
 }
 
        }
@@ -595,13 +568,17 @@ $scope.purityCal=function(val,purity){
 
        
  
-  $scope.validationDate = function(usedate){
-  var duedate=usedate
+  
+  $scope.validationDate = function(ate,index){
+  var duedate=new Date(ate)
 if(duedate<$scope.date){
 
-  alert("Invalid Date Range")
+  alert("Please Select Date Greater Than Order Dt")
+   $scope.userit[index].usedate=null;
 }
-  }     
+
+
+  }      
 
 
  $scope.addNew = function(){
@@ -1792,9 +1769,6 @@ return;
                    $scope.transaction="Receipt Voucher"       
                 $scope.mylink = "Transaction.html";
 
-
-
-
                 window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
                 window.sessionStorage.setItem("getPatyName",$scope.party)
                 window.sessionStorage.setItem("getOrderNo",$scope.orderNO)
@@ -1807,7 +1781,8 @@ return;
 
             }else if (f == false) {
                //alert(" f is false ");
-               reloadCall = "notNull"; 
+               reloadCall = "notNull";
+               window.location.href="orderMaking.html" 
 
             }//f == false
 
@@ -2461,7 +2436,7 @@ $http.get('/pratop'+both).success(function(response){
  //$scope.use[$index].initial=sta;
   //alert("out"+$scope.idData)
   $scope.updateorder=function(status,index){
-    //alert("pass"+status)
+
   $scope.use[index].allocate=status;
   //alert("first"+$scope.use[index].allocate)
    $scope.itial=$scope.use[index].allocate;

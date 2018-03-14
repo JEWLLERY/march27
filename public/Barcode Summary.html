@@ -674,8 +674,8 @@ width: 8%;
        <!--  </form> -->
 
        <div id="check" >&nbsp;&nbsp;&nbsp;&nbsp;
-       <input type="checkbox" ng-model="bitem.composite" ng-disabled="all || all1" id="check1" >Is Composite
-        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="bitem.splittable"  id="inline"  ng-disabled="all || all1">Is Splittable 
+       <input type="checkbox" ng-model="bitem.composite" ng-disabled="all || all1 || bitem.splittable" id="check1" ng-click="compositeDis(bitem.composite)" >Is Composite
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="bitem.splittable"  id="inline"  ng-disabled="all || all1  || bitem.composite " >Is Splittable 
        
        </div><br>
        <div class="row" ng-cloak>

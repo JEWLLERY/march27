@@ -238,6 +238,7 @@ $scope.batch=""
 }//esle if 
   }
  // tags()
+// 
 $scope.checkForCombo = function (ItemName) {
      $scope.all1 = false ;
    for(let j=0;j<$scope.items.length;j++){

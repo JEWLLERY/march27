@@ -35,7 +35,7 @@ function($scope,$http,$window,$filter,$timeout,$q,ControllerService){
 $scope.orderRes=[];
 
 $scope.detailsOrder=function(orderNum){
-
+//alert("klllss")
 $scope.regularOrder=orderNum;
 $scope.bringOrd="num"
 
@@ -58,9 +58,10 @@ $scope.ordId=response[0].orderNO
 //response[0].totalorder[0].chgunt = 0;
 //alert(response[0].totalorder.length +" "+response[0].totalorder[0].chgunt+" response[0].chgunt "+response[0].chgunt)
 var calres= 0;
-if (response[0].totalorder.length != 0) {
-      if(parseFloat(response[0].totalorder[0].chgunt) <= parseFloat(response[0].chgunt)){
-      
+for(var i=0;i<=$scope.userit.length-1;i++){
+if (response[i].totalorder.length != 0) {
+      if(parseFloat(response[0].totalorder[0].chgunt) <= parseFloat(response[i].chgunt)){
+   
          $scope.userit[0].ordAdj = response[0].totalorder[0].chgunt;
         calres = response[0].totalorder[0].chgunt;
         //alert(" calres "+calres);
@@ -68,10 +69,12 @@ if (response[0].totalorder.length != 0) {
          calres = response[0].totalorder[0].chgunt;
         //alert(" calres12 "+calres);
       }
-}else{
+}
+else{
     calres = 0;
-     $scope.userit[0].ordAdj = 0;
-     //alert(" calres123 "+calres);
+     $scope.userit[i].ordAdj = 0;
+
+}
 }
 
 // console.log(response[0].totalorder[0].chgunt)
@@ -98,17 +101,20 @@ ordata=response[0].chgunt;
  setTimeout(function(){$scope.Print()}, 500);
  $scope.Print = function(){
   console.log(ordata)
-  console.log(parseFloat($scope.userit[0].ordAdj))
+  //console.log(parseFloat($scope.userit[0].ordAdj))
  // alert(" $scope.userit[0].ordAdj "+$scope.userit[0].ordAdj)
-  console.log((response[0].chgunt)-parseFloat($scope.userit[0].ordAdj))
+  //console.log((response[0].chgunt)-parseFloat($scope.userit[0].ordAdj))
    //for(var i=0;i<=$scope.userit.length-1;i++){
    function increaseCallIndex (i) {
      // body...
    
           if (i<$scope.userit.length) {
             //alert(" befoe i "+i)
+
                               ordata=response[i].chgunt;
+                           
                             $scope.userit[i].chgunt =(ordata)-parseFloat($scope.userit[i].ordAdj);
+                           //alert("tt"+$scope.userit[i].chgunt)
                             $scope.userit[i].chgunt = ($scope.userit[i].chgunt).toFixed(fixdec); 
                             //$scope.userit[0].
                             //alert(" $scope.userit[i].chgunt  "+ $scope.userit[i].chgunt +" i "+i)
@@ -354,6 +360,7 @@ window.sessionStorage.setItem("getname","null");
   var receiptVocherPartyId=window.sessionStorage.getItem("receiptVocherPartyId")
    console.log(receiptVocherPartyId) 
     if(receiptVocherPartyId!=null){
+      //alert("kl")
     $http.put('/initialSaveReceiptVocher/'+receiptVocherPartyId ).success(function(response){
              console.log(response)
              //$scope.use=response;
@@ -370,7 +377,7 @@ window.sessionStorage.setItem("getname","null");
 
                   //$scope.fromOrder();
                   $http.post('/api/orderDetailsReceiptPdf/'+$scope.getOrderNo)
-                $window.location = "orderCustomer.html";
+                $window.location = "orderMaking.html";
                 
 
              }else if ($scope.transaction == "Issue Voucher" && $scope.te=="disp" ||$scope.transaction == "Receipt Voucher" && $scope.te=="disp") {
@@ -1799,16 +1806,13 @@ $scope.getDetails=function(rvalue,voucherNo){
      $scope.userit=response;
     // alert($scope.userit[0].uom)
      console.log(response.length);
+     //console.log()
      
-     // if($scope.transaction=="Approval Return"){
-     //  for(var v=0;v<response.length;v++){
-     //    var newapp={};
-     //    $scope.appret=response[v]._id;
-     //    newapp["id"]=$scope.appret;
-     //  arrcon.push(newapp);
-     //  console.log(arrcon);
-     //  }
-     // }
+    
+      
+
+  
+ 
     if($scope.transaction=="Approval Sale" && rvalue=="true"){
       // alert("TH row is 2");
       saleInvoiceCalculations();
@@ -1911,6 +1915,14 @@ $scope.getDetails=function(rvalue,voucherNo){
            
                  console.log(i);
                 if($scope.transaction != null ){
+                  if(response[i].orderNO!=undefined){
+        //for(var i=0;i<=$scope.userit.length-1;i++){
+            //alert("Kk")
+        //alert(response[0].orderNO)
+        $scope.detailsOrder(response[i].orderNO)
+      
+      
+    }
 
                         if ($scope.userit[i].mrp != undefined) {
                                 $scope.indexValueDisable = i;
@@ -3481,7 +3493,7 @@ $scope.newFinalCal=function( subtol){
   
     if($scope.transaction != 'Urd Purchase'){
        // alert("not urd");
-          if($scope.ccamt1 == null||$scope.ccamt1==NaN){
+          if($scope.ccamt1 == null||$scope.ccamt1==NaN || $scope.ccamt1 == null){
               $scope.ccamt1=0;
              
              $scope.saleinv[0].invoiceValue=$scope.saleinv[0].subtol;
