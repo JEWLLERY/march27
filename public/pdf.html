@@ -231,9 +231,10 @@ display: block;
     </style>
     </head>
     <body style="background-color:FFE4B5;" ng-controller="PdfCntrl" >
-    <div class='menujohanes'  style="position:sticky;top:0;z-index:1;">
+      <div class='menujohanes'  style="position:sticky;top:0;z-index:1;" >
         
        <ul class='dark_menu' >
+<!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
           
 <li  >
             <a>
@@ -246,8 +247,18 @@ display: block;
                   New
                 </a>
               </li>
+
+                <li>
+                <a href="orders.html">
+                  Order Management
+                </a>
+              </li>
+  <!--              <li>
+                <a href="list.html">
+======= -->
                <li>
                 <a href="List.html">
+
                   List
                 </a>
               </li>
@@ -287,7 +298,11 @@ display: block;
                 </li>
 
                <li>
+<!-- <<<<<<< HEAD:public/Transaction.html
+                <a href="item.html">
+======= -->
                 <a href="Item.html">
+<!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
                   Item
                 </a>
               </li>
@@ -326,7 +341,9 @@ display: block;
             </ul>
           </li>
           <li >
+
             <a href="Tax Configuration.html">
+
               Tax Configuration
             </a>
             <!-- <ul>
@@ -349,6 +366,10 @@ display: block;
             
         
           </li>
+<!-- <<<<<< HEAD:public/Transaction.html
+          <li  id="name1">
+            <a>
+======= -->
           <li >
               <a href="dailyRates.html">
               Daily Rates 
@@ -382,8 +403,9 @@ display: block;
               
             </ul>
           </li>
-          <li  id="name1">
-            <a>
+          <li  id="name1" >
+            <a >
+
              {{usernamedetails}}
                
             </a>
@@ -399,9 +421,9 @@ display: block;
           
         </ul>
 
+
         
-        
-      </div> 
+      </div>
     <div class="center" ng-cloak >
         <h2></h2>
       </div>
@@ -683,7 +705,7 @@ City:{{city}}</p>
 <h4 ng-if="trans =='Urd Purchase'" ng-cloak><font color="black">Invoice Value In Words:{{wor}}{{"only"}}</h4>
 
 
-  <h4 ng-if=" (trans=='Regular Sale'||trans=='Approval Sale') && (Billtype == 'Credit') ">
+ <!--  <h4 ng-if=" (trans=='Regular Sale'||trans=='Approval Sale') && (Billtype == 'Credit') ">
        <b>Net Receivable:</b>
       <b>{{netReceivable}}</b>
     </h4> 
@@ -692,7 +714,7 @@ City:{{city}}</p>
        <b>Net Payable:</b>
       <b>{{netReceivable}}</b>
     </h4> 
-
+ -->
 <div class="row" ng-show="trans == 'Regular Sale' || trans == 'RD Purchase'||trans == 'Approval Sale'">
 
 <div class="row" ng-hide="trans =='Urd Purchase'||trans =='Valuation'|| trans =='Issue Voucher' || trans =='Receipt Voucher'||trans =='Sale Return'||trans == 'Purchase Return'||trans == 'Approval Out'||trans=='Approval Return'" ng-cloak>

@@ -5,18 +5,7 @@ function($scope,$http,$window,$rootScope,ControllerService,$location){
 
 $scope.date=new Date()
 
-<<<<<<< HEAD
-// $window.open('/pdfPrint/'+response.receiptFile)
 
- 
-
-// })
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
->>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
 $http.get('/Orderprefixs').success(function(response){
   console.log(response);
   console.log(response[0].TransactionPrefix)
@@ -31,23 +20,15 @@ $http.get('/Orderprefixs').success(function(response){
     $scope.orderNO=$scope.billNo;
     // alert($scope.billNo);
     $scope.BillNos=$scope.prefix1+","+$scope.bno;
+    //alert($scope.billNo)
     $scope.narrate="Bill No is :"+$scope.billNo;
       window.sessionStorage.setItem("billnumber",$scope.billNo);
   // alert($scope.billNo);
   // $scope.insertReceipt($scope.billNo);
   });
 });
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
 
-=======
-$scope.updateSave=function() {
-  alert("kk")
-}
->>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
->>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
 
 function printCall(length) {
   //alert($scope.prefix1+length);
@@ -422,12 +403,6 @@ return;
   window.sessionStorage.setItem("goToReceipt",$scope.transaction)
   console.log($scope.party)
     window.sessionStorage.setItem("getPatyName",$scope.use[tag].partyNames)
-   //alert("kkk"+$scope.use[index].allocate)
-    //window.sessionStorage.setItem("getIssue",$scope.transaction)
-    // $http.post('/recieveChange',$scope.use ).success(function(response){
-    //          console.log(response)
-    //          //$scope.use=response;
-    //            })
      var receiptPartyId =$scope.use[tag]._id+","+$scope.use[tag].allocate
     //var vocherPartyId= $scope.use[index] 
     console.log(receiptPartyId)
@@ -993,10 +968,19 @@ var taxamtcal = function($index){
 
 
 $scope.rateChange=function($index){
-  //alert("jj")
-  //alert(" iam rate change "+ $scope.userit[$index].rate)
-                        
-                       if( $scope.userit[$index].pctcal!= undefined){
+
+ 
+ 
+                  var num = $scope.userit[$index].rate; // Convert to string
+                console.log( (num.split('.')[1] || []).length)
+                if ((num.split('.')[1] || []).length >=2) {
+                    //$scope.userit[$index].rate = 
+                      $scope.userit[$index].rate = parseFloat ( $scope.userit[$index].rate)
+                     console.log(  $scope.userit[$index].rate)
+                     $scope.userit[$index].rate = parseFloat ($scope.userit[$index].rate).toFixed($scope.rupeesDecimalPoints);
+                     console.log(  $scope.userit[$index].rate)
+                }
+                    if( $scope.userit[$index].pctcal!= undefined){
                              // alert($scope.userit[0].pctcal)
                               $scope.newwas($index,$scope.userit[$index].pctcal)
                                     
@@ -1219,7 +1203,7 @@ $scope.newstwt=function($index)
        
         //alert("Null or undefined"+$scope.userit[$index].chgunt);
     }else{
-      // $scope.userit[$index].stwt =( $scope.userit[$index].stwt).toFixed(fixdec);
+       $scope.userit[$index].stwt =( $scope.userit[$index].stwt).toFixed(fixdec);
       $scope.userit[$index].stwt = parseFloat ($scope.userit[$index].stwt) ;
    
        $scope.userit[$index].ntwt=(((parseFloat($scope.userit[$index].gwt)-parseFloat($scope.userit[$index].stwt))*parseFloat($scope.userit[$index].uomValue))).toFixed(fixdec);
@@ -1271,7 +1255,7 @@ $scope.newstwt=function($index)
   else  if(pctcal=="AddPercent")
     {
         //alert(pctcal);
-        // $scope.userit[$index].wastage =( $scope.userit[$index].wastage).toFixed(fixdec);
+         $scope.userit[$index].wastage =( $scope.userit[$index].wastage).toFixed(fixdec);
        $scope.userit[$index].wastage = parseFloat ($scope.userit[$index].wastage) ;
    
         var wastage=(($scope.userit[$index].wastage*$scope.userit[$index].ntwt)/100).toFixed(fixdec);
@@ -1282,7 +1266,7 @@ $scope.newstwt=function($index)
     }
     else if(pctcal=="Add Units")
     {
-        // $scope.userit[$index].wastage =( $scope.userit[$index].wastage).toFixed(fixdec);
+         $scope.userit[$index].wastage =( $scope.userit[$index].wastage).toFixed(fixdec);
        $scope.userit[$index].wastage = parseFloat ($scope.userit[$index].wastage) ;
    
         var wastage=$scope.userit[$index].wastage;
@@ -1693,10 +1677,27 @@ else if($scope.updateOrder=="updateData")
  // $scope.totalVal="";
  // $scope.party="";
  // $scope.orderNO="";
-  window.location.reload()
+ if (reloadCall == null) {
+      window.location.reload()
+ }else if(reloadCall == "notNull") {
+
+         $http.post('/api/orderDetailsOnlyOrdersPdf/'+$scope.billNo).success(function(printPdf){
+                     // alert(" got result "+printPdf.orderFile)
+
+                      $window.open('/pdfPrint/'+printPdf.orderFile);
+                      window.location.reload()
+         })
+    
+ }else{
+      window.location.reload()
+ }
+  
             
  }
+
+ var reloadCall = null;
   $scope.save = function(rate){
+    reloadCall = null;
     //alert(rate)
     //rate
       if($scope.party==undefined || $scope.party==null || $scope.party==""){
@@ -1764,13 +1765,9 @@ return;
   
 
   }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
+
   if($scope.updateOrder!="updateData"){
->>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
->>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
+
   var r = confirm("Amount Advance")
             if (r==true) {
 
@@ -1786,32 +1783,31 @@ return;
             var f = confirm("Material Advance")
             if (f==true) {
 
-       $scope.transaction="Receipt Voucher"       
-    $scope.mylink = "Transaction.html";
+                   $scope.transaction="Receipt Voucher"       
+                $scope.mylink = "Transaction.html";
 
 
 
-//alert()
-    window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
-    window.sessionStorage.setItem("getPatyName",$scope.party)
-    window.sessionStorage.setItem("getOrderNo",$scope.orderNO)
-    var InvGroupAndPurity = {
-    "InvGroupName":$scope.userit[0].InvGroupName,
-    'purity':$scope.userit[0].purity
-  }       
- window.sessionStorage.setItem("InvGroupAndPurity", JSON.stringify(InvGroupAndPurity))
-// $scope.InvGroupAndPurity = JSON.parse(window.sessionStorage.getItem("InvGroupAndPurity"));
+
+                window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
+                window.sessionStorage.setItem("getPatyName",$scope.party)
+                window.sessionStorage.setItem("getOrderNo",$scope.orderNO)
+                var InvGroupAndPurity = {
+                    "InvGroupName":$scope.userit[0].InvGroupName,
+                    'purity':$scope.userit[0].purity
+                }       
+               window.sessionStorage.setItem("InvGroupAndPurity", JSON.stringify(InvGroupAndPurity))
+              // $scope.InvGroupAndPurity = JSON.parse(window.sessionStorage.getItem("InvGroupAndPurity"));
+
+            }else if (f == false) {
+               //alert(" f is false ");
+               reloadCall = "notNull"; 
+
+            }//f == false
+
 
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 8d850ac3d210aea34747605bc32552b11edff282
-
-=======
-}
->>>>>>> c9e19c2797e207c8e821fd1644b0b8ed3128e011
 
             }
   

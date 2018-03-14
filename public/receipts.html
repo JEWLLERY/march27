@@ -400,8 +400,10 @@ thead tr th {
 
 </head>
 <body ng-controller='billCntrl' style="background-color: FFE4B5;">
-  <div class='menujohanes'  style="position:sticky;top:0;z-index:1;">
-        <ul class='dark_menu' >
+ <div class='menujohanes'  style="position:sticky;top:0;z-index:1;" >
+        
+       <ul class='dark_menu' >
+<!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
           
 <li  >
             <a>
@@ -414,8 +416,18 @@ thead tr th {
                   New
                 </a>
               </li>
+
+                <li>
+                <a href="orders.html">
+                  Order Management
+                </a>
+              </li>
+  <!--              <li>
+                <a href="list.html">
+======= -->
                <li>
                 <a href="List.html">
+
                   List
                 </a>
               </li>
@@ -455,7 +467,11 @@ thead tr th {
                 </li>
 
                <li>
+<!-- <<<<<<< HEAD:public/Transaction.html
+                <a href="item.html">
+======= -->
                 <a href="Item.html">
+<!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
                   Item
                 </a>
               </li>
@@ -494,7 +510,9 @@ thead tr th {
             </ul>
           </li>
           <li >
+
             <a href="Tax Configuration.html">
+
               Tax Configuration
             </a>
             <!-- <ul>
@@ -517,7 +535,11 @@ thead tr th {
             
         
           </li>
-               <li >
+<!-- <<<<<< HEAD:public/Transaction.html
+          <li  id="name1">
+            <a>
+======= -->
+          <li >
               <a href="dailyRates.html">
               Daily Rates 
             </a>
@@ -550,8 +572,9 @@ thead tr th {
               
             </ul>
           </li>
-          <li  id="name1">
-            <a>
+          <li  id="name1" >
+            <a >
+
              {{usernamedetails}}
                
             </a>
@@ -567,11 +590,9 @@ thead tr th {
           
         </ul>
 
-        <!-- <form action='/search' id='search' method='get'>
-          <input name='q' placeholder='Search Somethings..' size='40' type='text'/>
-        </form> -->
+
         
-      </div> 
+      </div>
   <div style="margin-top:0px;font-size:25px;text-align:center;">RECEIPT
       <div class="title2">
         <!-- {{name}} -->

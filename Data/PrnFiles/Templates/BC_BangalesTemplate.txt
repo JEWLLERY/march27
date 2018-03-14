@@ -28,14 +28,14 @@ A2
 1911C0600010156Pc:StockBookDetail.uom
 1911C0600010108NW:StockBookDetail.ntwt
 1911C0600010156Pc:StockBookDetail.pctcal
-1911C0600010108NW:StockBookDetail.wastage
+1911C0600010108wastageNW:StockBookDetail.wastage
 1911C0600010108NW:StockBookDetail.matadj
 1911C0600160156CW:StockBookDetail.chgunt
 1911C0600160156CW:StockBookDetail.mrp
 1911C0600160156CW:StockBookDetail.rate
 1911C0600160156CW:StockBookDetail.labcal
 1911C0600160156CW:StockBookDetail.labamt
-1911C0600160156CW:StockBookDetail.labval
+1911C0600160156labourCW:StockBookDetail.labval
 1911C0600160156CW:StockBookDetail.stonecal
 1911C0600160156CW:StockBookDetail.stchg
 1911A0600130006StockBookDetail.stval

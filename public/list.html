@@ -348,9 +348,11 @@ li#name1 {
 </head>
 
 <body ng-controller="ListCntrl" class="container" style="background-color:FFE4B5;">
-  <div class='menujohanes'  style="position:sticky;top:0;z-index:1;">
+  
+ <div class='menujohanes'  style="position:sticky;top:0;z-index:1;" >
         
        <ul class='dark_menu' >
+
           
 <li  >
             <a>
@@ -363,8 +365,18 @@ li#name1 {
                   New
                 </a>
               </li>
+
+                <li>
+                <a href="orders.html">
+                  Order Management
+                </a>
+              </li>
+  <!--              <li>
+                <a href="list.html">
+======= -->
                <li>
                 <a href="List.html">
+
                   List
                 </a>
               </li>
@@ -404,7 +416,11 @@ li#name1 {
                 </li>
 
                <li>
+<!-- <<<<<<< HEAD:public/Transaction.html
+                <a href="item.html">
+======= -->
                 <a href="Item.html">
+<!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
                   Item
                 </a>
               </li>
@@ -443,7 +459,9 @@ li#name1 {
             </ul>
           </li>
           <li >
+
             <a href="Tax Configuration.html">
+
               Tax Configuration
             </a>
             <!-- <ul>
@@ -466,6 +484,10 @@ li#name1 {
             
         
           </li>
+<!-- <<<<<< HEAD:public/Transaction.html
+          <li  id="name1">
+            <a>
+======= -->
           <li >
               <a href="dailyRates.html">
               Daily Rates 
@@ -499,8 +521,9 @@ li#name1 {
               
             </ul>
           </li>
-          <li  id="name1">
-            <a>
+          <li  id="name1" >
+            <a >
+
              {{usernamedetails}}
                
             </a>
@@ -509,18 +532,16 @@ li#name1 {
           <li id="name1">
             <a href="loginPage.html" >
               Sign Out
-               S
+               
             </a>
           
           </li>
           
         </ul>
 
+
         
-        
-      </div>    <!--  <div ng-cloak>
-        
-      </div> -->
+      </div>
    <!-- <div class="btn-group btn-group-justified">
    <a href="index.html" ><button type="button" class="btn btn-primary">Main</button></a>
   <a href="list.html" > <button type="button" class="btn btn-primary">List</button></a>
