@@ -53,6 +53,7 @@ function($scope,$http,$window,$q){
     // });
 
  $scope.GroupWisePreview = function () {
+  $scope.review="yes";
         $scope.purchase = true;
         var fromdate  = new Date(((new Date($scope.bit2.date1).toISOString().slice(0, 23))+"-05:30")).toISOString();
             var  todate= new Date(((new Date($scope.bit2.date2).toISOString().slice(0, 23))+"-05:30")).toISOString();

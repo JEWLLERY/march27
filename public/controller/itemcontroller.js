@@ -183,12 +183,7 @@ $scope.selectrow();
   
    if(editcheck == true){
 
- // var item1filter =$scope.item.filter
- //      $http.get('/getfilter/'+item1filter).success(function(response){
- //         $scope.itemdetails = response 
- //         console.log(response)
- //     })
-      //console.log($scope.item1)
+ console.log($scope.item1)
 
      $http.put('/editeditem',$scope.item1).success(function(response)
                 {

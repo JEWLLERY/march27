@@ -1784,6 +1784,13 @@ return;
                reloadCall = "notNull";
                window.location.href="orderMaking.html" 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3dfc256e64167e6c16df1d8d624ddc68e70afaa1
+>>>>>>> 4e8ccb113f08a847b98345022c4872a855fc45b9
 
                 window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
                 window.sessionStorage.setItem("getPatyName",$scope.party)

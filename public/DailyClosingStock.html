@@ -301,7 +301,7 @@ display: block;
   width: 10%;
 }
 li#name1 {
-    right: -400px;
+    right: -100px;
     font-size: 27px;
     font-style: italic;
 } 
@@ -542,8 +542,8 @@ For:<input type="date" ng-model="bit1.date2" ng-change="clearCall()">
 <div class="col-sm-6">
     <button ng-click="stockVerifyPreview()" class="btn btn-primary" id="save" >Preview</button>
    <!--  <a href='mainpage.html'><button type="button" class="btn btn-danger"   ng-cloak>Close</button></a> -->
-    <button class="btn btn-info" id="cmd" >P D F</button>
-    <button class="btn btn-danger" id="btnExport" >Export</button>
+    <button class="btn btn-info" id="cmd" ng-disabled="review!='yes'">P D F</button>
+    <button class="btn btn-danger" id="btnExport" ng-disabled="review!='yes'">Export</button>
 
  </div>
  <br>

@@ -10,6 +10,7 @@ myApp.controller('billCntrl',['$scope','$http','$window',
   // 2222222222222222222
  // $scope.billNo="RP1";
  $scope.trans="Receipt";
+ var setPatyName="null"
  // $scope.totals=50000;
  $scope.usernamedetails = window.sessionStorage.getItem("username")
  $scope.customer=JSON.parse(window.sessionStorage.getItem("partyname"));
@@ -29,7 +30,7 @@ myApp.controller('billCntrl',['$scope','$http','$window',
     });
 
 
-var setPatyName  =  window.sessionStorage.getItem("receiptPatyName");
+ setPatyName  =  window.sessionStorage.getItem("receiptPatyName");
  
 console.log(setPatyName)
 //setPatyName = 'viin';

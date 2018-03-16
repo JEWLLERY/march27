@@ -695,7 +695,7 @@ margin-top: -12px;
         
       </select></td> -->
      <!-- <td id="thwidth"> <input type="text" class="form-control" ng-model="pur.Rate"></td> -->
-         <td style="width: 14%;"> <input type="text" class="form-control" ng-model="pur1.Rate"></td>
+         <td style="width: 14%;"> <input type="text" class="form-control" ng-model="pur1.Rate" ng-change='fixedRateDecimal($index)'></td>
       </td>
 <!-- <td style="width: 16%;"><select class="form-control" ng-model="pur1.CessOn" ng-disabled="true">
 <option ng-repeat= "pur in taxp" >{{pur.CessOn}}</option>
