@@ -1598,6 +1598,7 @@ console.log(count3)
 
  $scope.all = true
 $scope.newBarSumm = function(){
+  // alert("2")
   // $scope.test = 'display'
   console.log("i got new call")
   $scope.all = false
@@ -1627,13 +1628,14 @@ $scope.editBarSumm = function(){
   $scope.test='update1';
     
      
-     //alert("kk")
+     // alert("kk")
       //$scope.test = 'update1'
 
         if(editrow3 == undefined){
           alert("Please select any item");
        }
        else{
+        // alert("1");
           $scope.newBarSumm();
          //    $scope.all = false
          // $scope.bitem = ""
@@ -1644,7 +1646,7 @@ $scope.editBarSumm = function(){
       console.log(editrow3);
       console.log(editrow3._id);
       id3 = editrow3._id
- 
+ // alert("3");
   
       // $scope.bitem = editrow3
       console.log(editrow3.composite);
@@ -1670,9 +1672,11 @@ $scope.editBarSumm = function(){
         };
         // alert($scope.bit.date);
       $scope.bitem.ItemName = editrow3.itemname
-  
-      $scope.bitem.wt = parseFloat(editrow3.totalweight.$numberDecimal);
+      // alert(editrow3.totalweight+"weight");
+      // $scope.bitem.wt = parseFloat(editrow3.totalweight.$numberDecimal);
+      $scope.bitem.wt = parseFloat(editrow3.totalweight);
       console.log($scope.bitem.wt)
+      // alert($scope.bitem.wt+"4");
       $scope.bitem.pcs = parseFloat(editrow3.totalpcs);
       $scope.bitem.titems = parseFloat(editrow3.totaltags);
       $scope.bitem.remark = editrow3.remarks
@@ -2068,11 +2072,11 @@ $scope.newwas=function($index,pctcal)
         if ($scope.barcodeWastage == "percentage") {
             $scope.userit[$index].wastagePrint = (parseFloat(wastage)/parseFloat($scope.userit[$index].ntwt))*100;
              $scope.userit[$index].wastagePrint = parseFloat($scope.userit[$index].wastagePrint ).toFixed(2)
-            //alert($scope.userit[$index].wastagePrint)
+            // alert($scope.userit[$index].wastagePrint+"  p1")
         }else{
                $scope.userit[$index].wastagePrint =(parseFloat($scope.userit[$index].wastage)*parseFloat($scope.userit[$index].ntwt))/100;
                $scope.userit[$index].wastagePrint = parseFloat($scope.userit[$index].wastagePrint ).toFixed(3)
-               //alert($scope.userit[$index].wastagePrint+""+wastage)
+               // alert($scope.userit[$index].wastagePrint+"  w2")
         }
 
         $scope.userit[$index].chgunt=(parseFloat($scope.userit[$index].ntwt)+parseFloat(wastage)-$scope.totmat).toFixed(fixdec);
@@ -2094,10 +2098,11 @@ $scope.newwas=function($index,pctcal)
         if ($scope.barcodeWastage == "percentage") {
             $scope.userit[$index].wastagePrint = (parseFloat(wastage)/parseFloat($scope.userit[$index].ntwt))*100;
              $scope.userit[$index].wastagePrint = parseFloat($scope.userit[$index].wastagePrint ).toFixed(2)
-            //alert($scope.userit[$index].wastagePrint)
+            // alert($scope.userit[$index].wastagePrint+" AU1")
         }else{
             $scope.userit[$index].wastagePrint = $scope.userit[$index].wastage;
-             $scope.userit[$index].wastagePrint = parseFloat($scope.userit[$index].wastagePrint ).toFixed(3)
+            $scope.userit[$index].wastagePrint = parseFloat($scope.userit[$index].wastagePrint ).toFixed(3)
+            // alert($scope.userit[$index].wastagePrint+" AU2")  
         }
           $scope.userit[$index].taxval=(parseFloat($scope.userit[$index].chgunt)*parseFloat($scope.userit[$index].rate)).toFixed($scope.rupeesDecimalPoints);
           reuseMethodsForLabStone($index)
@@ -2339,7 +2344,7 @@ $scope.uomConversion=function($index,uom){
  $scope.newlab=function($index,labval2)
  {
     //alert($scope.userit[$index].labamt);
-      $scope.userit[$index].labamt =( $scope.userit[$index].labamt).toFixed(fixdec);
+      // $scope.userit[$index].labamt =( $scope.userit[$index].labamt).toFixed(fixdec);
      $scope.userit[$index].labamt = parseFloat ($scope.userit[$index].labamt) ;
    
      if($scope.userit[$index].stval == undefined){
@@ -2400,7 +2405,7 @@ $scope.uomConversion=function($index,uom){
             //  $scope.userit[$index].wastagePrint12 = parseFloat($scope.userit[$index].wastagePrint12 ).toFixed(2)
              $scope.userit[$index].wastagePrint12 =($scope.userit[$index].labamt)
 
-           // alert($scope.userit[$index].wastagePrint12)
+            // alert($scope.userit[$index].wastagePrint12+"11")
         }else{
           // alert("hello  $scope.userit[$index].labval "+$scope.userit[$index].labval+" $scope.userit[$index].labvalamt "+$scope.userit[$index].labamt);
             $scope.userit[$index].wastagePrint12 = (parseFloat($scope.userit[$index].chgunt)*parseFloat($scope.userit[$index].labamt))/100;
@@ -2408,7 +2413,7 @@ $scope.uomConversion=function($index,uom){
             
 
            // $scope.userit[$index].wastagePrint12 = $scope.userit[$index].addlab;
-           // alert($scope.userit[$index].wastagePrint12)
+           // alert($scope.userit[$index].wastagePrint12+"22")
         }
       taxValCal($index)
     }
@@ -2431,7 +2436,7 @@ $scope.uomConversion=function($index,uom){
               $scope.userit[$index].wastagePrint12 = parseFloat($scope.userit[$index].wastagePrint12 ).toFixed(2)
             
               //alert("per uny "+$scope.userit[$index].wastagePrint12)
-            //alert($scope.userit[$index].wastagePrint12)
+            // alert($scope.userit[$index].wastagePrint12+"pu1")
         }else{
            //alert("hello");
            //alert("hello  $scope.userit[$index].labval "+$scope.userit[$index].labval+" $scope.userit[$index].labvalamt "+$scope.userit[$index].labamt);
@@ -2440,7 +2445,7 @@ $scope.uomConversion=function($index,uom){
             
 
            // $scope.userit[$index].wastagePrint12 = $scope.userit[$index].addlab;
-            //alert($scope.userit[$index].wastagePrint12)
+            // alert($scope.userit[$index].wastagePrint12+"pu22")
 
         }
         taxValCal($index)
@@ -2470,13 +2475,13 @@ $scope.uomConversion=function($index,uom){
 
       
            //alert($scope.userit[$index].wastagePrint12 )
-            //alert($scope.userit[$index].wastagePrint12)
+            // alert($scope.userit[$index].wastagePrint12+"A11")
         }else{
            //alert("hello");
            var required = (parseFloat($scope.userit[$index].labval)/(parseFloat($scope.userit[$index].chgunt)*parseFloat($scope.userit[$index].rate)))*100;
              $scope.userit[$index].wastagePrint12 =( required* (parseFloat($scope.userit[$index].chgunt)))/100;
             $scope.userit[$index].wastagePrint12 = parseFloat($scope.userit[$index].wastagePrint12 ).toFixed(3)
-           // alert($scope.userit[$index].wastagePrint12)
+           // alert($scope.userit[$index].wastagePrint12+"A22")
         }
 
     }

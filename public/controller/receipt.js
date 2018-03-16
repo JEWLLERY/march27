@@ -311,19 +311,20 @@ console.log($scope.paymode+","+$scope.amount+","+$scope.bank+","+$scope.chequeno
                 return;
               }
               else{
-              // alert("cheque no validation");
+               // alert("cheque no validation22");
                 var cheno = $scope.rpamt[i].chequeno;
                 var chebank = $scope.rpamt[i].bank;
                 var chedata=cheno+","+chebank;
+                // alert(chedata)
                 $http.get('/checknovalidation'+chedata).success(function(response){
                   console.log(response);
-                  // alert(response);
+                   // alert(response+"333333333333333");
                   if(response.length != 0){
-                    alert("Entered Cheque No already exists");
+                     alert("Entered Cheque No already exists");
                     $scope.chequeno='';
                     flag=1;
-                    // alert("flag with in res"+flag);
-                    // return;
+                      // alert("flag with in res"+flag);
+                     return;
                     // break;
 
                   }
@@ -413,6 +414,7 @@ console.log($scope.paymode+","+$scope.amount+","+$scope.bank+","+$scope.chequeno
                  setTimeout(function(){$scope.insertReceiptOrders(flag)},2000);
            }else
            {
+            // alert("hi");
                  setTimeout(function(){$scope.insertReceipt(flag)},2000);
                 }
             //end for save and navigation    
@@ -438,7 +440,7 @@ console.log($scope.rpamt.paymode+","+$scope.rpamt.amount+","+$scope.rpamt.bank+"
    }
    //for inserting data to db
    $scope.insertReceipt=function(flag){
-     // alert("clicked on save"+$scope.printreceipt);
+      // alert("clicked on save in insertreceipt"+flag);
       //$scope.voucherStatus = 'InProgress';
       if(flag==0){
       for(i=0;i<=$scope.rpamt.length-1;i++){

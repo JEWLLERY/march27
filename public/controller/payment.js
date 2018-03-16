@@ -330,7 +330,7 @@ $scope.billDate=new Date();
                 var cheno = $scope.rpamt[i].chequeno;
                 var chebank = $scope.rpamt[i].bank;
                 var chedata=cheno+","+chebank;
-                $http.get('/checknovalidation'+chedata).success(function(response){
+                $http.get('/paymentchecknovalidation'+chedata).success(function(response){
                   console.log(response);
                   // alert(response);
                   if(response.length != 0){

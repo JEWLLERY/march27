@@ -679,11 +679,11 @@ width: 8%;
        
        </div><br>
        <div class="row" ng-cloak>
-       &nbsp;&nbsp;&nbsp;&nbsp;<label >Total weight <span id="star"><font size="04">*</font></span><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');"  ng-model="bitem.wt"   ng-disabled="all" step="0.01"  ></label>
+       &nbsp;&nbsp;&nbsp;&nbsp;<label >Total weight <span id="star"><font size="04">*</font></span><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/^[0.0-9.0]+(\.[0-9]{4,6})/g,'');"  ng-model="bitem.wt" step="0.01" ng-disabled="all"   ></label>
 
-       &nbsp;&nbsp;&nbsp;&nbsp;<label>Total Pcs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="star"><font size="04">*</font></span><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');"  name="" ng-model="bitem.pcs" ng-disabled="all"  ></label>
+       &nbsp;&nbsp;&nbsp;&nbsp;<label>Total Pcs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="star"><font size="04">*</font></span><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0-9]/g,'');"  name="" ng-model="bitem.pcs" ng-disabled="all"  ></label>
        
-       &nbsp;&nbsp;&nbsp;&nbsp;<label>Total Tags &nbsp;&nbsp;<span id="star"><font size="04">*</font></span><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');"  name="" ng-model="bitem.titems"  ng-disabled="all"  ></label>
+       &nbsp;&nbsp;&nbsp;&nbsp;<label>Total Tags &nbsp;&nbsp;<span id="star"><font size="04">*</font></span><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0-9]/g,'');"  name="" ng-model="bitem.titems"  ng-disabled="all"  ></label>
 
       <!--  <label>Total Pcs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="star"><font size="04">*</font></span><input type="number"   ng-disabled="all" required ></label><br><br> -->
 

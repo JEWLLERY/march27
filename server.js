@@ -1083,18 +1083,39 @@ app.get('/greycolor',function(req,res)
 
 //for cheque no validation
 app.get('/checknovalidation:datas',function(req,res){
-  console.log("cheque no validation for same current account")
+  console.log("cheque no validation for same current account11111111111111111111")
   var check=req.params.datas;
   console.log(check);
   var check_array=check.split(",");
   var cno=check_array[0];
+  console.log(cno+"vbnvvvvvvv");
   var cbank=check_array[1];
-  console.log(cno);
+  console.log(cbank+"mmmmmmmmmmmmmm");
+  // console.log(cno);
+  db.receipts.find({"Bank":cbank,"ChequeNo":cno},function(err,doc){
+    console.log(doc+"ggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
+    res.json(doc);
+  })
+})
+
+//for payment cheque no validation
+app.get('/paymentchecknovalidation:datas',function(req,res){
+  console.log("cheque no validation for same current account11111111111111111111")
+  var check=req.params.datas;
+  console.log(check);
+  var check_array=check.split(",");
+  var cno=check_array[0];
+  console.log(cno+"vbnvvvvvvv");
+  var cbank=check_array[1];
+  console.log(cbank+"mmmmmmmmmmmmmm");
+  // console.log(cno);
   db.payments.find({"Bank":cbank,"ChequeNo":cno},function(err,doc){
     console.log(doc+"ggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
     res.json(doc);
   })
 })
+
+
 
 
 app.get('/bardata',function(req,res)
@@ -1113,7 +1134,7 @@ app.get('/barcodereprint:barcode1',function(req,res){
   var barnum=req.params.barcode1;
   var barnum1=parseInt(barnum);
   console.log(typeof(barnum1)+"nnnnnnnnnnnnnnnnnnnnn");
-    db.batch.find({"barcode":barnum1},function(err,doc){
+    db.batch.find({"barcode":barnum1,"stats":{$ne:'completed'}},function(err,doc){
       console.log(doc+"details of the selected barcode");
       res.json(doc);
     });
@@ -2379,11 +2400,7 @@ app.post('/transactionstock',function(req,res){
 app.post('/transactionstockInward',function(req,res){
      // delete(req.body.Transaction)
      delete(req.body.Batch)
-<<<<<<< HEAD
-   // delete(req.body.stats)
-=======
-   
->>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
+
     delete(req.body.tags)
     delete(req.body.wt)
     delete(req.body.color)
@@ -6666,18 +6683,10 @@ app.get('/todayinventoryGroupValueNotation/:data',function(req,res){
 app.get('/groupAndCategoryBarcode',function(req,res){
     console.log("groupAndCategoryBarcode");
     
-      // db.transactionDetail.find(
-      //            {refid:Number(req.query.barcode)}
-      //    ,function (err,doc) {
-          
-      //      // body...
-      //    })
-<<<<<<< HEAD
-      db.transactionDetail.find({"refid" :  32499001, comboBarcode: { $exists: false }},function (err,doc) {
-=======
-console.log(" req.query.barcode "+req.query.barcode+" "+typeof(req.query.barcode))
+
+//console.log(" req.query.barcode "+req.query.barcode+" "+typeof(req.query.barcode))
       db.transactionDetail.find({"refid" : Number(req.query.barcode), comboBarcode: { $exists: false }},function (err,doc) {
->>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
+
           //console.log(doc.length);
           console.log(" barcoded "+doc.length);
           res.json(doc);
@@ -8955,11 +8964,6 @@ require('./public/inventoryDbs/defaultCollections')(app);
 
 // require('./apiCalls/printPdf')(app); // pass our application into our routes
 require('./apiCalls/materialAdvancePdf')(app);
-<<<<<<< HEAD
-app.listen(3200); 
-console.log("server running on port 3200");
-=======
-app.listen(9190); 
-console.log("server running on port 9190");
->>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
+app.listen(9000); 
+console.log("server running on port 9000");
 exports = module.exports = app;
