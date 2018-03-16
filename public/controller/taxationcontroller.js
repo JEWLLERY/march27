@@ -108,6 +108,24 @@ $scope.ledgerAccontInt = function(account,index,type) {
          
    })
 }//ledgerAccontInt
+
+//for decimal handling for rate
+$scope.fixedRateDecimal = function(index){
+
+// $scope.pur1[index].Rate = parseFloat($scope.pur1[index].Rate).toFixed(2);
+// alert($scope.pur1[index].Rate+" "+index)
+
+  var num = $scope.pur1[index].Rate; // Convert to string
+                console.log( (num.split('.')[1] || []).length)
+                if ((num.split('.')[1] || []).length >=2) {
+                    //$scope.userit[$index].rate = 
+                     $scope.pur1[index].Rate = parseFloat ($scope.pur1[index].Rate)
+                     console.log(  $scope.pur1[index].Rate)
+                     $scope.pur1[index].Rate = parseFloat ($scope.pur1[index].Rate).toFixed(2);
+                     console.log(  $scope.pur1[index].Rate)
+                }
+
+}//$scope.fixedRateDecimal
 // saving of data
 $scope.addnew = function() {
  // console.log($scope.tax.taxname);
@@ -193,27 +211,30 @@ $scope.remove = function(tax) {
    //var r = confirm("Are you sure you want to delete the item ");
    $http.get('/editititem2',{params:{"aliasname":tax.aliasname,"taxname":tax.taxname}}).success(function(response) {
    console.log(response);
-      for (i=0;i<=response.length-1;i++){
+    //  for (i=0;i<=response.length-1;i++){
           var r = confirm("Are you sure you want to delete ");
-                   if (r == true) {
+             if (r == true) {
                  console.log("true");
+                  for (i=0;i<=response.length-1;i++){
                  //console.log(response[i]._id)
-                 $http.delete('/opal1/'+response[i]._id).success(function(response)
-                     {
+                 $http.delete('/opal1/'+response[i]._id)
+                 // .success(function(response)
+                 //     {
                                 
-                     });
-  refresh()
+                 //     });
+                refresh()
                 $scope.pur1=[]
                    add1()
+                 }//for loop
             
              }else{
-                   refresh()
-                $scope.pur1=[]
-                   add1()
+                           refresh()
+                        $scope.pur1=[]
+                           add1()
 
                   }
           
-      }
+     // }//for loop
 refresh(); 
   });
 

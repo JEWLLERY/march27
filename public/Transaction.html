@@ -777,7 +777,7 @@ display: inline-block;
                     <select ng-model="transaction" class="  selectpicker" ng-change = "TransactionDetails();clearDisplay('TransactionName')" >
                       
 <!--  ng-init=" transaction = 'Regular Sale'"  -->
-                        <option ng-repeat="tran in transactions" ng-if="tran.TransactionType!='Payment' && tran.TransactionType!='Receipts'&& tran.TransactionType!='Receipt'" ng-cloak >{{tran.TransactionType}}</option></select>
+                        <option ng-repeat="tran in transactions" ng-if="tran.TransactionType!='Payment' && tran.TransactionType!='Receipts'&& tran.TransactionType!='Receipt' && tran.TransactionType!='Payments'&& tran.TransactionType!='Order Detail'" ng-cloak >{{tran.TransactionType}}</option></select>
                       
 
                   <!--   </select> -->
@@ -1163,7 +1163,7 @@ display: inline-block;
        </select>
        </td> -->
 
-      <td> <select ng-model="item.purity" class="selectpicker" ng-change="purityCal1($index,item.purity,item.itemName)" ng-disabled="transaction=='Sale Return'||transaction=='Purchase Return'||transaction=='Approval Sale'||transaction=='Approval Return' ">
+      <td> <select ng-model="item.purity" class="selectpicker" ng-change="purityCal1($index,item.purity,item.itemName)" ng-disabled="transaction=='Sale Return'||transaction=='Purchase Return'||transaction=='Approval Sale'||transaction=='Approval Return' " ng-blur="calMrpValue($index)">
 <!-- || test=='display' -->
      <!--  <td> <select ng-model="item.purity" class="selectpicker" ng-change="purityCal($index,item.purity)" ng-disabled="transaction=='Sale Return'"> -->
 
@@ -1327,37 +1327,12 @@ display: inline-block;
    
   </div>
   </form></div><br>
-<!-- <<<<<<< HEAD -->
-
- <!-- <div class="w3-row-padding w3-border" ng-cloak> -->
-    <!-- <div class="w3-half w3-container" ng-hide=""> -->
-<!-- ======= -->
-  <!--  <div class="w3-row-padding w3-border" ng-cloak>
-    <div class="w3-half w3-container" > -->
-  
-<!-- 
- <div class="w3-row-padding w3-border"> -->
-<!-- <<<<<<< HEAD:public/Transaction.html
-  <div class="col-sm-6" ng-show ="(transaction == 'Urd Purchase'|| transaction == 'Sale Return'|| transaction == 'Purchase Return'|| transaction == 'Issue Voucher'|| transaction == 'Receipt Voucher'|| transaction == 'Valuation'|| transaction == 'RD Purchase'||transaction=='Approval Sale'||transaction == 'Approval Out'||transaction=='Approval Return')" ></div>
-======= -->
+   <div class="col-sm-6" ng-show="(transaction == 'Sale Return'|| transaction == 'Purchase Return'||transaction=='Opening Stock')"></div>
+  <div class="col-sm-8" ng-show="(transaction=='Approval Return'||transaction=='Approval Out'||transaction=='Issue Voucher'||transaction=='Receipt Voucher')"></div>
   <div class="col-sm-1g" ng-show ="(transaction == 'Urd Purchase'|| transaction == 'Sale Return'|| transaction == 'Purchase Return'|| transaction == 'Issue Voucher'|| transaction == 'Receipt Voucher'|| transaction == 'Valuation'|| transaction == 'RD Purchase'||transaction=='Approval Sale'||transaction == 'Approval Out'||transaction=='Approval Return')" ></div>
-  <!-- <div class="col-sm-6" ng-show ="(transaction == 'Urd Purchase'|| transaction == 'Sale Return'|| transaction == 'Purchase Return'|| transaction == 'Issue Voucher'|| transaction == 'Receipt Voucher'|| transaction == 'Valuation'|| transaction == 'RD Purchase'||transaction=='Approval Sale'||transaction == 'Approval Out'||transaction=='Approval Return')" ></div> -->
-<!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
-<!-- <<<<<<< HEAD -->
     <div class="w3-half w3-container" ng-hide ="(transaction == 'Sale Return'|| transaction == 'Purchase Return'||transaction=='Approval Return'||transaction=='Approval Out'||transaction=='Issue Voucher'||transaction=='Receipt Voucher'||transaction=='Opening Stock')">
-      <!-- <div class="w3-half w3-container" ng-hide ="(transaction == 'Urd Purchase' || transaction == 'Sale Return'|| transaction == 'Purchase Return'|| transaction == 'Issue Voucher'|| transaction == 'Receipt Voucher' || transaction == 'Valuation'|| transaction == 'RD Purchase'||transaction == 'Approval Out'||transaction=='Approval Return'||transaction=='Approval Sale')"> -->
-<!-- ======= -->
-    <!-- <div class="w3-half w3-container" ng-hide ="(transaction == 'Urd Purchase' || transaction == 'Sale Return'|| transaction == 'Purchase Return'|| transaction == 'Issue Voucher'|| transaction == 'Receipt Voucher' || transaction == 'Valuation'|| transaction == 'RD Purchase'||transaction == 'Approval Out')"> -->
-<!-- >>>>>>> fee1f0c78ec863e1379d888ee1ecfcda651c8fe5 -->
-<!-- >>>>>>> 61946425920cfde23eb0ef81e1ccb2a84ae6baa2 -->
-    <!-- <div class="w3-card-6 w3-margin"> -->
       <br>
-<!-- <<<<<<< HEAD:public/Transaction.html
-        <header class="w3-container w3-light-grey w3-padding-8 w3-center">
-======= -->
         <header class="w3-container w3-light-grey w3-padding-8 w3-center" ng-cloak>
-<!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
-     <!--    <h4 >DISCOUNT/CHARGES</h4> -->
           <h4 ng-cloak>INVOICE CHARGES</h4>
         </header>
 <!-- <<<<<<< HEAD:public/Transaction.html

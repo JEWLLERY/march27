@@ -577,7 +577,7 @@ li#name1 {
                   <td ng-model="total.ValueNotation" >{{total.ValueNotation}}</td>
                   
                    <td>
-        <input type="text" ng-model="total.Rate" />
+        <input type="text" ng-model="total.Rate" ng-change='fixedDecimalCall($index)' />
       </td>
                  </tr>
                </tbody>

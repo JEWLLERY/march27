@@ -1808,31 +1808,31 @@ $scope.purityCal=function(val,purity){
 }*/
     else 
     {
-        //alert("null value")
-      //26/4  var gwt=$scope.userit[$index].gwt;
-   //   $scope.userit[$index].gwt = 3;//added 26/4
-      console.log($scope.userit[val].gwt)//added 26/4
-        var gwt=$scope.userit[val].gwt;
-        //alert(gwt);
-   
-    $scope.userit[val].ntwt = $scope.userit[val].gwt;
-    if($scope.userit[val].stwt!=null)
-    {
-      // $scope.userit[$index].ntwt=(parseFloat($scope.userit[$index].gwt)-parseFloat($scope.userit[$index].stwt)).toFixed(fixdec);
+                //alert("null value")
+              //26/4  var gwt=$scope.userit[$index].gwt;
+           //   $scope.userit[$index].gwt = 3;//added 26/4
+              console.log($scope.userit[val].gwt)//added 26/4
+                var gwt=$scope.userit[val].gwt;
+                //alert(gwt);
+           
+            $scope.userit[val].ntwt = $scope.userit[val].gwt;
+            if($scope.userit[val].stwt!=null)
+            {
+              // $scope.userit[$index].ntwt=(parseFloat($scope.userit[$index].gwt)-parseFloat($scope.userit[$index].stwt)).toFixed(fixdec);
+                 
+              $scope.userit[val].ntwt=(parseFloat($scope.userit[val].ntwt)-parseFloat($scope.userit[val].stwt)).toFixed(fixdec);
+            }
+            //$scope.userit[val].chgunt=($scope.userit[val].ntwt).toFixed(fixdec);
+             $scope.userit[val].chgunt=($scope.userit[val].ntwt);
+           
+            //alert("here is index"+$scope.userit[$index].chgunt)
+            //
+            //$scope.newwas($index,pctcal);
          
-      $scope.userit[val].ntwt=(parseFloat($scope.userit[val].ntwt)-parseFloat($scope.userit[val].stwt)).toFixed(fixdec);
-    }
-    //$scope.userit[val].chgunt=($scope.userit[val].ntwt).toFixed(fixdec);
-     $scope.userit[val].chgunt=($scope.userit[val].ntwt);
-   
-    //alert("here is index"+$scope.userit[$index].chgunt)
-    //
-    //$scope.newwas($index,pctcal);
- 
-    $scope.userit[val].taxval=($scope.userit[val].chgunt*$scope.userit[val].rate).toFixed(fixdec);;
-    // $scope.userit[val].taxamt=$scope.userit[val].taxval/100;
-    // $scope.userit[val].final=parseFloat($scope.userit[val].taxval)+parseFloat($scope.userit[val].taxamt)
-    
+            $scope.userit[val].taxval=($scope.userit[val].chgunt*$scope.userit[val].rate).toFixed(fixdec);;
+            // $scope.userit[val].taxamt=$scope.userit[val].taxval/100;
+            // $scope.userit[val].final=parseFloat($scope.userit[val].taxval)+parseFloat($scope.userit[val].taxamt)
+            
 }
 }      
 
@@ -2192,9 +2192,15 @@ var taxValCal = function(index){
                totalChgWeight =  stwt1 ;
                totaltaxVal = stval0;
                console.log("before "+totaltaxVal)
+               var stValIncrement = 0;
+               // function incrementComposite() {
+               //      if () {};
+               // }
                for(let a = 1;a< 4;a++){
                  // alert(" $scope.userit[a].gwt "+$scope.userit[a].gwt )
                   if($scope.userit[a].gwt != undefined){
+                     stval0 = 0;
+                       // alert(a+" a "+$scope.userit[a].taxval)
                     // console.log($scope.userit[a].chgunt);
                        //  alert(" $scope.userit.length "+ $scope.userit.length+"$scope.userit[a].gwt "+$scope.userit[a].gwt+" a "+a)
                          // $scope.userit[a].ntwt=(parseFloat($scope.userit[a].gwt)-parseFloat($scope.userit[a].stwt)).toFixed(fixdec);
@@ -2209,7 +2215,7 @@ var taxValCal = function(index){
                              $scope.userit[0].chgunt=($scope.userit[0].ntwt);
                     
 
-                            $scope.userit[0].taxval=($scope.userit[0].chgunt*$scope.userit[0].rate).toFixed($scope.rupeesDecimalPoints);
+                             $scope.userit[0].taxval=($scope.userit[0].chgunt*$scope.userit[0].rate).toFixed($scope.rupeesDecimalPoints);
                             //
 
                             if( $scope.userit[0].pctcal!= undefined){
@@ -2226,37 +2232,70 @@ var taxValCal = function(index){
                             console.log("totaltaxVal "+totaltaxVal);
 
                              console.log("$scope.userit[a].taxval "+$scope.userit[a].taxval);
-                            if($scope.userit[a].taxval == "NaN"){
-                              // alert("$scope.userit[a].taxval "+$scope.userit[a].taxval);
-                              $scope.userit[a].taxval = 0;
-                              console.log($scope.userit[a].taxval)
-                             // totaltaxVal = parseFloat(totaltaxVal);
-                              totaltaxVal = parseFloat($scope.userit[0].labval);
+                            // if($scope.userit[a].taxval == "NaN"){
+                            //   // alert("$scope.userit[a].taxval "+$scope.userit[a].taxval);
+                            //   $scope.userit[a].taxval = 0;
+                            //   console.log($scope.userit[a].taxval)
+                            //  // totaltaxVal = parseFloat(totaltaxVal);
+                            //   totaltaxVal = parseFloat($scope.userit[0].labval);
                   
                   
-                            }else{
-                               console.log($scope.userit[a].taxval)
-                               totaltaxVal = parseFloat(totaltaxVal)+ parseFloat($scope.userit[a].taxval) ;
-                               //alert("else totaltaxVal "+totaltaxVal)
-                            }
+                            // }else{
+                            //    console.log($scope.userit[a].taxval)
+                            //    totaltaxVal = parseFloat(totaltaxVal)+ parseFloat($scope.userit[a].taxval) ;
+                            //    //alert("else totaltaxVal "+totaltaxVal)
+                            // }
                          // alert("totaltaxVal "+totaltaxVal)
                          // alert("stval2 "+stval2)
-                         $scope.userit[0].stval = (totaltaxVal);
-                         $scope.userit[0].stval = ($scope.userit[0].stval).toFixed($scope.rupeesDecimalPoints);
+                        // $scope.userit[0].stval = (totaltaxVal);
+                         //$scope.userit[0].taxval
+                        // alert("   $scope.userit[0].stValIncrement "+  $scope.userit[0].stval+"   $scope.userit[0].labval "+  $scope.userit[0].labval+" $scope.userit[0].stchg "+$scope.userit[0].stchg)
+                          //setTimeout()
+
+                          stValIncrement = stValIncrement+ parseFloat($scope.userit[a].taxval);
+                         $scope.userit[0].stval = parseFloat(stValIncrement).toFixed($scope.rupeesDecimalPoints);
                           console.log(" $scope.userit[0].stval "+ $scope.userit[0].stval);
-                        $scope.userit[0].taxval =  (parseFloat($scope.userit[a].taxval) +parseFloat(taxval2)).toFixed(fixdec);
+                       // $scope.userit[0].taxval =  (parseFloat($scope.userit[a].taxval) +parseFloat(taxval2)).toFixed(fixdec);
                            // $scope.userit[0].taxval =  parseFloat(taxval2).toFixed(fixdec);
-                         
+                         $scope.userit[0].taxval = ((parseFloat($scope.userit[0].chgunt)*parseFloat($scope.userit[0].rate))+ parseFloat($scope.userit[0].stval)).toFixed($scope.rupeesDecimalPoints);
                              console.log("taxval2 first"+taxval2); 
+                              setTimeout(function() {  
+                                              
+                                          
+                                       if( $scope.userit[0].labcal!= undefined &&  $scope.userit[0].stonecal == undefined ){
+                                           
+                                              $scope.userit[0].taxval = ((parseFloat($scope.userit[0].chgunt)*parseFloat($scope.userit[0].rate))+ parseFloat($scope.userit[0].stval)+parseFloat($scope.userit[0].labval)).toFixed($scope.rupeesDecimalPoints);
+                                     
+                                        } 
+                                         else if( $scope.userit[0].stonecal!= undefined && $scope.userit[0].labcal == undefined){
+                                          
+                                           // alert(" stval0 "+stval0)
+                                            $scope.userit[0].stval = (parseFloat($scope.userit[0].stval) + parseFloat(stval0)).toFixed($scope.rupeesDecimalPoints);
+                                          $scope.userit[0].taxval = ((parseFloat($scope.userit[0].chgunt)*parseFloat($scope.userit[0].rate))+ parseFloat($scope.userit[0].stval)+parseFloat(stval0)).toFixed($scope.rupeesDecimalPoints);
+                                     
+                                          // $scope.newstchg(0,$scope.userit[0].stonecal)
+                                        }
+                                       else if( $scope.userit[0].stonecal!= undefined && $scope.userit[0].labcal!= undefined){
+                                          
+
+                                          $scope.userit[0].taxval = ((parseFloat($scope.userit[0].chgunt)*parseFloat($scope.userit[0].rate))+ parseFloat($scope.userit[0].stval)+parseFloat($scope.userit[0].labval)+parseFloat(stval0)).toFixed($scope.rupeesDecimalPoints);
+                                     
+                                          
+                                        }else{
+                                            $scope.userit[0].taxval = ((parseFloat($scope.userit[0].chgunt)*parseFloat($scope.userit[0].rate))+ parseFloat($scope.userit[0].stval)).toFixed($scope.rupeesDecimalPoints);
+                        
+                                        } 
+                            }, 100);
+                            
                            // alert("$scope.userit[0].taxval "+$scope.userit[0].taxval+" taxval2 "+taxval2); 
                            
                             // console.log( $scope.userit[a].chgunt); 
                             
 
 
-                   }
+                   }//if gwt
                   
-               }
+               }//for loop
              }
 }
 
@@ -2509,7 +2548,7 @@ $scope.rateChange=function($index){
 var stval0 = 0;
  $scope.newstchg=function($index,stonecal2)
  {
-     
+     stval0 = 0;
     $scope.userit[$index].stchg =( $scope.userit[$index].stchg).toFixed(fixdec);
     $scope.userit[$index].stchg = parseFloat ($scope.userit[$index].stchg) ;
    

@@ -2379,11 +2379,7 @@ app.post('/transactionstock',function(req,res){
 app.post('/transactionstockInward',function(req,res){
      // delete(req.body.Transaction)
      delete(req.body.Batch)
-<<<<<<< HEAD
-   // delete(req.body.stats)
-=======
-   
->>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
+
     delete(req.body.tags)
     delete(req.body.wt)
     delete(req.body.color)
@@ -3666,7 +3662,7 @@ app.post('/confirmtransaction/:data',function(req,res){
         res.json(doc);
        });
     // db.transactionDetail.update({_id:mongojs.ObjectId(id)},{$set:{"orderStatus":status}});
-    // db.transactionDetail.update({refid:  bar},{$set:{"stats":status,"soldOutDate":soldOutDate}});
+     db.transactionDetail.update({refid:  bar},{$set:{"stats":status,"soldOutDate":soldOutDate}});
 
 
 
@@ -5414,10 +5410,21 @@ app.delete('/userit/:udelete',function(req,res)
     console.log(str);
     var str_array=str.split(",");
     var id=str_array[0];
-    
-     db.transactionDetail.remove({_id:mongojs.ObjectId(id),"Transaction": { $ne: "Barcoding" }}, function(err, docs) {
-      res.json("deleted");
-    })
+    //db.transactionDetail.find({_id:mongojs.ObjectId(id)})
+      db.transactionDetail.find({_id:mongojs.ObjectId(id)},function(err,transactionDetailData){
+      //  console.log(doc);
+        db.transactionDetail.remove({_id:mongojs.ObjectId(id)})
+         res.json("deleted");
+          
+            db.batch.update({barcode: transactionDetailData[0].barcode},{"$set":{ "orderStatus" : "available"}})
+              //,function(err, docs) {
+              //      // console.log(" tag delete exicuted successfully "+count);
+              //      // count++
+              //   })
+      })
+     // db.transactionDetail.remove({_id:mongojs.ObjectId(id),"Transaction": { $ne: "Barcoding" }}, function(err, docs) {
+     //    res.json("deleted");
+     // })
   
 })
 app.delete('/saleinv/:id',function(req,res)
@@ -6058,8 +6065,8 @@ app.put('/editeditem',function(req,res){
       //  var name=req.body.Name;
       //  console.log(name+"1111111111111111111111111111111"){"_id":mongojs.ObjectId(id)};
      db.items.update({_id : mongojs.ObjectId(id)},{$set:{"Name":req.body.Name,"Desc":req.body.Desc ,"Hsc":req.body.Hsc ,"InvGroupName":req.body.InvGroupName,"SaleCategory":req.body.SaleCategory,
-         "Outofstate":req.body.Outofstate ,"Withinstate":req.body.Withinstate,"comboItem":req.body.comboItem,"marginReport":req.body.marginReport,
-         "itemType":req.body.itemType}},function(err,doc)
+         "comboItem":req.body.comboItem,
+         "ItemType":req.body.ItemType}},function(err,doc)
         {
           // console.log(doc.name+"aaaaaaaaaaaaaaaaaaaaaaaa");
          // console.log(doc); "SalesTax":req.body.salesTax,
@@ -6657,6 +6664,7 @@ app.get('/todayinventoryGroupValueNotation/:data',function(req,res){
    //{count:b},
    //var currentdate = new Date(((new Date(new Date()).toISOString().slice(0, 23))+"-05:30")).toISOString();
      currentdate =currentdate.slice(0, 10);
+     console.log(" currentdate currentdate "+currentdate)
     db.inventoryGroupValueNotationDaily.find({date: { $gt:(currentdate)}},function(err,doc){
         //console.log(doc);
         res.json(doc);
@@ -6666,18 +6674,10 @@ app.get('/todayinventoryGroupValueNotation/:data',function(req,res){
 app.get('/groupAndCategoryBarcode',function(req,res){
     console.log("groupAndCategoryBarcode");
     
-      // db.transactionDetail.find(
-      //            {refid:Number(req.query.barcode)}
-      //    ,function (err,doc) {
-          
-      //      // body...
-      //    })
-<<<<<<< HEAD
-      db.transactionDetail.find({"refid" :  32499001, comboBarcode: { $exists: false }},function (err,doc) {
-=======
-console.log(" req.query.barcode "+req.query.barcode+" "+typeof(req.query.barcode))
+
+//console.log(" req.query.barcode "+req.query.barcode+" "+typeof(req.query.barcode))
       db.transactionDetail.find({"refid" : Number(req.query.barcode), comboBarcode: { $exists: false }},function (err,doc) {
->>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
+
           //console.log(doc.length);
           console.log(" barcoded "+doc.length);
           res.json(doc);
@@ -8955,11 +8955,6 @@ require('./public/inventoryDbs/defaultCollections')(app);
 
 // require('./apiCalls/printPdf')(app); // pass our application into our routes
 require('./apiCalls/materialAdvancePdf')(app);
-<<<<<<< HEAD
-app.listen(3200); 
-console.log("server running on port 3200");
-=======
-app.listen(9190); 
-console.log("server running on port 9190");
->>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
+app.listen(9100); 
+console.log("server running on port 9100");
 exports = module.exports = app;
