@@ -1272,12 +1272,20 @@ app.post('/api/issueVoucherPdf',function(req,res){
   
          // merchantDetailsCall(data_array[1],data_array[0],'staff','order');
           res.json(fileNameIssueVoucher)
+<<<<<<< HEAD
+=======
+
+        },1500); 
+>>>>>>> 3dfc256e64167e6c16df1d8d624ddc68e70afaa1
 
 
+<<<<<<< HEAD
 
         },1500);    
 })
 
+=======
+>>>>>>> 3dfc256e64167e6c16df1d8d624ddc68e70afaa1
 
      
 }//module.exports
