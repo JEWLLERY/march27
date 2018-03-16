@@ -625,42 +625,14 @@ app.put('/someChange',function(req,res){
 })
 app.post('/sschange',function(req,res){
   console.log("hhhhhhhhhhhhhhhhhhhhhhhhh4444444444444442222222222222222")
-// var dates=req.params.nam;
-//    var dates_array=dates.split(",");
-//    var datefrom=dates_array[0];
-//     var dateto=dates_array[1];
-     // datefrom=req.body.datefrom
-     // dateto=req.body.dateto
-     // var id = req.body._id
-     // _id = mongojs.ObjectId(id)
-     // console.log(_id+"llllllllllllllllll133333333333333333")
-  //console.log("entered into put request $scope.item1[i]._id!=null");
-//        var id = req.body._id
-// console.log(id+"jjjjjjjjjjjjjjj222222222222228888888")
+
  db.orderManage.insert(req.body,function(err,doc){
 //console.log("5gggggggggggggggggggggggg")
         res.json(doc);
         console.log(res)
       })
   
-       //var inven=req.body.InvGroupName;
-       //console.log(inven+"vvvvvvvvvvvvvvvvvvvvvv");
-      //  var name=req.body.Name;
-      //  console.log(name+"1111111111111111111111111111111"){"_id":mongojs.ObjectId(id)};
-     // db.orderManage.insert({_id : mongojs.ObjectId(id)},{$set:{"allocate":req.body.allocate,"initial":req.body.initial }},function(err,doc)
-     //    {
-     //      // console.log(doc.name+"aaaaaaaaaaaaaaaaaaaaaaaa");
-     //     // console.log(doc); "SalesTax":req.body.salesTax,
-     //        //res.json(doc);
 
-     //    });
-     // db.orders.insert({_id : mongojs.ObjectId(id)},{$set:{"allocate":req.body.allocate,"initial":req.body.initial }},function(err,doc)
-     //    {
-     //      // console.log(doc.name+"aaaaaaaaaaaaaaaaaaaaaaaa");
-     //     // console.log(doc); "SalesTax":req.body.salesTax,
-     //        res.json(doc);
-
-     //    });
 })
 app.post('/recieveChange',function(req,res){
   console.log("hhhhhhhhhhhhhhhhhhhhhhhhh4444444444444442222222222222222")
@@ -1498,16 +1470,15 @@ app.get('/codeDetails:barcodenum',function(req,res){
         res.json(doc);
 })
 })
-//combo
-  // db.transactionDetail.find({"comboBarcode":21462851},function(err,doc){ 
-  //        console.log("transactionDetail")
-  //       // console.log(doc[0]);
-  //        //console.log(doc.gwt);
-  //       console.log(doc[0].gwt);
-  //      // console.log(doc[0].gpcs);
-  // })    
+app.delete('/barcodesummarydelete/:udelete',function(req,res)
+{
+   //console.log("i got the delete request");
+    var id=req.params.udelete;
+    //console.log(id);
+    db.barCodeSummary.remove({_id: mongojs.ObjectId(id)}, function(err, docs) {
+})
+})
 
-// barcode data
 app.get('/getComboitem:barcodenum',function(req,res)
 {
    // console.log("i received a get request from count");
@@ -2379,11 +2350,7 @@ app.post('/transactionstock',function(req,res){
 app.post('/transactionstockInward',function(req,res){
      // delete(req.body.Transaction)
      delete(req.body.Batch)
-<<<<<<< HEAD
-   // delete(req.body.stats)
-=======
-   
->>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
+
     delete(req.body.tags)
     delete(req.body.wt)
     delete(req.body.color)
@@ -6672,12 +6639,8 @@ app.get('/groupAndCategoryBarcode',function(req,res){
           
       //      // body...
       //    })
-<<<<<<< HEAD
-      db.transactionDetail.find({"refid" :  32499001, comboBarcode: { $exists: false }},function (err,doc) {
-=======
-console.log(" req.query.barcode "+req.query.barcode+" "+typeof(req.query.barcode))
-      db.transactionDetail.find({"refid" : Number(req.query.barcode), comboBarcode: { $exists: false }},function (err,doc) {
->>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
+   db.transactionDetail.find({"refid" : Number(req.query.barcode), comboBarcode: { $exists: false }},function (err,doc) {
+
           //console.log(doc.length);
           console.log(" barcoded "+doc.length);
           res.json(doc);
@@ -8955,11 +8918,8 @@ require('./public/inventoryDbs/defaultCollections')(app);
 
 // require('./apiCalls/printPdf')(app); // pass our application into our routes
 require('./apiCalls/materialAdvancePdf')(app);
-<<<<<<< HEAD
-app.listen(3200); 
-console.log("server running on port 3200");
-=======
+
 app.listen(9190); 
 console.log("server running on port 9190");
->>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
+
 exports = module.exports = app;

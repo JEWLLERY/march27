@@ -302,7 +302,7 @@ display: block;
   width: 10%;
 }
 li#name1 {
-    right: -400px;
+    right: -100px;
     font-size: 27px;
     font-style: italic;
 } 
@@ -575,8 +575,8 @@ To:<input type="date" ng-model="bit2.date2" ng-change="wtCall()">
 <div class="col-sm-6">
     <button ng-click="GroupWisePreview()"  class="btn btn-primary" id="save" >Preview</button>
     <!-- <a href='mainpage.html'><button type="button" class="btn btn-danger"   ng-cloak>Close</button></a> -->
-    <button class="btn btn-info" id="cmd" >P D F</button>
-    <button class="btn btn-danger" id="btnExport" >Export</button>
+    <button class="btn btn-info" id="cmd" ng-disabled="review!='yes'">P D F</button>
+    <button class="btn btn-danger" id="btnExport" ng-disabled="review!='yes'">Export</button>
     <!-- <button ng-click="preview1()" class="btn btn-primary" id="save" >PDF</button>
     <button ng-click="preview1()" class="btn btn-primary" id="save" >Reset</button>
     <button ng-click="preview1()" class="btn btn-primary" id="save" >Export</button></div> -->

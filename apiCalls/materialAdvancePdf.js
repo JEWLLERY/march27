@@ -623,8 +623,7 @@ function textInRowFirst(doc2, text, heigth,width) {
    
 
 }// pdfPrintCall
-<<<<<<< HEAD
-=======
+
 
 var fileNameIssueVoucherPdf = null;
 
@@ -790,7 +789,7 @@ function textInRowFirst(doc, text, heigth,width) {
  
     doc.end()
 }// 
->>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
+
 var issueVoucherData = null;
 var fileNameIssueVoucher = null;  
 //pdfPrintCallIssueVoucher(partyNames,address,data)
@@ -1273,17 +1272,12 @@ app.post('/api/issueVoucherPdf',function(req,res){
   
          // merchantDetailsCall(data_array[1],data_array[0],'staff','order');
           res.json(fileNameIssueVoucher)
-<<<<<<< HEAD
-        },1500); 
 
-   
-})
 
-=======
+
         },1500);    
 })
 
 
->>>>>>> 82c3497dbe825b094e8c354c199500ba77e6ae03
      
 }//module.exports

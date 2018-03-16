@@ -652,7 +652,7 @@ width: 8%;
 <span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span> -->
 <div class="row" ng-cloak>
        <!-- <div class="col-sm-4" > -->
-      <label class="w3-round-xxlarge">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="star"><font size="04">*</font></span><select  class="selectpicker" ng-model="bitem.ItemName" ng-change="checkForCombo(bitem.ItemName)" class="w3-round-xxlarge" ng-disabled="all" required >
+      <label class="w3-round-xxlarge" style="padding-left: 40px">Item Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="star"><font size="04">*</font></span><select  class="selectpicker" ng-model="bitem.ItemName" ng-change="checkForCombo(bitem.ItemName)" class="w3-round-xxlarge" ng-disabled="all" required >
         
          <option ng-repeat="itemname in items" value="{{itemname.Name}}"  >{{itemname.Name}}</option>
         </select></label>
@@ -673,13 +673,13 @@ width: 8%;
 
        <!--  </form> -->
 
-       <div id="check" >&nbsp;&nbsp;&nbsp;&nbsp;
+       <div id="check" style="padding-left: 20px">&nbsp;&nbsp;&nbsp;&nbsp;
        <input type="checkbox" ng-model="bitem.composite" ng-disabled="all || all1 || bitem.splittable" id="check1" ng-click="compositeDis(bitem.composite)" >Is Composite
         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="bitem.splittable"  id="inline"  ng-disabled="all || all1  || bitem.composite " >Is Splittable 
        
        </div><br>
        <div class="row" ng-cloak>
-       &nbsp;&nbsp;&nbsp;&nbsp;<label >Total weight <span id="star"><font size="04">*</font></span><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');"  ng-model="bitem.wt"   ng-disabled="all" step="0.01"  ></label>
+       <label style="padding-left: 40px">Total weight <span id="star"><font size="04">*</font></span><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');"  ng-model="bitem.wt"   ng-disabled="all" step="0.01"  ></label>
 
        &nbsp;&nbsp;&nbsp;&nbsp;<label>Total Pcs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="star"><font size="04">*</font></span><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');"  name="" ng-model="bitem.pcs" ng-disabled="all"  ></label>
        

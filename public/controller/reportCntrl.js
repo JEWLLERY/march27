@@ -95,6 +95,8 @@ $scope.sort2 = "Sale Cty";
 $scope.sort3 = "Purity";
 $scope.sort4 = "Item";
 $scope.preview1 = function(){
+
+  $scope.review="yes";
   if ($scope.stockPoint==undefined ) { 
     alert("Please Select stockPoint") 
   }
