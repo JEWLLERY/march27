@@ -464,7 +464,7 @@ li#name1 {
    
               
               
-                    <select ng-model="party" id="party" >
+                    <select ng-model="party" id="party" ng-change="clearData()">
 
                         <option ng-repeat="party in partyNames" ng-cloak >{{party.subscriber}}</option>
                     </select>
@@ -476,16 +476,16 @@ li#name1 {
 <div class="col-sm-6">
   Order No<span id="star"><font size="02">*</font></span><input type="text" name="" ng-model="orderNO" disabled> 
 
-          <input type="radio"  ng-model="radio.state"   ng-change="radiobutton()"  value="with in state"> With in State
+          <input type="radio"  ng-model="radio.state"   ng-change="radiobutton()"  value="with in state" > With in State
         
          
           
 
-          <input type="radio"  ng-model="radio.state"  ng-change="radiobutton()" value="out of state">Out of State
+          <input type="radio"  ng-model="adio.state"  ng-change="radiobutton()" value="out of state" >Out of State
 </div>
 <div class="col-sm-6">
 Staff<span id="star"><font size="02">*</font></span>&nbsp;
-                    <select ng-model="staff"    id="party">
+                    <select ng-model="staff"    id="party" ng-change="clearData()">
 
                         <option ng-repeat="sale in saleNames" ng-cloak>{{sale.name}}</option>
                     </select>  

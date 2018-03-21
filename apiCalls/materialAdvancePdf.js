@@ -1250,7 +1250,7 @@ app.post('/api/orderDetailsIssueVoucherCallPdf/:orderNo',function(req,res){
                   console.log(orderData)
                   // console.log(" Receipt orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames"+orderData[0].saleNames)
                     //console.log(orderData[0].partyNames)
-                    merchantDetailsCall(orderNo,orderData[0].partyname,'staff','issueVoucherPdfCall');
+                    //merchantDetailsCall(orderNo,orderData[0].partyname,'staff','issueVoucherPdfCall');
                })
         }, 100);
      setTimeout(function(){    
@@ -1272,26 +1272,10 @@ app.post('/api/issueVoucherPdf',function(req,res){
   
          // merchantDetailsCall(data_array[1],data_array[0],'staff','order');
           res.json(fileNameIssueVoucher)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 4e8ccb113f08a847b98345022c4872a855fc45b9
-
-        },1500); 
->>>>>>> 3dfc256e64167e6c16df1d8d624ddc68e70afaa1
-
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
         },1500);    
 })
 
-=======
->>>>>>> 3dfc256e64167e6c16df1d8d624ddc68e70afaa1
->>>>>>> 4e8ccb113f08a847b98345022c4872a855fc45b9
 
      
 }//module.exports

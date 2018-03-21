@@ -1172,13 +1172,14 @@ $scope.cancelbarcodegeneration = function(){
       alert("Please Select Necessary Details");
       //break;
     }
+    $scope.userit= $scope.userit.slice(0, 0);
      console.log("cancel call");
     $scope.batch[colorindex].color = colorpush
    //$scope.list() 
     $scope.updateButton = false;
      edit1 = null;
-  //$scope.userit[0] = null;
-  $scope.userit= $scope.userit.slice(0, 0);
+  //$scope.userit="";
+  //$scope.userit= $scope.userit.slice(0, 0);
   // editrow3 = null;
 }
 

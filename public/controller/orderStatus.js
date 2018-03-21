@@ -11,6 +11,10 @@ $scope.usernamedetails = window.sessionStorage.getItem("username")
   console.log($scope.ordertype)
 
 })
+   $scope.clearDataOrd=function(){
+    $scope.results="";
+
+   }
 	 $scope.getorder=function(manage,datefrom,dateto){
   // var man=manage;
   // var dafrom=datefrom
@@ -30,6 +34,9 @@ $scope.usernamedetails = window.sessionStorage.getItem("username")
              $scope.results[i].usedate = new Date(response[i].usedate )
   $scope.results[i].date = new Date(response[i].date )
                }
+                if(response.length==0){
+        alert("No Matches Found")
+      }  
   
              console.log($scope.results)
                })
@@ -56,6 +63,9 @@ $scope.usernamedetails = window.sessionStorage.getItem("username")
              $scope.results[i].usedate = new Date(response[i].usedate )
   $scope.results[i].date = new Date(response[i].date )
                }
+                if(response.length==0){
+        alert("No Matches Found")
+      }  
              console.log($scope.results)
                })
  }
@@ -80,6 +90,9 @@ $scope.usernamedetails = window.sessionStorage.getItem("username")
              $scope.results[i].usedate = new Date(response[i].usedate )
   $scope.results[i].date = new Date(response[i].date )
                }
+                if(response.length==0){
+        alert("No Matches Found")
+      }  
                })
  }
  else if(manage==undefined && datefrom==undefined && dateto==undefined){
