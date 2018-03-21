@@ -1250,7 +1250,7 @@ app.post('/api/orderDetailsIssueVoucherCallPdf/:orderNo',function(req,res){
                   console.log(orderData)
                   // console.log(" Receipt orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames"+orderData[0].saleNames)
                     //console.log(orderData[0].partyNames)
-                    merchantDetailsCall(orderNo,orderData[0].partyname,'staff','issueVoucherPdfCall');
+                    //merchantDetailsCall(orderNo,orderData[0].partyname,'staff','issueVoucherPdfCall');
                })
         }, 100);
      setTimeout(function(){    

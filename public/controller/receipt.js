@@ -30,6 +30,7 @@ myApp.controller('billCntrl',['$scope','$http','$window',
     });
 
 
+<<<<<<< HEAD
 //  setPatyName  =  window.sessionStorage.getItem("receiptPatyName");
  
 // console.log(setPatyName)
@@ -52,6 +53,9 @@ myApp.controller('billCntrl',['$scope','$http','$window',
 //             var ilchgg  = window.sessionStorage.getItem("receiptPatyName");
 
 
+=======
+ 
+>>>>>>> 7330c2dee0995252447926c7b9a1cb793139d662
   
 
          $http.get('/getRecentVoucherNo'+recentId1).success(function(response){
@@ -126,6 +130,27 @@ $http.get('/getprefixs').success(function(response){
   })
 
 })
+
+setPatyName  =  window.sessionStorage.getItem("receiptPatyName");
+ 
+console.log(setPatyName)
+//setPatyName = 'viin';
+if (setPatyName!="null" && setPatyName!=null) {
+//alert("KK")
+$scope.dataHide="yes"
+      $http.get('/receiptOrderNo/'+setPatyName).success(function(response){
+          console.log(response);
+        $scope.orderNO=response[0].orderNO;
+        $scope.orderNO=response[0].orderNO;
+        $scope.partyname=response[0].partyNames
+       
+    });
+
+
+}   
+window.sessionStorage.setItem("receiptPatyName","null");
+
+            var ilchgg  = window.sessionStorage.getItem("receiptPatyName");
 
 
 
@@ -498,7 +523,7 @@ console.log($scope.rpamt.paymode+","+$scope.rpamt.amount+","+$scope.rpamt.bank+"
                        
 
 
-                            if (setPatyName!="null") {
+                            if (setPatyName!="null" && setPatyName!=null) {
 
                                     var go=confirm("Material Advance");
                                     if(go==true){

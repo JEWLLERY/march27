@@ -1995,6 +1995,8 @@ app.post('/savedata1/:update',function(req,res){
              // var uu= str_array[48]
 
                 var orderNO = str_array[47]
+                var refOrder= str_array[48]
+                  var remainingNtWt= str_array[49]
           //  mrp = parseFloat(mrp)
         
  // if(  orderNO == "undefined"){
@@ -2072,7 +2074,7 @@ app.post('/savedata1/:update',function(req,res){
                 "stonecal":stonecal,"RefId":refid,'salesPerson':salesPerson,'AccNo':AccNo,'labourTaxValue':labourTaxValue,'labamt':labamt,"urdAdjustment":urdAdjustment,'stchg':stchg,'comboItem':comboItem,'mrp':mrp,"billType":billType,"taxSelection":taxSelection,"stockPoint":stockPoint,
 // =======
                 // "billType":billType,"taxSelection":taxSelection,,"orderNo":orderNo"stockPoint":stockPoint,"stonecal":stonecal,"RefId":refid,'salesPerson':salesPerson,'AccNo':AccNo,'labourTaxValue':labourTaxValue,'labamt':labamt,"urdAdjustment":urdAdjustment,'stchg':stchg,'comboItem':comboItem,'mrp':mrp,},function(err,doc){
-                "InvGroupName":InvGroupName,"orderNo":orderNO ,"SaleCategory":SaleCategory},function(err,doc){
+                "InvGroupName":InvGroupName,"orderNo":orderNO,"remainingNtWt":remainingNtWt,"refOrder":refOrder,"SaleCategory":SaleCategory},function(err,doc){
 // >>>>>>> fee1f0c78ec863e1379d888ee1ecfcda651c8fe5
                 res.json(doc);
                  console.log("else insert when id is null look here")
@@ -3225,7 +3227,30 @@ app.get('/ordersNoFromReceipt/:voucher',function(req,res){
     res.json(doc);
   });
 });
-
+app.get('/lengthOrdNum/:voucher',function(req,res){
+  console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk ");
+  // var voucher = req.params.voucher;
+  // console.log("partyname is "+ voucher);
+  db.orders.find({"orderNO" : req.params.voucher,"initial":{ $ne: "Delivered" }},function(err,doc){
+    res.json(doc);
+  });
+});
+app.get('/completedLengthOrdNum/:voucher',function(req,res){
+  console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk ");
+  // var voucher = req.params.voucher;
+  // console.log("partyname is "+ voucher);
+  db.orders.find({"orderNO" : req.params.voucher,"initial":"Completed"},function(err,doc){
+    res.json(doc);
+  });
+});
+app.get('/overAllLengthOrdNum/:voucher',function(req,res){
+  console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk ");
+  // var voucher = req.params.voucher;
+  // console.log("partyname is "+ voucher);
+  db.orders.find({"orderNO" : req.params.voucher},function(err,doc){
+    res.json(doc);
+  });
+});
 
 //for inserting into receipt
 app.post('/receiptdata/:datas',function(req,res){
@@ -3258,6 +3283,7 @@ console.log(rdata1+"uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
   var voucherStatus = rdata1_array[14];
   var netBalance = rdata1_array[15];
   var orderNO = rdata1_array[16];
+  var remainingPaid=totals;
   //orderNO= parseFloat(orderNO)
   console.log(orderNO+"l999909999999999999llllllllllllllllllllllllllllllllllllllllll")
    amount = parseFloat(amount).toFixed(rupeesDecimalPoints);
@@ -3265,7 +3291,7 @@ console.log(rdata1+"uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
    netBalance = parseFloat(netBalance).toFixed(rupeesDecimalPoints);
   //db.receipts.insert({"name":"gvhdfgfehyu"})
   db.receipts.insert({"Mode":mode,"Amount":Decimal128.fromString(amount),"Bank":bank,"ChequeNo":chequeno,"Date":chequeDate,"CardNo":cardnos,"CardType":ctype,"ApprovalNo":appno,"partyname":pname,"BilledDate":new Date(bdate),
-    "BillNo":bill,"Narration":narrate,"PaidAmount":Decimal128.fromString(totals),"voucherNo":voucher,"voucherStatus":voucherStatus,"orderNO":orderNO,'netBalance':Decimal128.fromString(netBalance)},function(err,doc){
+    "BillNo":bill,"Narration":narrate,"PaidAmount":Decimal128.fromString(totals),"voucherNo":voucher,"voucherStatus":voucherStatus,"orderNO":orderNO,"remainingPaid":remainingPaid,'netBalance':Decimal128.fromString(netBalance)},function(err,doc){
      console.log(" checking data here ");
      //console.log(doc);
     res.json(doc);
@@ -4743,6 +4769,46 @@ app.put('/saleInvoicedataconfirm/:update',function(req,res)
     // res.json(doc);
     //     console.log(doc);
 });
+app.put('/changeGrwt/:update',function(req,res)
+{
+  
+    var str=req.params.update;
+    console.log(str+"lllllllllllllllllllllllllllllllllllllllllllll");
+    var str_array=str.split(",");
+   
+    var orderNo=str_array[0];
+    //console.log(partyname);
+    var gwt=str_array[1];
+    console.log(orderNo+gwt+"oooooooooooooooooooooooooooooooooooooooo");
+    db.transactionDetail.update({"orderNo":orderNo},{$set:{"status":"orderCompleted","chgunt":gwt}},function(err,doc){
+  
+        res.json(doc);
+        //console.log("here is resulrs")
+       // console.log(doc);
+    });
+    // res.json(doc);
+    //     console.log(doc);
+});
+app.put('/putPaid/:update',function(req,res)
+{
+  
+    var str=req.params.update;
+    console.log(str+"lllllllllllllllllllllllllllllllllllllllllllll");
+    var str_array=str.split(",");
+   
+    var orderNO=str_array[0];
+    //console.log(partyname);
+    var paid=str_array[1];
+    console.log(orderNO+paid+"oooooooooooooooooooooooooooooooooooooooo");
+    db.receipts.update({"orderNO":orderNO},{$set:{"status":"orderCompleted","remainingPaid":paid}},function(err,doc){
+  
+        res.json(doc);
+        //console.log("here is resulrs")
+       // console.log(doc);
+    });
+    // res.json(doc);
+    //     console.log(doc);
+});
 app.put('/editedUseritUpdate',function(req,res)
 {
     console.log(" sdfhdsfjhkjsdshfkjsdhfkjsdklfjlsdfj dsjhidhfiu sdfiuufu ")
@@ -5689,6 +5755,31 @@ app.get('/getAppReceivableAmount:name',function(req,res){
 
 //getting payment receivable amount
 //for getting receipt details
+app.get('/receiptOrderNtWt/:name',function(req,res){
+
+  var name=req.params.name;
+  console.log(name+"233333323232223jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj")
+   db.transactionDetail.find({"orderNo":name},function(err,doc){
+        res.json(doc);
+        //console.log(doc)
+       });
+
+  });
+
+// app.get('/appouts:data',function(req,res){
+//   console.log("approval approval approval approval approval approval");
+//   var pname=req.params.data;
+//   console.log(pname);
+//   var trans="Approval Out";
+//   db.transactionDetail.aggregate([{$match:{"orderNo":pname}},
+//       {$group:{_id:{partyname:"$partyname"},Balance:{$sum:"$ntwt"}}}],function(err,doc){ 
+//     res.json(doc);
+//     console.log(doc+"Approval Outs");
+//   });
+// });
+
+
+
 app.get('/getpaymentReceivableAmount:name',function(req,res){
   var name=req.params.name;
   console.log("num num num num num num num num num");
@@ -7414,10 +7505,12 @@ app.post('/user12/:data',function(req,res){
     //console.log( str_array.length);
     var length = str_array.length;
     //console.log(length);
-    var voucher = str_array[length - 1];
+    var remainingNtWt= str_array[length - 1];
+    var voucher = str_array[length - 2];
+
     for(var i =0;i<length - 1;i++){
     //  console.log("here is the length "+str_array[i]);
-      db.transactionDetail.update({_id:mongojs.ObjectId(str_array[i])},{$set:{"voucherNo":voucher }},function(err,doc)
+      db.transactionDetail.update({_id:mongojs.ObjectId(str_array[i])},{$set:{"voucherNo":voucher,"remainingNtWt":remainingNtWt }},function(err,doc)
         {
         //res.json(doc);
         //console.log(doc)
@@ -7438,7 +7531,18 @@ app.post('/user12/:data',function(req,res){
     });
     //console.log("voucher length "+voucher)
    // console.log('look up things syuasasdyusadsdhyasdbdfhudbasjdbashudbhdhy');
-
+    app.put('/putReceiptOrderNtWt/:data',function(req,res){
+      //console.log('updating on approval sale');
+      var str=req.params.data;
+      var str_array=str.split(",");
+      var id=str_array[0];
+      var trans=str_array[1];
+      console.log(id+"lllllllllllllllllllsssssssssssss")
+      // var voucher=str_array[2];
+      db.transactionDetail.update({"orderNo":id},{$set:{"remainingNtWt":trans}},function(err,doc){
+        res.json(doc);
+      })
+    });
 
 app.post('/saleInvoiceInvoice/:data',function(req,res)
 { 
@@ -8953,7 +9057,12 @@ require('./public/inventoryDbs/defaultCollections')(app);
 // require('./apiCalls/printPdf')(app); // pass our application into our routes
 require('./apiCalls/materialAdvancePdf')(app);
 
+<<<<<<< HEAD
 app.listen(9500); 
 console.log("server running on port 9500");
+=======
+app.listen(8000); 
+console.log("server running on port 8000");
+>>>>>>> 7330c2dee0995252447926c7b9a1cb793139d662
 
 exports = module.exports = app;

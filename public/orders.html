@@ -441,7 +441,7 @@ li#name1 {
           <!--  <div > -->
               
                 Order Type<!-- <form > -->
-                    <select id="party" ng-model="typeorder"  >
+                    <select id="party" ng-model="typeorder"  ng-change="clearDataOrd()">
                       
 <!--  ng-init=" transaction = 'Regular Sale'"  -->
                         <option ng-repeat="order in ordertype">{{order.ordertype}}</option></select>
@@ -452,8 +452,8 @@ li#name1 {
             <!-- </div> -->
         </div>
         <div class="col-sm-8" >    
-From <input type="date" ng-model="datefrom" id="dates" />
-To  <input type="date" ng-model="dateto" id="dates" />
+From <input type="date" ng-model="datefrom" id="dates" ng-change="clearDataOrd()" />
+To  <input type="date" ng-model="dateto" id="dates" ng-change="clearDataOrd()" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button ng-click="getorder(typeorder,datefrom,dateto)" class="btn btn-primary">List</button>
            </div><br><br>
            <div class="row">
