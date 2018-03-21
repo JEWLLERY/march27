@@ -32,6 +32,8 @@ $http.get('/getStoredPayment'+$scope.billnum).success(function(response){
   $scope.finalAmount=response[0].PaidAmount.$numberDecimal;
   //receipetCreationCall (response[0].vocherNo)
   paymentsCreationCall(response[0].vocherNo)
+///trial changes made by vijay //
+   window.sessionStorage.setItem("billnumber",null);
   }
 })
 

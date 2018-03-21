@@ -271,6 +271,7 @@ $scope.filterchange = function(){
     var item1filter =$scope.item.filter
       $http.get('/getfilter/'+item1filter).success(function(response){
          $scope.itemdetails = response 
+         $scope.cancelitem();
          //alert(response)
      })
     

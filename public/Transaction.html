@@ -777,8 +777,7 @@ display: inline-block;
                     <select ng-model="transaction" class="  selectpicker" ng-change = "TransactionDetails();clearDisplay('TransactionName')" >
                       
 <!--  ng-init=" transaction = 'Regular Sale'"  -->
-                        <option ng-repeat="tran in transactions" ng-if="tran.TransactionType!='Payment' && tran.TransactionType!='Receipts'&& tran.TransactionType!='Receipt' && tran.TransactionType!='Payments'&& tran.TransactionType!='Order Detail'" ng-cloak >{{tran.TransactionType}}</option></select>
-                      
+                      <option ng-repeat="tran in transactions" ng-if="tran.TransactionType!='Payment' && tran.TransactionType!='Receipts'&& tran.TransactionType!='Receipt' && tran.TransactionType!='Payments'&& tran.TransactionType!='Order Details'" ng-cloak >{{tran.TransactionType}}</option></select>
 
                   <!--   </select> -->
               </form>
@@ -1163,7 +1162,7 @@ display: inline-block;
        </select>
        </td> -->
 
-      <td> <select ng-model="item.purity" class="selectpicker" ng-change="purityCal1($index,item.purity,item.itemName)" ng-disabled="transaction=='Sale Return'||transaction=='Purchase Return'||transaction=='Approval Sale'||transaction=='Approval Return' " ng-blur="calMrpValue($index)">
+      <td> <select ng-model="item.purity" class="selectpicker" ng-change="purityCal1($index,item.purity,item.itemName)" ng-disabled="transaction=='Sale Return'||transaction=='Purchase Return'||transaction=='Approval Sale'||transaction=='Approval Return' ">
 <!-- || test=='display' -->
      <!--  <td> <select ng-model="item.purity" class="selectpicker" ng-change="purityCal($index,item.purity)" ng-disabled="transaction=='Sale Return'"> -->
 
@@ -1327,19 +1326,6 @@ display: inline-block;
    
   </div>
   </form></div><br>
-<<<<<<< HEAD
- <div class="col-sm-6" ng-show="(transaction == 'Sale Return'|| transaction == 'Purchase Return'||transaction=='Opening Stock')"></div>
-  <div class="col-sm-8" ng-show="(transaction=='Approval Return'||transaction=='Approval Out'||transaction=='Issue Voucher'||transaction=='Receipt Voucher')"></div>
-  <div class="col-sm-1g" ng-show ="(transaction == 'Urd Purchase'|| transaction == 'Sale Return'|| transaction == 'Purchase Return'|| transaction == 'Issue Voucher'|| transaction == 'Receipt Voucher'|| transaction == 'Valuation'|| transaction == 'RD Purchase'||transaction=='Approval Sale'||transaction == 'Approval Out'||transaction=='Approval Return')" ></div>
-  
-    <div class="w3-half w3-container" ng-hide ="(transaction == 'Sale Return'|| transaction == 'Purchase Return'||transaction=='Approval Return'||transaction=='Approval Out'||transaction=='Issue Voucher'||transaction=='Receipt Voucher'||transaction=='Opening Stock')">
-     
-      <br>
-
-        <header class="w3-container w3-light-grey w3-padding-8 w3-center" ng-cloak>
-
-=======
-<<<<<<< HEAD
 
 
   <div class="col-sm-6" ng-show="(transaction == 'Sale Return'|| transaction == 'Purchase Return'||transaction=='Opening Stock')"></div>
@@ -1353,15 +1339,6 @@ display: inline-block;
 
         <header class="w3-container w3-light-grey w3-padding-8 w3-center" ng-cloak>
 
-=======
-   <div class="col-sm-6" ng-show="(transaction == 'Sale Return'|| transaction == 'Purchase Return'||transaction=='Opening Stock')"></div>
-  <div class="col-sm-8" ng-show="(transaction=='Approval Return'||transaction=='Approval Out'||transaction=='Issue Voucher'||transaction=='Receipt Voucher')"></div>
-  <div class="col-sm-1g" ng-show ="(transaction == 'Urd Purchase'|| transaction == 'Sale Return'|| transaction == 'Purchase Return'|| transaction == 'Issue Voucher'|| transaction == 'Receipt Voucher'|| transaction == 'Valuation'|| transaction == 'RD Purchase'||transaction=='Approval Sale'||transaction == 'Approval Out'||transaction=='Approval Return')" ></div>
-    <div class="w3-half w3-container" ng-hide ="(transaction == 'Sale Return'|| transaction == 'Purchase Return'||transaction=='Approval Return'||transaction=='Approval Out'||transaction=='Issue Voucher'||transaction=='Receipt Voucher'||transaction=='Opening Stock')">
-      <br>
-        <header class="w3-container w3-light-grey w3-padding-8 w3-center" ng-cloak>
->>>>>>> 3dfc256e64167e6c16df1d8d624ddc68e70afaa1
->>>>>>> 4e8ccb113f08a847b98345022c4872a855fc45b9
           <h4 ng-cloak>INVOICE CHARGES</h4>
         </header>
 
@@ -1383,7 +1360,7 @@ display: inline-block;
 <!-- <<<<<<< HEAD:public/Transaction.html
         <td ><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ng-model="discount" style="width: 80px;background-color: white" ng-change="addDis()" placeholder="0" ></td>
 ======= -->
-        <td ><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/^[0.0-9.0]+(\.[0-9]{3,5})/g,'');" ng-model="discount" style="width: 80px;background-color: white" ng-change="newCharges()" placeholder="0" ></td>
+        <td ><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ng-model="discount" style="width: 80px;background-color: white" ng-change="newCharges();fixDecimal();" placeholder="0" ></td>
 <!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
        <!--  <td>.00</td> -->
        <td >{{discount1}}</td>
@@ -1393,9 +1370,9 @@ display: inline-block;
         <td>Credit Card</td>
         <td>Amount</td>
 
-        <td><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/^[0.0-9.0]+(\.[0-9]{3,5})/g,'');" ng-model="ccamt" style="width: 80px;background-color: white" ng-change="newCharges()" placeholder="0" ></td>
+        <td><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ng-model="ccamt" style="width: 80px;background-color: white" ng-change="newCharges();fixDecimals();" placeholder="0" ></td>
         <!-- <td>.00</td> -->
-        <td >{{ccamt2}}</td>
+        <td >{{ccamt}}</td>
 
     </tr>
    <tr>
@@ -1445,7 +1422,7 @@ display: inline-block;
         </tr>
         <tr>
         <td ng-hide ="( transaction == 'Purchase Return'||transaction == 'Sale Return'||transaction=='Issue Voucher'||transaction=='Receipt Voucher'||transaction=='Approval Out'||transaction=='Approval Return' )">Charges      </td>
-        <td ng-hide ="( transaction == 'Purchase Return' ||transaction == 'Sale Return'||transaction=='Issue Voucher'||transaction=='Receipt Voucher'||transaction=='Approval Out'||transaction=='Approval Return' )"><input type="text" class="form-control"  id="usr"  ng-model="ccamt1" ng-value="{{ccamt1}}" oninput="this.value=this.value.replace(/^[0.0-9.0]+(\.[0-9]{3,5})/g,'');" readonly/></td>
+        <td ng-hide ="( transaction == 'Purchase Return' ||transaction == 'Sale Return'||transaction=='Issue Voucher'||transaction=='Receipt Voucher'||transaction=='Approval Out'||transaction=='Approval Return' )"><input type="text" class="form-control"  id="usr"  ng-model="ccamt1" ng-value="{{ccamt1}}" readonly/></td>
         </tr>
         
         <tr>
@@ -1471,7 +1448,7 @@ display: inline-block;
   <div class="col-md-2" ng-cloak>
 
   <button ng-if = " edituseritButton == true"  ng-click="updateEditTransaction()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Update</button>
-  <button  ng-if = " edituseritButton != true && transaction != 'Valuation'&&transaction != 'Issue Voucher' && transaction != 'Receipt Voucher'&& transaction != 'Sale Return'&& transaction != 'Purchase Return'&&transaction!='Approval Return'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Save</button>
+  <button  ng-if = " edituseritButton != true && transaction != 'Valuation'&&transaction != 'Issue Voucher' && transaction != 'Receipt Voucher'&& transaction != 'Sale Return'&& transaction != 'Purchase Return'&&transaction!='Approval Return'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()|| bringOrd=='num'">Save</button>
 
   <button  ng-if = "transaction == 'Sale Return'||transaction == 'Purchase Return'||transaction=='Approval Return'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Return</button>
  
@@ -1487,7 +1464,7 @@ display: inline-block;
 
  
   <br>
-<button ng-hide ="(desgination != 'Billing Person' || transaction == 'Issue Voucher'||transaction == 'Receipt Voucher' ||transaction == 'Valuation')" class="btn btn-primary" id="buttonwidth" ng-show="transaction != 'Issue Voucher'&& transaction != 'Receipt Voucher' && transaction!='Sale Return'&&transaction!='Purchase Return'&&transaction != 'Approval Out'&&transaction!='Approval Return'"  ng-click="save(true);inoviceNumberGeneration()" ng-disabled="reqColorPay()" >Confirm</button>
+<button ng-hide ="(desgination != 'Billing Person' || transaction == 'Issue Voucher'||transaction == 'Receipt Voucher' ||transaction == 'Valuation')" class="btn btn-primary" id="buttonwidth" ng-show="transaction != 'Issue Voucher'&& transaction != 'Receipt Voucher' && transaction!='Sale Return'&&transaction!='Purchase Return'&&transaction != 'Approval Out'&&transaction!='Approval Return'"  ng-click="save(true);inoviceNumberGeneration()" ng-disabled="reqColorPay() && bringOrd != 'num'" >Confirm</button>
 
 
 

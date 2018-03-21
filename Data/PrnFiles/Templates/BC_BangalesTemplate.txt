@@ -1,44 +1,35 @@
-G0
-n
-M0500
-MT
-O0214
-t1
-Kf0070
-SE
-c0000
-e
-D
-L
-D11
-H15
-PE
-pE
-SE
-A2
-1911C0600320006StockBookDetail.itemName
-1e2101000210009CStockBookDetail.barcode
-1911A0600130006StockBookDetail.barcode
-1911A0600130006StockBookDetail.desc
-1911A0600130006StockBookDetail.size
-1911C0600320064StockBookDetail.purity
-
-1911C0600010156Pc:StockBookDetail.gpcs
-1911C0600010156Pc:StockBookDetail.stwt
-1911C0600010156Pc:StockBookDetail.uom
-1911C0600010108NW:StockBookDetail.ntwt
-1911C0600010156Pc:StockBookDetail.pctcal
-1911C0600010108wastageNW:StockBookDetail.wastage
-1911C0600010108NW:StockBookDetail.matadj
-1911C0600160156CW:StockBookDetail.chgunt
-1911C0600160156CW:StockBookDetail.mrp
-1911C0600160156CW:StockBookDetail.rate
-1911C0600160156CW:StockBookDetail.labcal
-1911C0600160156CW:StockBookDetail.labamt
-1911C0600160156labourCW:StockBookDetail.labval
-1911C0600160156CW:StockBookDetail.stonecal
-1911C0600160156CW:StockBookDetail.stchg
-1911A0600130006StockBookDetail.stval
-1911C0600010058MC:StockBookDetail.taxval
-Q0001
-E
+<xpml><page quantity='0' pitch='15.0 mm'></xpml>^XA
+^MCY^PMN
+^PW699
+^JZY
+^LH0,0^LRN
+^XZ
+<xpml></page></xpml><xpml><page quantity='1' pitch='15.0 mm'></xpml>^XA
+^FT27,21
+^CI0
+^A0N,23,16^FDStockBookDetail.itemName^FS
+^FO19,28
+^BY1^BCN,22,N,N,,A^FDStockBookDetail.barcode^FS
+^FT19,69
+^A0N,23,16^FDStockBookDetail.barcode^FS
+^FT19,99
+^A0N,23,16^FDSize:StockBookDetail.size^FS
+^FT95,99
+^A0N,23,16^FDStockBookDetail.purity^FS
+^FT138,99
+^A0N,23,16^FDPcs:StockBookDetail.gpcs^FS
+^FT200,30
+^A0N,23,16^FDG Wt.:StockBookDetail.gwt^FS
+^FT200,64
+^A0N,23,16^FDSt. Wt.:StockBookDetail.stwt^FS
+^FT200,89
+^A0N,23,16^FDN Wt.:StockBookDetail.ntwt^FS
+^FT310,30
+^A0N,23,16^FDWst: StockBookDetail.wastage^FS
+^FT310,89
+^A0N,23,16^FDLC: StockBookDetail.labval^FS
+^FT310,64
+^A0N,23,16^FD^FS
+^PQ1,0,1,Y
+^XZ
+<xpml></page></xpml><xpml><end/></xpml>

@@ -30,26 +30,26 @@ myApp.controller('billCntrl',['$scope','$http','$window',
     });
 
 
- setPatyName  =  window.sessionStorage.getItem("receiptPatyName");
+//  setPatyName  =  window.sessionStorage.getItem("receiptPatyName");
  
-console.log(setPatyName)
-//setPatyName = 'viin';
-if (setPatyName!="null" ) {
-//alert("KK")
-$scope.dataHide="yes"
-      $http.get('/receiptOrderNo/'+setPatyName).success(function(response){
-          console.log(response);
-        $scope.orderNO=response[0].orderNO;
-        $scope.orderNO=response[0].orderNO;
-        $scope.partyname=response[0].partyNames
+// console.log(setPatyName)
+// //setPatyName = 'viin';
+// if (setPatyName!="null" ) {
+// //alert("KK")
+// $scope.dataHide="yes"
+//       $http.get('/receiptOrderNo/'+setPatyName).success(function(response){
+//           console.log(response);
+//         $scope.orderNO=response[0].orderNO;
+//         $scope.orderNO=response[0].orderNO;
+//         $scope.partyname=response[0].partyNames
        
-    });
+//     });
 
 
-}   
-window.sessionStorage.setItem("receiptPatyName","null");
+// }   
+// window.sessionStorage.setItem("receiptPatyName","null");
 
-            var ilchgg  = window.sessionStorage.getItem("receiptPatyName");
+//             var ilchgg  = window.sessionStorage.getItem("receiptPatyName");
 
 
   

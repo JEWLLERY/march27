@@ -798,12 +798,45 @@ $scope.radiobutton=function(condition){
 }  
 $scope.radiobutton("with in state");
 
-$scope.removeChecked = function(index) {
-
+$scope.removeChecked = function(index,vname) {
+  // alert("clicked on checkbox1"+$scope.checkbox);
+  // var k=0;
+  if(vname==1){
+    // alert("checkbox checked"+index); 
   $scope.userit[index].index = index;
- // alert(" $scope.userit[index].index "+ $scope.userit[index].index);
+  // alert("clicked on checkbox"+$scope.checkbox);
+  // alert(" $scope.userit[index].index "+ $scope.userit[index].index);
+  }//if
+ 
+    else{
+       // alert("else")
+      console.log($scope.userit);
+         for(var i=0;i<=$scope.indexSelected.length-1;i++){
+           // alert("checkbox is unchecked"+index);
+              if (  $scope.userit[i].index === index) {
+                 // alert("within if");
+                delete $scope.userit[i].index;
+                // $scope.checkbox=$scope.checkbox-1;
+                delete($scope.indexSelected[i]);
+                // alert(delete($scope.indexSelected[i]))
+                
+                console.log($scope.indexSelected);
+                console.log($scope.userit)
+               
+              }  //if
+              // if($scope.indexSelected.length==i){
+              //    alert("Hi Jon ");
+              //   $scope.indexSelected=[];    
+              // }
 
-}
+          }//for
+          // if($scope.indexSelected.length-1==i){
+          //       alert("complete");
+          //       $scope.indexSelected=[];
+          //     }
+    }//else
+}//removeChecked//removeChecked
+
 $scope.taxSelectionCall = function ($index,taxSelection,call) {
   //alert("jj")
  if (taxSelection != undefined) {
@@ -1784,13 +1817,7 @@ return;
                reloadCall = "notNull";
                window.location.href="orderMaking.html" 
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
->>>>>>> 3dfc256e64167e6c16df1d8d624ddc68e70afaa1
->>>>>>> 4e8ccb113f08a847b98345022c4872a855fc45b9
 
                 window.sessionStorage.setItem("orderGetReceipt",$scope.transaction)
                 window.sessionStorage.setItem("getPatyName",$scope.party)
@@ -1829,18 +1856,18 @@ $scope.check=0;
 $scope.indexFunctionCall=function(index,vname) {
 
     $scope.j=index;
-     // alert(index+"index");
+      // alert(index+"index");
      //  alert(vname+"vname");
            if ($scope.indexSelected.indexOf(index) == -1){
                 $scope.indexSelected.push(index);
                 // alert(index+"pushed index");
-            }
+            }         
                      if($scope.transaction == "Sale Return" || $scope.transaction == "Purchase Return"
                       ||$scope.transaction == 'Approval Sale'||$scope.transaction=='Approval Return'){
                   
                            $scope.mycheck(index,vname);
                       }
-         console.log($scope.indexSelected)
+      console.log($scope.indexSelected)
 
 }
 $scope.removeSelectedRows = function() {

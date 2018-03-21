@@ -1106,7 +1106,7 @@ app.get('/barcodereprint:barcode1',function(req,res){
   var barnum=req.params.barcode1;
   var barnum1=parseInt(barnum);
   console.log(typeof(barnum1)+"nnnnnnnnnnnnnnnnnnnnn");
-    db.batch.find({"barcode":barnum1,"stats":{$ne:'completed'}},function(err,doc){
+    db.batch.find({"barcode":barnum1,"orderStatus":{$ne:'completed'}},function(err,doc){
       console.log(doc+"details of the selected barcode");
       res.json(doc);
     });
@@ -1214,6 +1214,12 @@ app.post('/prn',function(req,res){
   };
   if (req.body.stval == undefined) {
       req.body.stval = '';
+  };
+  if (req.body.wastagePrint == undefined) {
+      req.body.wastagePrint = '';
+  };
+  if (req.body.wastagePrint12 == undefined) {
+      req.body.wastagePrint12 = '';
   };
 
     var result = data.replace(/StockBookDetail.itemName/g, req.body.itemName);
@@ -4623,7 +4629,10 @@ app.get('/batchBarcodeNumber:barcodenum',function(req,res){
                
            })//trans
 
-       }//if
+       }//if  if (doc.length != 0 && doc[0].orderStatus == "available") {
+       // else if (doc[0].orderStatus == "available") {
+
+       // }
          else{
                 //console.log(doc[0].orderStatus)
                 res.json(doc);
@@ -6666,34 +6675,14 @@ app.get('/todayinventoryGroupValueNotation/:data',function(req,res){
 app.get('/groupAndCategoryBarcode',function(req,res){
     console.log("groupAndCategoryBarcode");
     
-<<<<<<< HEAD
 
-//console.log(" req.query.barcode "+req.query.barcode+" "+typeof(req.query.barcode))
-      db.transactionDetail.find({"refid" : Number(req.query.barcode), comboBarcode: { $exists: false }},function (err,doc) {
-=======
-<<<<<<< HEAD
-      // db.transactionDetail.find(
-      //            {refid:Number(req.query.barcode)}
-      //    ,function (err,doc) {
-          
-      //      // body...
-      //    })
-   db.transactionDetail.find({"refid" : Number(req.query.barcode), comboBarcode: { $exists: false }},function (err,doc) {
-=======
+     db.transactionDetail.find({"refid" : Number(req.query.barcode), comboBarcode: { $exists: false }},function (err,doc) {
 
-//console.log(" req.query.barcode "+req.query.barcode+" "+typeof(req.query.barcode))
-      db.transactionDetail.find({"refid" : Number(req.query.barcode), comboBarcode: { $exists: false }},function (err,doc) {
->>>>>>> 3dfc256e64167e6c16df1d8d624ddc68e70afaa1
->>>>>>> 4e8ccb113f08a847b98345022c4872a855fc45b9
-
-          //console.log(doc.length);
           console.log(" barcoded "+doc.length);
           res.json(doc);
-         // res.json(doc);
-          //upDateCall()
+        
           })//db.transactionDetail.find
-     //}
-   // var itemgroupid=req.params.inGrpId;
+  
 });
 
 app.get('/stockDetaildisplayBarcodedItems',function(req,res){
@@ -8963,18 +8952,8 @@ require('./public/inventoryDbs/defaultCollections')(app);
 
 // require('./apiCalls/printPdf')(app); // pass our application into our routes
 require('./apiCalls/materialAdvancePdf')(app);
-<<<<<<< HEAD
-app.listen(9000); 
-console.log("server running on port 9000");
-=======
-<<<<<<< HEAD
 
-app.listen(9190); 
-console.log("server running on port 9190");
+app.listen(9500); 
+console.log("server running on port 9500");
 
-=======
-app.listen(9100); 
-console.log("server running on port 9100");
->>>>>>> 3dfc256e64167e6c16df1d8d624ddc68e70afaa1
->>>>>>> 4e8ccb113f08a847b98345022c4872a855fc45b9
 exports = module.exports = app;

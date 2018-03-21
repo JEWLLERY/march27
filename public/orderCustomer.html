@@ -474,7 +474,7 @@ li#name1 {
                          <button class="btn-primary">Create Party</button></a>
  </div>
 <div class="col-sm-6">
-  Order No<span id="star"><font size="02">*</font></span><input type="text" name="" ng-model="orderNO" disabled> 
+  Order No<span id="star"><font size="02">*</font></span><input type="text" name="" ng-model="orderNO" > 
 
           <input type="radio"  ng-model="radio.state"   ng-change="radiobutton()"  value="with in state"> With in State
         
@@ -546,7 +546,7 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
     <tbody >
      <tr  ng-repeat="item in userit">
        <td style="padding-right: 80px">
-          <input type="checkbox" ng-checked="checkbox" ng-model="check" ng-click = "indexFunctionCall($index,check);removeChecked($index)"   ng-true-value="1" ng-false-value="0"/>
+          <input type="checkbox" ng-checked="checkbox" ng-model="check" ng-click = "indexFunctionCall($index,check);removeChecked($index,check)"   ng-true-value="1" ng-false-value="0"/>
        </td>
       
       <td style="padding-right: 20px">

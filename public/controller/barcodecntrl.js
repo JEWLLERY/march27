@@ -48,6 +48,52 @@ $http.get('/getinventorygroupvaluenotationlast').success(function(response){
                       lastdate = response[0].date         
                  });
 
+$scope.fixedDecimalWeight=function(){
+   //$scope.wt=12;
+    var num = $scope.bitem.wt.toString(); // Convert to string
+                       // console.log( (num.split('.')[1] || []).length)
+                        if ((num.split('.')[1] || []).length >=2) {
+                            //$scope.userit[$index].rate = 
+                              $scope.bitem.wt = parseFloat ( $scope.bitem.wt)
+                             console.log( $scope.bitem.wt)
+
+                             $scope.bitem.wt = parseFloat ($scope.bitem.wt).toFixed($scope.rupeesDecimalPoints);
+                          $scope.bitem.wt = parseFloat($scope.bitem.wt)
+                             
+                               // alert("dis "+$scope.bitem.wt+typeof($scope.bitem.wt))
+    }
+   
+   //alert($scope.bitem.wt+"dfgh")
+}
+$scope.fixedDecimalPcs=function(){
+    var num = $scope.bitem.pcs.toString(); // Convert to string
+                       // console.log( (num.split('.')[1] || []).length)
+                        if ((num.split('.')[1] || []).length >=0) {
+                            //$scope.userit[$index].rate = 
+                              $scope.bitem.pcs = parseFloat ( $scope.bitem.pcs)
+                             console.log( $scope.bitem.pcs)
+
+                             $scope.bitem.pcs = parseFloat ($scope.bitem.pcs).toFixed(0);
+                          $scope.bitem.pcs = parseFloat($scope.bitem.pcs)
+                             
+                               // alert("dis "+$scope.bitem.pcs+typeof($scope.bitem.pcs))
+    }
+}
+$scope.fixedDecimalTags=function(){
+     var num = $scope.bitem.titems.toString(); // Convert to string
+                       // console.log( (num.split('.')[1] || []).length)
+                        if ((num.split('.')[1] || []).length >=2) {
+                            //$scope.userit[$index].rate = 
+                              $scope.bitem.titems = parseFloat ( $scope.bitem.titems)
+                             console.log( $scope.bitem.titems)
+
+                             $scope.bitem.titems = parseFloat ($scope.bitem.titems).toFixed($scope.rupeesDecimalPoints);
+                          $scope.bitem.titems = parseFloat($scope.bitem.titems)
+                             
+                               // alert("dis "+$scope.bitem.titems+typeof($scope.bitem.titems))
+    }
+}
+
 var batch=function()
 {
    console.log($scope.userit[0].count);
@@ -1105,7 +1151,7 @@ $scope.print = function(){
           $http.post('/prn',$scope.userit[0]);
         }
         else{
-          alert("barcode not found");
+          alert("barcode is soldout");
         }
       })
   }
@@ -1173,12 +1219,13 @@ $scope.cancelbarcodegeneration = function(){
       //break;
     }
      console.log("cancel call");
+     $scope.userit= $scope.userit.slice(0, 0);
     $scope.batch[colorindex].color = colorpush
    //$scope.list() 
     $scope.updateButton = false;
      edit1 = null;
   //$scope.userit[0] = null;
-  $scope.userit= $scope.userit.slice(0, 0);
+  
   // editrow3 = null;
 }
 
@@ -1563,7 +1610,14 @@ var icomposite = null;
  summarylist()
 // for cancel button
 $scope.cancel = function(){
+  // $scope.mydate=new Date();
+  // alert( $scope.mydate+"currentdate"+$scope.bit.date);
   editsummary=false
+   $scope.bit.date=new Date();
+   // alert($scope.bit.date+"nnnnnnnnnnnnn");
+  // var newdate=$scope.date.split('T');
+  // var ndate=newdate[0];
+  // alert(ndate+"bbbb");
   if($scope.bitem.ItemName == "" &&$scope.bitem.stockin == "" && $scope.bitem.stockout == ""&&$scope.bitem.wt == ""&& $scope.bitem.pcs == ""&& $scope.bitem.titems == "")
   {
 alert("Please Fill All Mandatory Fields")
@@ -1592,7 +1646,8 @@ $scope.bitem.stockout = ""
 console.log(count3)
 //window.location.reload();
    $scope.list() 
-//refresh()
+
+refresh()
 }
 // for new button
 
