@@ -776,13 +776,9 @@ display: inline-block;
               <form >
                     <select ng-model="transaction" class="  selectpicker" ng-change = "TransactionDetails();clearDisplay('TransactionName')" >
                       
-<!--  ng-init=" transaction = 'Regular Sale'"  -->
-<<<<<<< HEAD
+
                       <option ng-repeat="tran in transactions" ng-if="tran.TransactionType!='Payment' && tran.TransactionType!='Receipts'&& tran.TransactionType!='Receipt' && tran.TransactionType!='Payments'&& tran.TransactionType!='Order Details'" ng-cloak >{{tran.TransactionType}}</option></select>
-=======
-                        <option ng-repeat="tran in transactions" ng-if="tran.TransactionType!='Payment' && tran.TransactionType!='Receipts'&& tran.TransactionType!='Receipt'" ng-cloak >{{tran.TransactionType}}</option></select>
-                      
->>>>>>> 7330c2dee0995252447926c7b9a1cb793139d662
+
 
                   <!--   </select> -->
               </form>
@@ -1365,11 +1361,9 @@ display: inline-block;
 <!-- <<<<<<< HEAD:public/Transaction.html
         <td ><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ng-model="discount" style="width: 80px;background-color: white" ng-change="addDis()" placeholder="0" ></td>
 ======= -->
-<<<<<<< HEAD
+
         <td ><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ng-model="discount" style="width: 80px;background-color: white" ng-change="newCharges();fixDecimal();" placeholder="0" ></td>
-=======
-        <td ><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ng-model="discount" style="width: 80px;background-color: white" ng-change="newCharges()" placeholder="0" ></td>
->>>>>>> 7330c2dee0995252447926c7b9a1cb793139d662
+
 <!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
        <!--  <td>.00</td> -->
        <td >{{discount1}}</td>
@@ -1379,11 +1373,9 @@ display: inline-block;
         <td>Credit Card</td>
         <td>Amount</td>
 
-<<<<<<< HEAD
+
         <td><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ng-model="ccamt" style="width: 80px;background-color: white" ng-change="newCharges();fixDecimals();" placeholder="0" ></td>
-=======
-        <td><input type="number" min="1" name=""  oninput="this.value=this.value.replace(/[^0.0-9.0]/g,'');" ng-model="ccamt" style="width: 80px;background-color: white" ng-change="newCharges()" placeholder="0" ></td>
->>>>>>> 7330c2dee0995252447926c7b9a1cb793139d662
+
         <!-- <td>.00</td> -->
         <td >{{ccamt}}</td>
 
@@ -1461,11 +1453,9 @@ display: inline-block;
   <div class="col-md-2" ng-cloak>
 
   <button ng-if = " edituseritButton == true"  ng-click="updateEditTransaction()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Update</button>
-<<<<<<< HEAD
+
   <button  ng-if = " edituseritButton != true && transaction != 'Valuation'&&transaction != 'Issue Voucher' && transaction != 'Receipt Voucher'&& transaction != 'Sale Return'&& transaction != 'Purchase Return'&&transaction!='Approval Return'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()|| bringOrd=='num'">Save</button>
-=======
-  <button  ng-if = " edituseritButton != true && transaction != 'Valuation'&&transaction != 'Issue Voucher' && transaction != 'Receipt Voucher'&& transaction != 'Sale Return'&& transaction != 'Purchase Return'&&transaction!='Approval Return'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor() || bringOrd=='num'">Save</button>
->>>>>>> 7330c2dee0995252447926c7b9a1cb793139d662
+
 
   <button  ng-if = "transaction == 'Sale Return'||transaction == 'Purchase Return'||transaction=='Approval Return'"  ng-click="save()" class="btn btn-success" id="buttonwidth"  ng-disabled="reqColor()">Return</button>
  
@@ -1481,12 +1471,9 @@ display: inline-block;
 
  
   <br>
-<<<<<<< HEAD
-<button ng-hide ="(desgination != 'Billing Person' || transaction == 'Issue Voucher'||transaction == 'Receipt Voucher' ||transaction == 'Valuation')" class="btn btn-primary" id="buttonwidth" ng-show="transaction != 'Issue Voucher'&& transaction != 'Receipt Voucher' && transaction!='Sale Return'&&transaction!='Purchase Return'&&transaction != 'Approval Out'&&transaction!='Approval Return'"  ng-click="save(true);inoviceNumberGeneration()" ng-disabled="reqColorPay() && bringOrd != 'num'" >Confirm</button>
-=======
-<button ng-hide ="(desgination != 'Billing Person' || transaction == 'Issue Voucher'||transaction == 'Receipt Voucher' ||transaction == 'Valuation' )" class="btn btn-primary" id="buttonwidth" ng-show="transaction != 'Issue Voucher'&& transaction != 'Receipt Voucher' && transaction!='Sale Return'&&transaction!='Purchase Return'&&transaction != 'Approval Out'&&transaction!='Approval Return'"  ng-click="save(true);inoviceNumberGeneration()" ng-disabled="reqColorPay() && bringOrd!='num' " >Confirm</button>
 
->>>>>>> 7330c2dee0995252447926c7b9a1cb793139d662
+<button ng-hide ="(desgination != 'Billing Person' || transaction == 'Issue Voucher'||transaction == 'Receipt Voucher' ||transaction == 'Valuation')" class="btn btn-primary" id="buttonwidth" ng-show="transaction != 'Issue Voucher'&& transaction != 'Receipt Voucher' && transaction!='Sale Return'&&transaction!='Purchase Return'&&transaction != 'Approval Out'&&transaction!='Approval Return'"  ng-click="save(true);inoviceNumberGeneration()" ng-disabled="reqColorPay() && bringOrd != 'num'" >Confirm</button>
+
 
 
 

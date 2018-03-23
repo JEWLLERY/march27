@@ -1036,7 +1036,7 @@ function detailsDisplayCall(orderNO,partyNames,staff,condition){
           
         })
   } else if (condition == 'issueVoucherPdfCall') {
-        db.transactionDetail.find({  "orderNo" : orderNO,  "Transaction" : "Issue Voucher"},function(err,detailsDisplayData){
+        db.transactionDetail.find({  "refOrder" : orderNO,  "Transaction" : "Issue Voucher"},function(err,detailsDisplayData){
             
             detailsDisplay = detailsDisplayData;
              voucherNo = detailsDisplayData[0].voucherNo ;
@@ -1045,6 +1045,18 @@ function detailsDisplayCall(orderNO,partyNames,staff,condition){
           
         })
   
+  } else if (condition == 'receiptVoucherPdfCall') {
+        db.transactionDetail.find({  "refOrder" : orderNO,  "Transaction" : "Receipt Voucher"},function(err,detailsDisplayData){
+            
+            detailsDisplay = detailsDisplayData;
+             voucherNo = detailsDisplayData[0].voucherNo ;
+             console.log(voucherNo+"length to call in details  "+detailsDisplayData.length+detailsDisplayData[0].voucherNo);
+              pdfPrintCallReceipt(orderNO,partyNames,staff,pdfPartyData[0].data.address1,voucherNo)
+          
+        })
+  
+   
+
    }else if(condition == 'order'){
                     db.receipts.find({ "orderNO" :orderNO },function(err,totalAmount){
                                 if (totalAmount.length == 0) {
@@ -1246,11 +1258,11 @@ app.post('/api/orderDetailsIssueVoucherCallPdf/:orderNo',function(req,res){
          //var orderNo = 'OD102';
 
      setTimeout(function(){    
-               db.transactionDetail.find({    "orderNo" : orderNo},function (err,orderData) {
+               db.transactionDetail.find({    "refOrder" : orderNo},function (err,orderData) {
                   console.log(orderData)
-                  // console.log(" Receipt orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames"+orderData[0].saleNames)
+                  //"refOrder" : "OD122" console.log(" Receipt orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames"+orderData[0].saleNames)
                     //console.log(orderData[0].partyNames)
-                    //merchantDetailsCall(orderNo,orderData[0].partyname,'staff','issueVoucherPdfCall');
+                    merchantDetailsCall(orderNo,orderData[0].partyname,'staff','issueVoucherPdfCall');
                })
         }, 100);
      setTimeout(function(){    
@@ -1258,6 +1270,29 @@ app.post('/api/orderDetailsIssueVoucherCallPdf/:orderNo',function(req,res){
         }, 500);
 
    
+})
+
+//receiptVoucherPdfCall
+app.post('/api/receiptVoucherPdfCall/:orderNo',function(req,res){ 
+        var data =req.params.orderNo;
+       // res.json({})
+      console.log(data)
+      var data_array=data.split(",");
+          var orderNo = data_array[0];
+         //var orderNo = 'OD102';
+
+     setTimeout(function(){    
+               db.transactionDetail.find({    "refOrder" : orderNo},function (err,orderData) {
+                  console.log(orderData)
+                  //"refOrder" : "OD122" console.log(" Receipt orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames"+orderData[0].saleNames)
+                    //console.log(orderData[0].partyNames)
+                    merchantDetailsCall(orderNo,orderData[0].partyname,'staff','receiptVoucherPdfCall');
+               })
+        }, 100);
+     setTimeout(function(){    
+              res.json(fileNameMaterialReceipt)
+        }, 500);
+  
 })
 
 
@@ -1275,7 +1310,16 @@ app.post('/api/issueVoucherPdf',function(req,res){
 
         },1500);    
 })
-
-
+function trialCall () {
+    var orderNo = 'OD95';
+ db.transactionDetail.find({    "refOrder" : orderNo},function (err,orderData) {
+                  console.log(orderData)
+                  //"refOrder" : "OD122" console.log(" Receipt orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames orderData[0].saleNames"+orderData[0].saleNames)
+                    //console.log(orderData[0].partyNames)
+                    merchantDetailsCall(orderNo,orderData[0].partyname,'staff','receiptVoucherPdfCall');
+               })
+ 
+}
+trialCall () 
      
 }//module.exports

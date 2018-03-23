@@ -684,7 +684,7 @@ return;
             });
 
  
-     console.log($scope.userit);
+     console.log($scopse.userit);
   
         };
 $scope.radiobutton=function(condition){
@@ -706,9 +706,9 @@ $scope.radiobutton=function(condition){
                       // alert(" call in controller from factory "+response.data[i]);
                         //console.log(response.data[i]);
                         duplicat.push({
-              'aliasname':response.data[i].aliasname,
-              'taxname':response.data[i].taxname
-            });
+                          'aliasname':response.data[i].aliasname,
+                          'taxname':response.data[i].taxname
+                        });
                        // console.log(duplicat)
 
                      }//for
@@ -747,24 +747,24 @@ $scope.radiobutton=function(condition){
            // });
 
         }else{
-                 $scope.adio.state = "out of state";
+                 $scope.radio.state = "out of state";
                  $scope.radiowithinstate = "outofstate";
                   ControllerService.getTaxOutState().then(function(response){
                         //console.log(response);
                             var duplicat = [];
                    if(response != null && response.data != null && response.data.length > 0){
-                    // alert(" call in controller from factory "+response.data.length);
-                     for (var i = response.data.length - 1; i >= 0; i--) {
-                      // Things[i]
-                      // alert(" call in controller from factory "+response.data[i]);
-                        //console.log(response.data[i]);
-                        duplicat.push({
-              'aliasname':response.data[i].aliasname,
-              'taxname':response.data[i].taxname
-            });
-                        //console.log(duplicat)
+                         // alert(" call in controller from factory "+response.data.length);
+                         for (var i = response.data.length - 1; i >= 0; i--) {
+                          // Things[i]
+                          // alert(" call in controller from factory "+response.data[i]);
+                            //console.log(response.data[i]);
+                            duplicat.push({
+                              'aliasname':response.data[i].aliasname,
+                              'taxname':response.data[i].taxname
+                            });
+                                        //console.log(duplicat)
 
-                     }//for
+                         }//for
                      //for checking duplicates in object and removes
           function arrUnique(arr) {
                var cleaned = [];
@@ -797,45 +797,12 @@ $scope.radiobutton=function(condition){
 }  
 $scope.radiobutton("with in state");
 
-$scope.removeChecked = function(index,vname) {
-  // alert("clicked on checkbox1"+$scope.checkbox);
-  // var k=0;
-  if(vname==1){
-    // alert("checkbox checked"+index); 
+$scope.removeChecked = function(index) {
+
   $scope.userit[index].index = index;
-  // alert("clicked on checkbox"+$scope.checkbox);
-  // alert(" $scope.userit[index].index "+ $scope.userit[index].index);
-  }//if
- 
-    else{
-       // alert("else")
-      console.log($scope.userit);
-         for(var i=0;i<=$scope.indexSelected.length-1;i++){
-           // alert("checkbox is unchecked"+index);
-              if (  $scope.userit[i].index === index) {
-                 // alert("within if");
-                delete $scope.userit[i].index;
-                // $scope.checkbox=$scope.checkbox-1;
-                delete($scope.indexSelected[i]);
-                // alert(delete($scope.indexSelected[i]))
-                
-                console.log($scope.indexSelected);
-                console.log($scope.userit)
-               
-              }  //if
-              // if($scope.indexSelected.length==i){
-              //    alert("Hi Jon ");
-              //   $scope.indexSelected=[];    
-              // }
+ // alert(" $scope.userit[index].index "+ $scope.userit[index].index);
 
-          }//for
-          // if($scope.indexSelected.length-1==i){
-          //       alert("complete");
-          //       $scope.indexSelected=[];
-          //     }
-    }//else
-}//removeChecked//removeChecked
-
+}
 $scope.taxSelectionCall = function ($index,taxSelection,call) {
   //alert("jj")
  if (taxSelection != undefined) {
@@ -966,14 +933,15 @@ var taxamtcal = function($index){
   $scope.userit[$index].final= (parseFloat($scope.userit[$index].taxamt) + parseFloat(calcu)).toFixed($scope.rupeesDecimalPoints)
                     // saleInvoiceCalculations(true);
               console.log($scope.userit[$index].final);
+
 //$scope.userit[$index].final =parseFloat($scope.userit[$index].taxval)+parseFloat($scope.userit[$index].taxamt)
-              $scope.totalVal+=parseFloat($scope.userit[$index].final);
+              //$scope.totalVal+=parseFloat($scope.userit[$index].final);
                 }else{
                  $scope.userit[$index].outofstateigst =((calcu*interest3)/100).toFixed($scope.rupeesDecimalPoints);
                      $scope.userit[$index].taxamt =  parseFloat($scope.userit[$index].outofstateigst);
                      $scope.userit[$index].taxamt = ($scope.userit[$index].taxamt).toFixed($scope.rupeesDecimalPoints);
                       $scope.userit[$index].final = (parseFloat($scope.userit[$index].taxamt) + parseFloat(calcu)).toFixed($scope.rupeesDecimalPoints)
-                   $scope.totalVal+= $scope.userit[$index].final
+                   //$scope.totalVal+= $scope.userit[$index].final
 
                       saleInvoiceCalculations(true);
                     }
@@ -1699,18 +1667,24 @@ else if($scope.updateOrder=="updateData")
  // $scope.party="";
  // $scope.orderNO="";
  if (reloadCall == null) {
-      window.location.reload()
+  //alert("  got result  null ")
+      //window.location.reload()
+      window.location.href="orderMaking.html";
  }else if(reloadCall == "notNull") {
 
          $http.post('/api/orderDetailsOnlyOrdersPdf/'+$scope.billNo).success(function(printPdf){
-                     // alert(" got result "+printPdf.orderFile)
+                      //alert(" got result valid "+printPdf.orderFile)
 
-                      $window.open('/pdfPrint/'+printPdf.orderFile);
-                      window.location.reload()
+                      window.open('/pdfPrint/'+printPdf.orderFile, "", "width=300,height=300");
+                     // window.location.reload()
+                     // window.location.href="orderMaking.html"; 
+                       window.location= "orderMaking.html";
          })
     
  }else{
-      window.location.reload()
+   //alert("  got result  both null ")
+   window.location.href="orderMaking.html";
+    //  window.location.reload()
  }
   
             
@@ -1834,7 +1808,7 @@ return;
                window.sessionStorage.setItem("InvGroupAndPurity", JSON.stringify(InvGroupAndPurity))
              
               // $scope.InvGroupAndPurity = JSON.parse(window.sessionStorage.getItem("InvGroupAndPurity"));
-  window.location.href="orderMaking.html" 
+  //window.location.href="orderMaking.html" 
 
             }else if (f == false) {
                //alert(" f is false ");
@@ -1863,18 +1837,18 @@ $scope.check=0;
 $scope.indexFunctionCall=function(index,vname) {
 
     $scope.j=index;
-      // alert(index+"index");
+     // alert(index+"index");
      //  alert(vname+"vname");
            if ($scope.indexSelected.indexOf(index) == -1){
                 $scope.indexSelected.push(index);
                 // alert(index+"pushed index");
-            }         
+            }
                      if($scope.transaction == "Sale Return" || $scope.transaction == "Purchase Return"
                       ||$scope.transaction == 'Approval Sale'||$scope.transaction=='Approval Return'){
                   
                            $scope.mycheck(index,vname);
                       }
-      console.log($scope.indexSelected)
+         console.log($scope.indexSelected)
 
 }
 $scope.removeSelectedRows = function() {
@@ -2495,7 +2469,8 @@ console.log($scope.use)
 
     window.sessionStorage.setItem("getIssue",$scope.transaction)
      window.sessionStorage.setItem("carrigor",$scope.use[index].allocate)
-  
+  // window.sessionStorage.setItem("getOrderNo",$scope.orderNO)
+              
     //alert($scope.use[index].orderNO)
   window.sessionStorage.setItem("orderPatyName",$scope.use[index].orderNO)
    var vocherPartyId =$scope.use[index]._id+","+$scope.use[index].allocate

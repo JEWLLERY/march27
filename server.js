@@ -3046,6 +3046,15 @@ app.put('/pdfUpdate',function(req,res){
   });
 });
 
+// app.put('/pdfUpdateFromControllerjs',function(req,res){
+//   // console.log('/pdfUpdate'+ '/pdfUpdate'+req.query.id +req.query.id+ req.query.id);
+//   // console.log(req.body)
+//  db.printData.update({_id:mongojs.ObjectId(req.body._id)},{$set:{"printStatus" : "yes"}},function(err,doc){
+//     //console.log(req.query.id +req.query.id+ req.query.id);
+//     res.json(doc);
+//   });
+// });
+
 
 
 
@@ -9057,12 +9066,9 @@ require('./public/inventoryDbs/defaultCollections')(app);
 // require('./apiCalls/printPdf')(app); // pass our application into our routes
 require('./apiCalls/materialAdvancePdf')(app);
 
-<<<<<<< HEAD
-app.listen(9500); 
-console.log("server running on port 9500");
-=======
+
 app.listen(8000); 
 console.log("server running on port 8000");
->>>>>>> 7330c2dee0995252447926c7b9a1cb793139d662
+
 
 exports = module.exports = app;

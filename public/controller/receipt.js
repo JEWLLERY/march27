@@ -30,32 +30,7 @@ myApp.controller('billCntrl',['$scope','$http','$window',
     });
 
 
-<<<<<<< HEAD
-//  setPatyName  =  window.sessionStorage.getItem("receiptPatyName");
- 
-// console.log(setPatyName)
-// //setPatyName = 'viin';
-// if (setPatyName!="null" ) {
-// //alert("KK")
-// $scope.dataHide="yes"
-//       $http.get('/receiptOrderNo/'+setPatyName).success(function(response){
-//           console.log(response);
-//         $scope.orderNO=response[0].orderNO;
-//         $scope.orderNO=response[0].orderNO;
-//         $scope.partyname=response[0].partyNames
-       
-//     });
 
-
-// }   
-// window.sessionStorage.setItem("receiptPatyName","null");
-
-//             var ilchgg  = window.sessionStorage.getItem("receiptPatyName");
-
-
-=======
- 
->>>>>>> 7330c2dee0995252447926c7b9a1cb793139d662
   
 
          $http.get('/getRecentVoucherNo'+recentId1).success(function(response){
@@ -123,7 +98,7 @@ $http.get('/getprefixs').success(function(response){
     $scope.bno=response+1;
     $scope.billNo=$scope.prefix1+$scope.bno;
     $scope.BillNos=$scope.prefix1+","+$scope.bno;
-    $scope.narrate="Bill No is :"+$scope.billNo;
+    $scope.narrate="Receipt No is :"+$scope.billNo;
       window.sessionStorage.setItem("billnumber",$scope.billNo);
   // alert($scope.billNo);
   // $scope.insertReceipt($scope.billNo);
