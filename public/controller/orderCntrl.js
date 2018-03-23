@@ -684,7 +684,7 @@ return;
             });
 
  
-     console.log($scope.userit);
+     console.log($scopse.userit);
   
         };
 $scope.radiobutton=function(condition){
@@ -706,9 +706,9 @@ $scope.radiobutton=function(condition){
                       // alert(" call in controller from factory "+response.data[i]);
                         //console.log(response.data[i]);
                         duplicat.push({
-              'aliasname':response.data[i].aliasname,
-              'taxname':response.data[i].taxname
-            });
+                          'aliasname':response.data[i].aliasname,
+                          'taxname':response.data[i].taxname
+                        });
                        // console.log(duplicat)
 
                      }//for
@@ -747,24 +747,24 @@ $scope.radiobutton=function(condition){
            // });
 
         }else{
-                 $scope.adio.state = "out of state";
+                 $scope.radio.state = "out of state";
                  $scope.radiowithinstate = "outofstate";
                   ControllerService.getTaxOutState().then(function(response){
                         //console.log(response);
                             var duplicat = [];
                    if(response != null && response.data != null && response.data.length > 0){
-                    // alert(" call in controller from factory "+response.data.length);
-                     for (var i = response.data.length - 1; i >= 0; i--) {
-                      // Things[i]
-                      // alert(" call in controller from factory "+response.data[i]);
-                        //console.log(response.data[i]);
-                        duplicat.push({
-              'aliasname':response.data[i].aliasname,
-              'taxname':response.data[i].taxname
-            });
-                        //console.log(duplicat)
+                         // alert(" call in controller from factory "+response.data.length);
+                         for (var i = response.data.length - 1; i >= 0; i--) {
+                          // Things[i]
+                          // alert(" call in controller from factory "+response.data[i]);
+                            //console.log(response.data[i]);
+                            duplicat.push({
+                              'aliasname':response.data[i].aliasname,
+                              'taxname':response.data[i].taxname
+                            });
+                                        //console.log(duplicat)
 
-                     }//for
+                         }//for
                      //for checking duplicates in object and removes
           function arrUnique(arr) {
                var cleaned = [];
@@ -933,8 +933,14 @@ var taxamtcal = function($index){
   $scope.userit[$index].final= (parseFloat($scope.userit[$index].taxamt) + parseFloat(calcu)).toFixed($scope.rupeesDecimalPoints)
                     // saleInvoiceCalculations(true);
               console.log($scope.userit[$index].final);
+<<<<<<< HEAD
             wisCallTotalVal();
 
+=======
+
+//$scope.userit[$index].final =parseFloat($scope.userit[$index].taxval)+parseFloat($scope.userit[$index].taxamt)
+              //$scope.totalVal+=parseFloat($scope.userit[$index].final);
+>>>>>>> 51ce0d2a88a6e81c5ca21dbecebc3373e9d5028c
                 }else{
 
                  //$scope.userit[$index].outofstateigst =((calcu*interest3)/100).toFixed($scope.rupeesDecimalPoints);
@@ -1688,18 +1694,24 @@ else if($scope.updateOrder=="updateData")
  // $scope.party="";
  // $scope.orderNO="";
  if (reloadCall == null) {
-      window.location.reload()
+  //alert("  got result  null ")
+      //window.location.reload()
+      window.location.href="orderMaking.html";
  }else if(reloadCall == "notNull") {
 
          $http.post('/api/orderDetailsOnlyOrdersPdf/'+$scope.billNo).success(function(printPdf){
-                     // alert(" got result "+printPdf.orderFile)
+                      //alert(" got result valid "+printPdf.orderFile)
 
-                      $window.open('/pdfPrint/'+printPdf.orderFile);
-                      window.location.reload()
+                      window.open('/pdfPrint/'+printPdf.orderFile, "", "width=300,height=300");
+                     // window.location.reload()
+                     // window.location.href="orderMaking.html"; 
+                       window.location= "orderMaking.html";
          })
     
  }else{
-      window.location.reload()
+   //alert("  got result  both null ")
+   window.location.href="orderMaking.html";
+    //  window.location.reload()
  }
   
             
@@ -1823,7 +1835,7 @@ return;
                window.sessionStorage.setItem("InvGroupAndPurity", JSON.stringify(InvGroupAndPurity))
              
               // $scope.InvGroupAndPurity = JSON.parse(window.sessionStorage.getItem("InvGroupAndPurity"));
-  window.location.href="orderMaking.html" 
+  //window.location.href="orderMaking.html" 
 
             }else if (f == false) {
                //alert(" f is false ");
@@ -2484,7 +2496,8 @@ console.log($scope.use)
 
     window.sessionStorage.setItem("getIssue",$scope.transaction)
      window.sessionStorage.setItem("carrigor",$scope.use[index].allocate)
-  
+  // window.sessionStorage.setItem("getOrderNo",$scope.orderNO)
+              
     //alert($scope.use[index].orderNO)
   window.sessionStorage.setItem("orderPatyName",$scope.use[index].orderNO)
    var vocherPartyId =$scope.use[index]._id+","+$scope.use[index].allocate

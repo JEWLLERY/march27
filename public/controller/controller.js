@@ -48,7 +48,11 @@ console.log(response)
 //console.log(response[0].Balance)
 $scope.remainingBalance=response[0].remainingNtWt;
 
+<<<<<<< HEAD
 //alert("1ee"+$scope.remainingBalance)
+=======
+
+>>>>>>> 51ce0d2a88a6e81c5ca21dbecebc3373e9d5028c
 
 
 
@@ -58,7 +62,11 @@ $scope.remainingBalance=response[0].remainingNtWt;
           console.log(response)
           
          $scope.orderFinal=parseFloat(response[0].remainingPaid)
+<<<<<<< HEAD
 //alert("2ww"+$scope.orderFinal)
+=======
+//alert($scope.orderFinal)
+>>>>>>> 51ce0d2a88a6e81c5ca21dbecebc3373e9d5028c
 })
          $http.get('/lengthOrdNum/'+orderNum).success(function(response){
 
@@ -82,7 +90,11 @@ $scope.overAllLen=parseInt(response.length);
 //alert("ove"+$scope.overAllLen)
 
           })
+<<<<<<< HEAD
      
+=======
+      
+>>>>>>> 51ce0d2a88a6e81c5ca21dbecebc3373e9d5028c
         $http.get('/ordNum/'+orderNum).success(function(response){ 
           console.log(response)
         //alert(response.totalorder.length)
@@ -94,6 +106,15 @@ $scope.overAllLen=parseInt(response.length);
 
          var ordata=null;
 $scope.userit=response;
+  $http.get('/getTaxname'+$scope.userit[0].taxSelection).success(function(response){
+       // alert(response[0].withinstate) 
+        if (response[0].withinstate == 'yes') {
+              $scope.radiobutton("with in state");
+        }else{
+             $scope.radiobutton("out of state");
+        }
+        
+  })
 $scope.ordId=response[0].orderNO
 if(response[0].totalorder[0]!=undefined){
    $scope.calres = parseFloat(response[0].totalorder[0].remainingNtWt);
@@ -101,6 +122,11 @@ if(response[0].totalorder[0]!=undefined){
 }
 
 
+<<<<<<< HEAD
+=======
+// $scope.calres = parseFloat(response[0].totalorder[0].remainingNtWt);
+$scope.calres =0;
+>>>>>>> 51ce0d2a88a6e81c5ca21dbecebc3373e9d5028c
   for(var i=0;i<=$scope.userit.length-1;i++){
     //alert("0")
  if (response[i].totalorder.length != 0) {
@@ -149,7 +175,7 @@ ordata=response[0].chgunt;
  setTimeout(function(){$scope.Print()}, 500);
  $scope.Print = function(){
   console.log(ordata)
-
+  //alert(" print call ")
    function increaseCallIndex (i) {
      // body...
    
@@ -376,11 +402,12 @@ window.sessionStorage.setItem("getname","null");
 var  getOrderNo ="null";
 //var numOrder=window.sessionStorage.getItem("numOrder",$scope.orderNO)
  var getOrderNo = window.sessionStorage.getItem("getOrderNo")
- //alert("ch"+getOrderNo)
+ //
  //console.log($scope.userit)
+ //commented by vijay // null made after
  window.sessionStorage.setItem("getOrderNo","null");
             var lch  = window.sessionStorage.getItem("getOrderNo");
-
+//alert("ch"+getOrderNo)
   
 //InvGroup And Purity from order to make default purity selection
 
@@ -5289,38 +5316,56 @@ window.sessionStorage.setItem("threeReceiptVal",JSON.stringify(adjust))
 
 
 
-                                    if ( ( $scope.transaction == "Receipt Voucher" && $scope.test=="display")  ||($scope.transaction == "Receipt Voucher" && $scope.te=="disp")) {
-
+                                   // if ( ( $scope.transaction == "Receipt Voucher" && $scope.test=="display")  ||($scope.transaction == "Receipt Voucher" && $scope.te=="disp")) {
+                                      // changed by vijay 23/03/2018  to open only from ordersmaking.html
+                                     if ( ($scope.transaction == "Receipt Voucher" && $scope.te=="disp")) {
+                                    
 
                                         //   $http.post('/api/orderDetailsReceiptPdf/'+$scope.getOrderNo)
                                         // $window.location = "orderCustomer.html";
                                           setTimeout(function() {  
-                                               $http.post('/api/orderDetailsReceiptPdf/'+getOrderNo).success(function(printFile){
-                                                     //$window.location = "orderMaking.html";  
+                                               $http.post('/api/receiptVoucherPdfCall/'+orderPatyName).success(function(printFile){
+                                                     //$window.location = "orderMaking.html";
+                                                     //getOrderNo ="null"; 
+                                                     alert(" orderPatyName orderPatyName "+orderPatyName); 
                                                        var myWindow =  window.open('/pdfPrint/'+printFile, "", "width=300,height=300");
                                                        //myWindow.focus();
+                                                        // $http.put('/pdfUpdateFromControllerjs',printFile)
                                                         window.location= "orderMaking.html";
                                                 })
                                            }, 500);
-                                        
+                                      } else if ( $scope.transaction == "Receipt Voucher" && $scope.test=="display"){ 
+                                        setTimeout(function() {  
+                                               $http.post('/api/orderDetailsReceiptPdf/'+getOrderNo).success(function(printFile){
+                                                     //getOrderNo ="null";
+                                                     //$window.location = "orderMaking.html";  
+                                                       //var myWindow =  window.open('/pdfPrint/'+printFile, "", "width=300,height=300");
+                                                       //myWindow.focus();
+                                                        // $http.put('/pdfUpdateFromControllerjs',printFile)
+                                                        window.location= "orderMaking.html";
+                                                })
+                                           }, 500);
 
                                      }else if (($scope.transaction == "Issue Voucher" && $scope.te=="disp")) {
-
+                                             
                                           //$http.post('/api/orderDetailsReceiptPdf/'+$scope.getOrderNo),success
                                             setTimeout(function() {
                                                 // body...
-                                            
-                                                $http.post('/api/orderDetailsIssueVoucherCallPdf/'+getOrderNo).success(function(printFile){
-                                                     //$window.location = "orderMaking.html";  
+                                                
+                                                $http.post('/api/orderDetailsIssueVoucherCallPdf/'+orderPatyName).success(function(printFile){
+                                                     //$window.location = "orderMaking.html"; 
+                                                      // alert(" issue nvdsgfnfgn "+orderPatyName)
+                                                     //getOrderNo ="null";
+                                                    // alert("printFile "+printFile+orderPatyName); 
                                                        var myWindow =  window.open('/pdfPrint/'+printFile, "", "width=300,height=300");
-                                                       myWindow.focus();
+                                                       //myWindow.focus();
                                                         window.location= "orderMaking.html";
                                                 })
                                             }, 500);
                    
                                           
                                      }else{
-                                          //alert(" else call for all ")
+                                         // alert(" else call for all ")
                                           setTimeout($scope.valuationPrint(), 1000);
 
                                      }
