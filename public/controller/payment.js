@@ -149,7 +149,7 @@ $http.get('/getprefixs1').success(function(response){
     $scope.bno=response+1;
     $scope.billNo=$scope.prefix1+$scope.bno;
     $scope.BillNos=$scope.prefix1+","+$scope.bno;
-    $scope.narrate="Bill No is :"+$scope.billNo;
+    $scope.narrate="Payment No is :"+$scope.billNo;
       window.sessionStorage.setItem("billnumber",$scope.billNo);
   // alert($scope.billNo);
   // $scope.insertReceipt($scope.billNo);

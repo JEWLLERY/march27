@@ -7505,8 +7505,8 @@ app.post('/user12/:data',function(req,res){
     //console.log( str_array.length);
     var length = str_array.length;
     //console.log(length);
-    var remainingNtWt= str_array[length - 1];
-    var voucher = str_array[length - 2];
+     var remainingNtWt= str_array[length - 2];
+    var voucher = str_array[length - 1];
 
     for(var i =0;i<length - 1;i++){
     //  console.log("here is the length "+str_array[i]);
@@ -9057,12 +9057,9 @@ require('./public/inventoryDbs/defaultCollections')(app);
 // require('./apiCalls/printPdf')(app); // pass our application into our routes
 require('./apiCalls/materialAdvancePdf')(app);
 
-<<<<<<< HEAD
-app.listen(9500); 
-console.log("server running on port 9500");
-=======
-app.listen(8000); 
-console.log("server running on port 8000");
->>>>>>> 7330c2dee0995252447926c7b9a1cb793139d662
+
+app.listen(1100); 
+console.log("server running on port 1100");
+
 
 exports = module.exports = app;

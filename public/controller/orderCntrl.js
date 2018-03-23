@@ -797,45 +797,12 @@ $scope.radiobutton=function(condition){
 }  
 $scope.radiobutton("with in state");
 
-$scope.removeChecked = function(index,vname) {
-  // alert("clicked on checkbox1"+$scope.checkbox);
-  // var k=0;
-  if(vname==1){
-    // alert("checkbox checked"+index); 
+$scope.removeChecked = function(index) {
+
   $scope.userit[index].index = index;
-  // alert("clicked on checkbox"+$scope.checkbox);
-  // alert(" $scope.userit[index].index "+ $scope.userit[index].index);
-  }//if
- 
-    else{
-       // alert("else")
-      console.log($scope.userit);
-         for(var i=0;i<=$scope.indexSelected.length-1;i++){
-           // alert("checkbox is unchecked"+index);
-              if (  $scope.userit[i].index === index) {
-                 // alert("within if");
-                delete $scope.userit[i].index;
-                // $scope.checkbox=$scope.checkbox-1;
-                delete($scope.indexSelected[i]);
-                // alert(delete($scope.indexSelected[i]))
-                
-                console.log($scope.indexSelected);
-                console.log($scope.userit)
-               
-              }  //if
-              // if($scope.indexSelected.length==i){
-              //    alert("Hi Jon ");
-              //   $scope.indexSelected=[];    
-              // }
+ // alert(" $scope.userit[index].index "+ $scope.userit[index].index);
 
-          }//for
-          // if($scope.indexSelected.length-1==i){
-          //       alert("complete");
-          //       $scope.indexSelected=[];
-          //     }
-    }//else
-}//removeChecked//removeChecked
-
+}
 $scope.taxSelectionCall = function ($index,taxSelection,call) {
   //alert("jj")
  if (taxSelection != undefined) {
@@ -966,16 +933,18 @@ var taxamtcal = function($index){
   $scope.userit[$index].final= (parseFloat($scope.userit[$index].taxamt) + parseFloat(calcu)).toFixed($scope.rupeesDecimalPoints)
                     // saleInvoiceCalculations(true);
               console.log($scope.userit[$index].final);
-//$scope.userit[$index].final =parseFloat($scope.userit[$index].taxval)+parseFloat($scope.userit[$index].taxamt)
-              $scope.totalVal+=parseFloat($scope.userit[$index].final);
+            wisCallTotalVal();
+
                 }else{
-                 $scope.userit[$index].outofstateigst =((calcu*interest3)/100).toFixed($scope.rupeesDecimalPoints);
+
+                 //$scope.userit[$index].outofstateigst =((calcu*interest3)/100).toFixed($scope.rupeesDecimalPoints);
                      $scope.userit[$index].taxamt =  parseFloat($scope.userit[$index].outofstateigst);
                      $scope.userit[$index].taxamt = ($scope.userit[$index].taxamt).toFixed($scope.rupeesDecimalPoints);
                       $scope.userit[$index].final = (parseFloat($scope.userit[$index].taxamt) + parseFloat(calcu)).toFixed($scope.rupeesDecimalPoints)
-                   $scope.totalVal+= $scope.userit[$index].final
+                   //$scope.totalVal+= $scope.userit[$index].final
 
                       saleInvoiceCalculations(true);
+                      oosCallTotalVal();
                     }
            // }
         //    else if($scope.transaction == "Urd Purchase"){
@@ -987,7 +956,27 @@ var taxamtcal = function($index){
 //$scope.userit[$index].final = parseFloat($scope.userit[$index].taxval) .toFixed($scope.rupeesDecimalPoints)        // // }, 10);//const
 }
 
+var wisCallTotalVal=function(){
+  $scope.totalVal=0;
+ if( $scope.radiowithinstate == "withinstate"){
+for(i=0;i<=$scope.userit.length-1;i++){
+  //alert("parseFloat")
+$scope.totalVal+=parseFloat($scope.userit[i].final);  
 
+}
+}
+
+
+}
+var oosCallTotalVal=function(){
+  $scope.totalVal=0;
+for(i=0;i<=$scope.userit.length-1;i++){
+  //alert(parseFloat($scope.userit[i].final))
+$scope.totalVal+=parseFloat($scope.userit[i].final);  
+
+}
+
+}
 $scope.rateChange=function($index){
 
  
@@ -1863,18 +1852,18 @@ $scope.check=0;
 $scope.indexFunctionCall=function(index,vname) {
 
     $scope.j=index;
-      // alert(index+"index");
+     // alert(index+"index");
      //  alert(vname+"vname");
            if ($scope.indexSelected.indexOf(index) == -1){
                 $scope.indexSelected.push(index);
                 // alert(index+"pushed index");
-            }         
+            }
                      if($scope.transaction == "Sale Return" || $scope.transaction == "Purchase Return"
                       ||$scope.transaction == 'Approval Sale'||$scope.transaction=='Approval Return'){
                   
                            $scope.mycheck(index,vname);
                       }
-      console.log($scope.indexSelected)
+         console.log($scope.indexSelected)
 
 }
 $scope.removeSelectedRows = function() {
