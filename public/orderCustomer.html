@@ -546,7 +546,7 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
     <tbody >
      <tr  ng-repeat="item in userit">
        <td style="padding-right: 80px">
-          <input type="checkbox" ng-checked="checkbox" ng-model="check" ng-click = "indexFunctionCall($index,check);removeChecked($index)"   ng-true-value="1" ng-false-value="0"/>
+          <input type="checkbox" ng-checked="checkbox" ng-model="check" ng-click = "indexFunctionCall($index,check);removeChecked($index,check)"   ng-true-value="1" ng-false-value="0"/>
        </td>
       
       <td style="padding-right: 20px">
@@ -643,7 +643,7 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
        
  </div>
            <div class="col-sm-6">
-          Total<input type="text" name="" ng-model="totalVal"> 
+          Total<input type="text" name="" ng-model="totalVal" readonly> 
        
  </div><br><br>
     <div class="col-sm-6"> 
@@ -665,12 +665,7 @@ Staff<span id="star"><font size="02">*</font></span>&nbsp;
          </div>
          </div><br>
 
-       <div class="container"> 
       
-        <!-- <button class="btn btn-warning">Edit</button> -->
-         <button ng-click="valuationPrint()" id="cmd" class="btn btn-success">Print</button>
-       
-        </div>
       
 
 </body>

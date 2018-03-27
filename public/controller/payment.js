@@ -18,8 +18,12 @@ function($scope,$http,$window){
  $scope.printreceipt = window.sessionStorage.getItem("rprint");
  var recentId = JSON.parse(window.sessionStorage.getItem("siid"));
  var recentId1 = recentId;
+ // $scope.urdparty=window.sessionStorage.getItem("party1name");
+ // alert("party "+urdparty);
+ // $scope.urdAmount =window.sessionStorage.getItem("urdRefund");
+      // alert("urdamount "+$scope.urdAmount);
   // alert(recentId1+"bbbbbbbbbbbbbb");
-   // alert("selected party"+$scope.customer);
+    // alert("selected party"+$scope.customer);
    $scope.partyname = $scope.customer;
    // alert("partyname"+$scope.partyname);
    console.log("selected party"+$scope.customer);

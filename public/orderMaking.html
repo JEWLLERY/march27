@@ -558,7 +558,7 @@ To  <input type="date" ng-model="dateto" id="dates" ng-change="vend()" />
      </div>
           <div class="col-sm-6">
           Allocate  <!-- <form > -->
-                    <select id="party" ng-model="allocatevendor"  ng-click="vendorNames()" ng-change="updateorder(allocatevendor,selectedrow)"  ng-disabled="initDis=='Delivered' || initDis=='Completed' ">
+                    <select id="party" ng-model="allocatevendor"   ng-change="updateorder(allocatevendor,selectedrow)"  ng-disabled="initDis=='Delivered' || initDis=='Completed' ">
 
                         <option ng-repeat="vendor in vendorNames" ng-cloak>{{vendor.subscriber}}</option>
                     </select>

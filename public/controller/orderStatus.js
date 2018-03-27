@@ -102,21 +102,26 @@ $scope.usernamedetails = window.sessionStorage.getItem("username")
 
  }
   $scope.rowSelect = function(tag,index){
-  console.log(tag.initial)
+  //alert($scope.makeDisabled)
  $scope.makeDisabled=tag.initial
   $scope.rowSelected = index
   //alert(selectedrow)
   $scope.idSelected = tag;
   console.log($scope.idSelected)
 }
-$scope.gotoorders=function() {
-  //alert(data)
+$scope.gotoorders=function(data) {
+ //alert( $scope.rowSelected)
   if ($scope.typeorder==undefined && $scope.datefrom==undefined &&$scope.dateto==undefined){
     alert("Please Select Mandatory Fields")
     return;
   }
+  else if($scope.rowSelected==undefined){
+    alert("Please Select  Data")
+    return;
+  }
   else{
-    $scope.orderpage = "orderCustomer.html";
+   
+     window.location.href = "orderCustomer.html";
     window.sessionStorage.setItem("gotoorders",JSON.stringify($scope.idSelected))
   window.sessionStorage.setItem("bringOrders","updateData")
   }

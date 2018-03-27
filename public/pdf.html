@@ -25,23 +25,6 @@ pdf.addHTML(document.body,function() {
 </script>
 <title>Pdf</title> 
 
-        <!-- <script type="text/javascript">
-
-
-    function myFunction(export-table)
-    {
-        var docDefinition = {
-
-  content: [
-
-export-table
-]
-}
-  
-    pdfMake.createPdf(docDefinition).download('Report.pdf');
-
-    }
-    </script> -->
     <style type="text/css">
           .center {
     margin:auto;
@@ -185,21 +168,7 @@ margin-bottom: -1px;
 position: absolute;
 top: 0px;
 right:27px;}
-/*#main4, #main5, #main6 {
-width: 303px;
-list-style-type: none;
-float: left;
-margin: 10px;}
-.main3 {width:305px;
-list-style-type: none;
-padding-top: 10px;
-float: left;}
-::-webkit-scrollbar {
-height:12px;
-background: #474747;}
-::-webkit-scrollbar-thumb {
-background-color: #000;
-}*/
+
  li#sub ul {
     display:none;
   position: absolute; left: 100%; top:0;
@@ -298,11 +267,9 @@ display: block;
                 </li>
 
                <li>
-<!-- <<<<<<< HEAD:public/Transaction.html
-                <a href="item.html">
-======= -->
+
                 <a href="Item.html">
-<!-- >>>>>>> c48bfd0e80c9b43602e5680e3278aa853ad3d82f:public/Transaction.html -->
+
                   Item
                 </a>
               </li>
@@ -346,30 +313,12 @@ display: block;
 
               Tax Configuration
             </a>
-            <!-- <ul>
-                
-
-               <li>
-                <a href="indextaxation.html">
-                  Tax Structure
-                </a>
-              </li> -->
-              <!-- <li>
-                <a href="taxation.html">
-                  Tax Name
-                </a>
-              </li> -->
-             
-              
-            <!-- </ul> -->
+            
           </li>
             
         
           </li>
-<!-- <<<<<< HEAD:public/Transaction.html
-          <li  id="name1">
-            <a>
-======= -->
+
           <li >
               <a href="dailyRates.html">
               Daily Rates 
@@ -393,14 +342,7 @@ display: block;
                   
                   Payment
                 </a>
-              </li>
-              <!-- <li>
-                <a href="GroupWise.html">
-                  Group Wise
-                </a>
-              </li> -->
-             
-              
+              </li>              
             </ul>
           </li>
           <li  id="name1" >
@@ -419,10 +361,7 @@ display: block;
           
           </li>
           
-        </ul>
-
-
-        
+        </ul>        
       </div>
     <div class="center" ng-cloak >
         <h2></h2>
@@ -436,7 +375,7 @@ display: block;
   </header>
 </div>
  </article>
-<!-- <h3 align="center">Tax Invoice[{{billType}}]</h3>//25/4 -->
+
 <div class="row">
 <h3 align="center" ng-if="trans == 'Regular Sale'||trans=='Approval Sale'" style="margin-top:-12px;" ng-cloak>Tax Invoice[{{Billtype}}]</h3>
 <h3 align='center' ng-if="trans=='Issue Voucher'" style="margin-top:-12px;" style="margin-top:-12px;" ng-cloak>Issue Voucher</h3>
@@ -452,6 +391,7 @@ display: block;
 <h3 align='center' ng-if="trans=='Sale Return'" style="margin-top:-12px;" ng-cloak
 >Sale Return</h3>
 <h3 align='center' ng-if="trans=='Purchase Return'" style="margin-top:-12px;" ng-cloak>Purchase Return</h3>
+<h3 align='center' ng-if="trans=='Urd Purchase'" style="margin-top:-12px;" ng-cloak> URD Purchase </h3>
 </div>
 <div class="row">
 
@@ -461,11 +401,6 @@ Party License:{{partyLicense}}<br>
 Party PAN:{{partyPAN}}<br>
 Party Address:{{city}}<br>
 City:{{city}}</p>
- 
-
-<!-- <p>Amount in words: </p> -->
- <!-- <input type="text" name=
- "number"  onkeyup="word.innerHTML=convertNumberToWords(this.value)" /> -->
 </div>
 <div ng-cloak ng-if="trans !='Valuation'&&trans!='Opening Stock'">Invoice No:{{invoice}}<br>
   <!-- <p>Invoice No:B1393<br> -->
@@ -475,8 +410,7 @@ City:{{city}}</p>
 </p>
 </div>
 </div>
-    <!-- <h1><font color="black">{{partyname}}</h1> -->
-    <!-- <button type="button" class="btn btn-primary" id="button" ng-click="getDetails()">partynames</button> <table style="font-family:arial;" ....>-->
+    
     <div style="overflow-x:auto;">
   <table  class="table no-border" id="to-pdf" ng-cloak> 
     <thead id="theadsize">
@@ -486,7 +420,7 @@ City:{{city}}</p>
       <th>Hsc</th>
       <th>Description</th>
         <th ng-if="urdweight =='Gross Wt' || trans =='Regular Sale'||trans =='Sale Return'||trans == 'Purchase Return'">Gross Wt</th>
-        <!-- <th ng-if="trans=='Issue Voucher'|| trans=='Receipt Voucher'">Gross Wt</th> -->
+      
          <th  ng-if="trans =='Regular Sale'||trans=='Issue Voucher'|| trans=='Receipt Voucher'||trans =='Sale Return'||trans == 'Purchase Return'">Gross Pcs</th>
 
         <th  ng-if="trans =='Regular Sale'">St.Wt</th>
@@ -507,14 +441,8 @@ City:{{city}}</p>
       </tr>
     </thead>
     <tbody>
-      <tr id="theadsize" ng-repeat="item in userdisplay" ng-class="styleFunction(item.compositeRef,item.Number)" >
-     <!--  <td ng-if="item.compositeRef == undefined " >
-       {{$index+1}}
-      {{item.Number}}
-      </td> -->
+      <tr id="theadsize" ng-repeat="item in userdisplay" ng-class="styleFunction(item.compositeRef,item.Number)" >     
       <td  > {{item.Number}}</td>
-    <!--   <td ng-if="item.Number == undefined " > {{item.compositeRef}}</td> -->
-      <!--  <td>{{item.Number}}</td> -->
        <td>{{item.itemName}}</td>
 
         <td>{{item.Hsc}}</td>
@@ -700,7 +628,7 @@ City:{{city}}</p>
 
 </div>
 <!-- <<<<<<< HEAD -->
-<h4 ng-if="trans !='Urd Purchase'&&trans !='Issue Voucher'&&trans !='Receipt Voucher'&&trans !='Sale Return'&&trans !='Purchase Return'&&trans !='Approval Out'&&trans!='Approval Return'&&trans!='Opening Stock'" ng-cloak><font color="black">AMOUNT IN WORDS:{{wor}}{{"only"}}</h4>
+<h4 ng-if="trans !='Urd Purchase'&&trans !='Issue Voucher'&&trans !='Receipt Voucher'&&trans !='Sale Return'&&trans !='Purchase Return'&&trans !='Approval Out'&&trans!='Approval Return'&&trans!='Opening Stock'&& nett != 0" ng-cloak><font color="black">AMOUNT IN WORDS:{{wor}}{{"only"}}</h4>
 <h4 ng-if="trans =='Urd Purchase'" ng-cloak><font color="black">Invoice Value In Words:{{wor}}{{"only"}}</h4>
 
 
@@ -729,7 +657,6 @@ City:{{city}}</p>
         <th >OB</th>
         <th>Dr/cr</th>
       </tr>
-      asdfghjkl;'waesdfghsdfdsfgdfgb'
     </thead>
     <tbody>  
     <tr>
@@ -742,7 +669,7 @@ City:{{city}}</p>
 </div>
 
 <div class="col-sm-4" ng-show="(Billtype == 'Credit' && printReceipt == true)">
-<!-- credit -->
+
 <table class="table table-bordered">
     <thead>
       <tr>
@@ -765,7 +692,7 @@ City:{{city}}</p>
 </div>
 </div>
 <div  ng-hide="trans!='Issue Voucher'&& trans!='Receipt Voucher' && trans != 'Approval Out' && trans !='Approval Return'" >
-  <!-- Vinayak -->
+  
 <table>
   <th>
  <tr> 

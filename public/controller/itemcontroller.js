@@ -6,10 +6,10 @@ function($scope,$http,$window){
   //alert("well come to ItemCntrl")
    $scope.usernamedetails = window.sessionStorage.getItem("username")
    $scope.itemdetails = []
-  var duplicat = [];
-  var duplicate = [];
-  var selectedrow = null;
- var editcheck = false;
+    var duplicat = [];
+    var duplicate = [];
+    var selectedrow = null;
+    var editcheck = false;
 // $scope.TypeName="All "
   //$scope.item1.filter="All "
 //alert( $scope.item1.filter)
@@ -119,13 +119,7 @@ $scope.selectrow();
 
 
     $scope.saveitem = function(){
-      //alert('kk')()
-      // if ($scope.item1.Name == "")
-      // {
-      //   alert("jj")
-      // }
-
-       //$scope.test=='display'
+        // alert("clicked on save");
       if($scope.item1.Name == undefined &&$scope.item1.Hsc == undefined &&$scope.item1.Desc == undefined &&
       $scope.item1.ItemType == undefined &&$scope.item1.SaleCategory == undefined && $scope.item1.InvGroupName== undefined)
       {
@@ -187,20 +181,18 @@ $scope.selectrow();
 
      $http.put('/editeditem',$scope.item1).success(function(response)
                 {
-                 //alert("edit call")
-//console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkk")
-                      //itemdatafetch();
-//$scope.filterchange();
+
                     $scope.cancelitem()
                       editcheck = false
 
                 })
- //$scope.filterchange();
- //$scope.cancelitem()
+          $scope.item1.filter="All "
+          $scope.item.filter = $scope.item1.filter;
+          $scope.filterchange();
      } 
 
      else {
-//alert('ff')
+      // alert('ff')
 console.log($scope.item1)
 // var item1filter =$scope.item.filter
            $http.post('/saveitempost',$scope.item1).success(function(response){
@@ -209,14 +201,18 @@ console.log($scope.item1)
                 $scope.cancelitem()
                  editcheck = false
                 
-            //alert("edit call")
                })
+           $scope.item1.filter="All "
+            $scope.item.filter = $scope.item1.filter;
+             // alert("edit call"+ $scope.filter);
+           // $scope.filterchange()
          }
    console.log($scope.item1.Name);      
   //$scope.filterchange();
    //$scope.itemdatafetch();
   }
-//$scope.filterchange();
+    // $scope.filterchange();
+    
    $scope.selectrow()
 }
 $scope.findName =function(){
@@ -271,7 +267,8 @@ $scope.filterchange = function(){
     var item1filter =$scope.item.filter
       $http.get('/getfilter/'+item1filter).success(function(response){
          $scope.itemdetails = response 
-         $scope.cancelitem();
+         // $scope.cancelitem();
+         $scope.item1 ="";
          //alert(response)
      })
     

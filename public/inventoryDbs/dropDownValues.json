@@ -1598,9 +1598,9 @@
                                 "comboItem" : "no"
                                 },
                                 { 
-                                "Name" : "Sandlewood Bowl ", 
-                                "Hsc" : "Sandlewood Bowl ",
-                                "Desc" : "Sandlewood Bowl ",
+                                "Name" : "Sandlewood Bowl", 
+                                "Hsc" : "Sandlewood Bowl",
+                                "Desc" : "Sandlewood Bowl",
                                 "InvGroupName" : "Silver Articles",
                                 "ItemType" : " Manufactured",
                                 "SaleCategory" : " Utensils",

@@ -2084,11 +2084,11 @@ $scope.newstwt=function($index)
  //$scope.userit[$index].wastage = 0;
 $scope.newwas=function($index,pctcal)
 {
-   // 
-  //alert(" newwas pct "+pctcal)
+   $scope.userit[$index].wastage = parseFloat ($scope.userit[$index].wastage) ; 
+  // alert(" newwas pct "+pctcal+" chargable "+$scope.userit[$index].wastage+" "+typeof($scope.userit[$index].wastage))
   $scope.totmat=0;
   if(pctcal == undefined && tagdetails.composite != 'yes'){
-    alert("Please select pct");
+    // alert("Please select pct");
      
      $scope.userit[$index].wastage = 0;
   }else{
@@ -2097,13 +2097,13 @@ $scope.newwas=function($index,pctcal)
    // var lab= window.sessionStorage.getItem("taxv");
    //taxValCal($index)
   // $scope.userit[$index].wastage =( $scope.userit[$index].wastage).toFixed(fixdec);
-   $scope.userit[$index].wastage = parseFloat ($scope.userit[$index].wastage) ;
+   // $scope.userit[$index].wastage = parseFloat ($scope.userit[$index].wastage) ;
    
 
-    if($scope.userit[$index].wastage==null || $scope.userit[$index].wastage=="")
+    if($scope.userit[$index].wastage==null || $scope.userit[$index].wastage==""|| $scope.userit[$index].wastage==NaN)
     {
-        
-        
+      // alert("hello"+$scope.userit[$index].wastage+" "+typeof($scope.userit[$index].wastage))  
+       // $scope.userit[$index].wastage = parseFloat ($scope.userit[$index].wastage) ; 
   /*$scope.userit[$index].taxval1=lab;
          $scope.userit[$index].taxval=$scope.userit[$index].taxval1.toFixed(fixdec);
          alert($scope.userit[$index].taxval)*/
@@ -2113,7 +2113,8 @@ $scope.newwas=function($index,pctcal)
      else if($scope.userit[$index].wastage==undefined)
      {
 
-       // alert("null value")
+        // alert("null value"+$scope.userit[$index].wastage+" "+typeof($scope.userit[$index].wastage))
+        // $scope.userit[$index].wastage = parseFloat ($scope.userit[$index].wastage) ;
         //alert($scope.userit[$index].chgunt)
          $scope.userit[$index].chgunt=($scope.userit[$index].ntwt).toFixed(fixdec);
     }
@@ -2437,41 +2438,26 @@ $scope.uomConversion=function($index,uom){
  }
  $scope.newlab=function($index,labval2)
  {
-    //alert($scope.userit[$index].labamt);
+     // alert("lab amount "+$scope.userit[$index].labamt+" "+typeof($scope.userit[$index].labamt));
       // $scope.userit[$index].labamt =( $scope.userit[$index].labamt).toFixed(fixdec);
      $scope.userit[$index].labamt = parseFloat ($scope.userit[$index].labamt) ;
    
      if($scope.userit[$index].stval == undefined){
             $scope.userit[$index].stval = 0;
         }
-        // if($scope.userit[$index].labamt == null){
-        //     $scope.userit[$index].labval = 0;
-            
-
-        // }
-
-    //var lab= window.sessionStorage.getItem("taxv");
-    //alert(lab);
+   
     if($scope.userit[$index].labamt=="")
     {
-  //alert("labamt null")
-  //alert(lab)
-   //$scope.userit[$index].labamt = 0;
+
    $scope.userit[$index].labval = 0;
-   // $scope.userit[$index].taxval1=lab;
-   // $scope.userit[$index].taxval=$scope.userit[$index].taxval1.toFixed(fixdec);
-   //       //alert($scope.userit[$index].taxval)
 
     }
      else if($scope.userit[$index].labamt==undefined)
      {
-        //$scope.userit[$index].labamt = 0;
+
+        $scope.userit[$index].labamt = parseFloat ($scope.userit[$index].labamt) ;
         $scope.userit[$index].labval = 0;
-        /*alert("null value")
-        alert($scope.userit[$index].chgunt)*/
-         // $scope.userit[$index].taxval1=lab;
-         // $scope.userit[$index].taxval=$scope.userit[$index].taxval1.toFixed(fixdec);
-         //alert($scope.userit[$index].taxval)
+  
     }
 
    if(labval2=="Percent")
@@ -2484,19 +2470,9 @@ $scope.uomConversion=function($index,uom){
             }
         $scope.userit[$index].taxval1=addlab+parseFloat($scope.userit[$index].labval)+parseFloat($scope.userit[$index].stval);
         $scope.userit[$index].taxval=$scope.userit[$index].taxval1.toFixed($scope.rupeesDecimalPoints);
-      //   $scope.userit[$index].labval=$scope.userit[$index].labamt;   
-         
-      // //  addlab =  addlab +parseFloat($scope.userit[$index].stval)
-      //   $scope.userit[$index].taxval1=parseFloat($scope.userit[$index].taxval)+parseFloat(addlab);
-      //   $scope.userit[$index].taxval=$scope.userit[$index].taxval1.toFixed(fixdec);
-      //   //alert($scope.userit[$index].taxval);
-      //   $scope.userit[$index].labval1=addlab;
-      //   $scope.userit[$index].labval=$scope.userit[$index].labval1.toFixed(fixdec);
-   //    $scope.barcodelab="percentage";
+     
           if ($scope.barcodelab == "percentage") {
-            // alert("prtydsfwey "+parseFloat($scope.userit[$index].labval)+","+parseFloat($scope.userit[$index].chgunt));
-            // $scope.userit[$index].wastagePrint12 = (parseFloat($scope.userit[$index].labval)/parseFloat($scope.userit[$index].chgunt))*100;
-            //  $scope.userit[$index].wastagePrint12 = parseFloat($scope.userit[$index].wastagePrint12 ).toFixed(2)
+            
              $scope.userit[$index].wastagePrint12 =($scope.userit[$index].labamt)
 
             // alert($scope.userit[$index].wastagePrint12+"11")
@@ -2536,17 +2512,11 @@ $scope.uomConversion=function($index,uom){
            //alert("hello  $scope.userit[$index].labval "+$scope.userit[$index].labval+" $scope.userit[$index].labvalamt "+$scope.userit[$index].labamt);
             $scope.userit[$index].wastagePrint12 = (parseFloat($scope.userit[$index].labval));
             $scope.userit[$index].wastagePrint12 = parseFloat($scope.userit[$index].wastagePrint12 ).toFixed(3)
-            
-
-           // $scope.userit[$index].wastagePrint12 = $scope.userit[$index].addlab;
-            // alert($scope.userit[$index].wastagePrint12+"pu22")
+  
 
         }
         taxValCal($index)
-        // $scope.userit[$index].taxval1=parseFloat($scope.userit[$index].taxval)+$scope.userit[$index].labval
-        // $scope.userit[$index].taxval=$scope.userit[$index].taxval1.toFixed(fixdec);
-        // //alert($scope.userit[$index].taxval);
-        // $scope.userit[$index].labval=addlab;
+        
     }
     else if(labval2=="Amount")
     {
@@ -2564,12 +2534,7 @@ $scope.uomConversion=function($index,uom){
            // $scope.userit[$index].wastagePrint12 = (parseFloat($scope.userit[$index].labval)/parseFloat($scope.userit[$index].chgunt))*100;
             $scope.userit[$index].wastagePrint12 = (parseFloat($scope.userit[$index].labval)/(parseFloat($scope.userit[$index].chgunt)*parseFloat($scope.userit[$index].rate)))*100;
             $scope.userit[$index].wastagePrint12 = parseFloat($scope.userit[$index].wastagePrint12 ).toFixed(2)
-           //  $scope.userit[$index].wastagePrint12 = parseFloat($scope.userit[$index].wastagePrint12 ).toFixed(3)
-           // alert("dffj "+$scope.userit[$index].wastagePrint12)
-
-      
-           //alert($scope.userit[$index].wastagePrint12 )
-            // alert($scope.userit[$index].wastagePrint12+"A11")
+        
         }else{
            //alert("hello");
            var required = (parseFloat($scope.userit[$index].labval)/(parseFloat($scope.userit[$index].chgunt)*parseFloat($scope.userit[$index].rate)))*100;
