@@ -565,9 +565,9 @@ table {
 		
                 From: <input type="date" style='margin-right:15px'ng-model="date2">&nbsp;&nbsp;&nbsp;&nbsp;
 				 To: <input type="date" ng-model="date1" style='margin-right:15px' >&nbsp;&nbsp;&nbsp;&nbsp;
-				 <button style='margin-right:15px' ng-click="getAllDetails(partyname,date2,date1)"  class="btn btn-success">Preview</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				 <button style='margin-right:15px' class="btn btn-primary" id="cmd">PDF</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				 <button style='margin-right:15px' id="btnExport" class="btn btn-danger">Export</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				 <button style='margin-right:15px' ng-click="getAllDetails(partyname,date2,date1)"  class="btn btn-success" >Preview</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				 <button style='margin-right:15px' class="btn btn-primary" id="cmd" ng-disabled="isdisabled">PDF</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				 <button style='margin-right:15px' id="btnExport" class="btn btn-danger" ng-disabled="isdisabled">Export</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			
 			
 			<div id="thrid">

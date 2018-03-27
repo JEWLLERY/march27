@@ -513,10 +513,6 @@ form  { display: table;      }
 
   Filter by Item Type:
 
-   <!-- <select ng-model="item1.filter" ng-options="TypeName.TypeName for TypeName in itemtype1" ng-change ="filterchange()">
-    </select> -->
-
-    <!-- <select ng-model="item1.filter"  ng-change ="filterchange()" > -->
     <select ng-model="item.filter"   ng-change ="filterchange()" ng-init="item.filter='All '">
        <option ng-repeat="Type in itemtype1"  >{{Type.TypeName}}</option>
        </select>

@@ -7514,8 +7514,28 @@ app.post('/user12/:data',function(req,res){
     //console.log( str_array.length);
     var length = str_array.length;
     //console.log(length);
-     var remainingNtWt= str_array[length - 2];
+     
     var voucher = str_array[length - 1];
+
+    for(var i =0;i<length - 1;i++){
+    //  console.log("here is the length "+str_array[i]);
+      db.transactionDetail.update({_id:mongojs.ObjectId(str_array[i])},{$set:{"voucherNo":voucher }},function(err,doc)
+        {
+        //res.json(doc);
+        //console.log(doc)
+       });
+    }
+});
+app.post('/remainingNtWt/:data',function(req,res){ 
+  console.log('look up things syuasasdyusadsdhyasdbdfhudbasjdbashudbhdhy');
+  var str=req.params.data;
+    //console.log(str);
+     var str_array=str.split(",");
+    //console.log( str_array.length);
+    var length = str_array.length;
+    //console.log(length);
+     var remainingNtWt= str_array[length - 1];
+    var voucher = str_array[length - 2];
 
     for(var i =0;i<length - 1;i++){
     //  console.log("here is the length "+str_array[i]);
@@ -9063,17 +9083,15 @@ app.use(express.static(__dirname + '/subscriber_images'));
 require('./app/routes')(app); // pass our application into our routes
 require('./public/inventoryDbs/defaultCollections')(app);
 
-// require('./apiCalls/printPdf')(app); // pass our application into our routes
+
 require('./apiCalls/materialAdvancePdf')(app);
 
 
-<<<<<<< HEAD
-app.listen(1100); 
-console.log("server running on port 1100");
-=======
-app.listen(8000); 
-console.log("server running on port 8000");
->>>>>>> 51ce0d2a88a6e81c5ca21dbecebc3373e9d5028c
+
+app.listen(9000); 
+console.log("server running on port 9000");
+
+
 
 
 exports = module.exports = app;
