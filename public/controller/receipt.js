@@ -46,7 +46,11 @@ myApp.controller('billCntrl',['$scope','$http','$window',
          });
           }
           else{
+<<<<<<< HEAD
               // alert("hello")
+=======
+              //alert("hello")
+>>>>>>> 3175711d52bfcda4925991af57b17d6339c7441f
             $scope.partyname=$scope.customer;
             var pname=$scope.partyname;
   $http.get('/getvoucherids'+pname).success(function(response){
@@ -245,7 +249,11 @@ $scope.billDate=new Date();
    //for inserting values into collection
 
   $scope.save=function(){
+<<<<<<< HEAD
      // alert("hi save")
+=======
+     alert("hi save")
+>>>>>>> 3175711d52bfcda4925991af57b17d6339c7441f
     console.log($scope.rpamt);
     var flag=0;
 console.log($scope.paymode+","+$scope.amount+","+$scope.bank+","+$scope.chequeno+","+
@@ -375,11 +383,19 @@ console.log($scope.paymode+","+$scope.amount+","+$scope.bank+","+$scope.chequeno
           // }//if
            //start for save and navigation
       if (setPatyName!="null") {
+<<<<<<< HEAD
              // alert("llll")
                  setTimeout(function(){$scope.insertReceiptOrders(flag)},500);
            }else
            {
               // alert("hi");
+=======
+             alert("llll")
+                 setTimeout(function(){$scope.insertReceiptOrders(flag)},500);
+           }else
+           {
+              alert("hi");
+>>>>>>> 3175711d52bfcda4925991af57b17d6339c7441f
                  setTimeout(function(){$scope.insertReceipt(flag)},500);
                 }
             //end for save and navigation    
@@ -405,7 +421,11 @@ console.log($scope.rpamt.paymode+","+$scope.rpamt.amount+","+$scope.rpamt.bank+"
    }
    //for inserting data to db
    $scope.insertReceipt=function(flag){
+<<<<<<< HEAD
         // alert("insertReceipt");
+=======
+        alert("insertReceipt");
+>>>>>>> 3175711d52bfcda4925991af57b17d6339c7441f
       //$scope.voucherStatus = 'InProgress';
       if(flag==0){
       for(i=0;i<=$scope.rpamt.length-1;i++){
@@ -496,6 +516,10 @@ window.sessionStorage.setItem("Billtype",null);
 window.sessionStorage.setItem("partyname",null);
 window.sessionStorage.setItem($scope.recentId,null);
 window.sessionStorage.setItem("siid",null);
+<<<<<<< HEAD
+=======
+window.sessionStorage.setItem("receiptPatyName",null);
+>>>>>>> 3175711d52bfcda4925991af57b17d6339c7441f
 // window.sessionStorage.removeItem('Billtype');
 // window.sessionStorage.setItem("partyn",null);
     // $scope.printreceipt=0;

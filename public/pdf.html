@@ -406,7 +406,7 @@ City:{{city}}</p>
   <!-- <p>Invoice No:B1393<br> -->
   Date:{{FromDate | date }}<br>
  <h5 ng-if="trans=='RD Purchase' && printReceipt == true">Payment BillNo:{{bill}}</h5>
- <h5 ng-if="(trans=='Regular Sale'||trans=='Approval Sale') && printReceipt == true">Receipt BillNo:{{bill}}</h5>
+ <h5 ng-if="(trans=='Regular Sale'||trans=='Approval Sale') && (printReceipt == true)">Receipt BillNo:{{bill}}</h5>
 </p>
 </div>
 </div>
@@ -588,7 +588,7 @@ City:{{city}}</p>
     </tr> 
     <tr>
       <th ng-if="gst == 'igst'">Igst Total:</th>
-      <td  id="right2">{{igsttax}}</td>
+      <td  id="right2" ng-if="gst == 'igst'">{{igsttax}}</td>
 
     </tr>
      <tr>

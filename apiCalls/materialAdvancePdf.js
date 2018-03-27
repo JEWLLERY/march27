@@ -172,7 +172,7 @@ function textInRowFirst(doc1, text, heigth,width) {
             textInRowFirst(doc1, detailsDisplay[j].stval, height1,widthBody);
             widthBody += 40;
             textInRowFirst(doc1, detailsDisplay[j].labval, height1,widthBody);
-             var datePrint = new Date(detailsDisplay[j].date);
+             var datePrint = new Date(detailsDisplay[j].usedate);
             var day = datePrint.getDate();
             var month = datePrint.getMonth() + 1;
             var year = datePrint.getFullYear();
@@ -250,7 +250,7 @@ var fileNameMaterialReceipt = null;
 
 
     //pdf trial start
-function pdfPrintCallReceipt(orderNO,partyNames,staff,address,voucherNo){
+function pdfPrintCallReceipt(orderNO,partyNames,staff,address,voucherNo,condition){
 var PDFDocument, doc;
 var fs = require('fs');
 
@@ -409,8 +409,9 @@ function textInRowFirst(doc, text, heigth,width) {
     doc.text('Party Signature',{align: 'left'})
     .text('For '+pdfMerchantData[0].ShopName,10,heightOfPage,{align: 'right'})
        //console.log(" start fileName fileName fileName fileName "+fileName)
-    dataPrintInCollection(fileNameMaterialReceipt,orderNO,detailsDisplay[0].itemName)
- 
+    if (condition != true) {
+      dataPrintInCollection(fileNameMaterialReceipt,orderNO,detailsDisplay[0].itemName)
+    };
     doc.end()
 }// 
 
@@ -467,13 +468,10 @@ doc2.moveDown()
      heightOfHeader += 40; 
      var rigthSide = heightOfHeader; 
     doc2.text('For Order advance from '+":"+partyNames , 10, heightOfHeader)
-    //  heightOfHeader += 20;  
-    // doc2.text('Payment details are as follows: ', 10, heightOfHeader)
-    // //  heightOfHeader += 20;  
-    // doc2.text('City'+':'+pdfPartyCity, 10, heightOfHeader)
-       //heightOfHeader += 20;  
-    doc2.text('Voucher No'+":"+ detailsDisplay[0].BillNo , 400, rigthSide)
-    rigthSide += 20;
+   //commented on 26/3 voucher number is not available here only order appers 
+    // doc2.text('Voucher No'+":"+ detailsDisplay[0].BillNo , 400, rigthSide)
+    // rigthSide += 20;
+    //comm ended 26/3
      doc2.text('order No'+":"+orderNO , 400, rigthSide)
     rigthSide += 20;
 
@@ -1025,14 +1023,20 @@ var orderValue = 0;
 var  voucherNo = null;
 function detailsDisplayCall(orderNO,partyNames,staff,condition){
   //condition == 'receipt'
-  transactionData = null;
+  detailsDisplay = null;
+   voucherNo = null;
+   taxAmount = 0;
+   orderValue = 0;
+   // commented to avoid missing data
+  //transactionData = null;
+  //
   if (condition == 'receipt') {
         db.transactionDetail.find({  "orderNo" : orderNO, "Transaction" : "Receipt Voucher" },function(err,detailsDisplayData){
             
             detailsDisplay = detailsDisplayData;
              voucherNo = detailsDisplayData[0].voucherNo ;
               console.log(voucherNo+"length to call in details  "+detailsDisplayData.length+detailsDisplayData[0].voucherNo);
-              pdfPrintCallReceipt(orderNO,partyNames,staff,pdfPartyData[0].data.address1,voucherNo)
+              pdfPrintCallReceipt(orderNO,partyNames,staff,pdfPartyData[0].data.address1,voucherNo,false)
           
         })
   } else if (condition == 'issueVoucherPdfCall') {
@@ -1051,13 +1055,15 @@ function detailsDisplayCall(orderNO,partyNames,staff,condition){
             detailsDisplay = detailsDisplayData;
              voucherNo = detailsDisplayData[0].voucherNo ;
              console.log(voucherNo+"length to call in details  "+detailsDisplayData.length+detailsDisplayData[0].voucherNo);
-              pdfPrintCallReceipt(orderNO,partyNames,staff,pdfPartyData[0].data.address1,voucherNo)
+             // not to call 
+              pdfPrintCallReceipt(orderNO,partyNames,staff,pdfPartyData[0].data.address1,voucherNo,true)
           
         })
   
    
 
    }else if(condition == 'order'){
+                transactionData = null;
                     db.receipts.find({ "orderNO" :orderNO },function(err,totalAmount){
                                 if (totalAmount.length == 0) {
                                     cashAdvance = '' ;
@@ -1075,33 +1081,36 @@ function detailsDisplayCall(orderNO,partyNames,staff,condition){
                     
                                 if (transaction.length == 0) {
                                    transactionData = null;
+                                   ordersCall()
                                 }else{
                                     transactionData = transaction;
-//transactionData
+                                    ordersCall()
                                        }
                                  console.log(" totalAmount[0].PaidAmount totalAmount[0].PaidAmoun "+transactionData)
                       })
+                    function ordersCall() {
+                           db.orders.find({ "orderNO" :orderNO },function(err,detailsDisplayData){
+                                  console.log("length to call in details  "+detailsDisplayData.length);
+                                  detailsDisplay = detailsDisplayData;
+                                  //console.log(detailsDisplayData)
+                                  for (var i = detailsDisplay.length - 1; i >= 0; i--) {
+                                    //Things[i]
+                                       orderValue  = orderValue + parseFloat(detailsDisplay[i].final)
+                                      
+                                       taxAmount = taxAmount + parseFloat(detailsDisplay[i].taxamt)
+                                   
+                                  };
 
-                     db.orders.find({ "orderNO" :orderNO },function(err,detailsDisplayData){
-                            console.log("length to call in details  "+detailsDisplayData.length);
-                            detailsDisplay = detailsDisplayData;
-                            //console.log(detailsDisplayData)
-                            for (var i = detailsDisplay.length - 1; i >= 0; i--) {
-                              //Things[i]
-                                 orderValue  = orderValue + parseFloat(detailsDisplay[i].final)
-                                
-                                 taxAmount = taxAmount + parseFloat(detailsDisplay[i].taxamt)
-                             
-                            };
+                                  pdfPrintCall(orderNO,partyNames,staff,pdfPartyData[0].data.address1,transactionData)
 
-                            pdfPrintCall(orderNO,partyNames,staff,pdfPartyData[0].data.address1,transactionData)
-
-          
-                      })
+                
+                            })
+                    }
 
   }else if(condition == 'onlyOrders'){
                     
                                    cashAdvance = '' ;
+                                   transactionData = null;
 
                      db.orders.find({ "orderNO" :orderNO },function(err,detailsDisplayData){
                             console.log("length to call in details  "+detailsDisplayData.length);

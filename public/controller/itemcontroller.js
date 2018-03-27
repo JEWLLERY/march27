@@ -186,9 +186,13 @@ $scope.selectrow();
                       editcheck = false
 
                 })
+<<<<<<< HEAD
           $scope.item1.filter="All "
           $scope.item.filter = $scope.item1.filter;
           $scope.filterchange();
+=======
+
+>>>>>>> 3175711d52bfcda4925991af57b17d6339c7441f
      } 
 
      else {
